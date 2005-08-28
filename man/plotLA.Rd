@@ -1,0 +1,93 @@
+\name{plotLA}
+\alias{plotLA}
+\concept{Fisheries stock assessment}
+\title{Plot Length at Age}
+\description{
+  Plot \code{scape} model fit to length-at-age data.
+}
+\usage{
+plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
+       between=list(x=axes,y=axes), ylim=NULL, bands=1, main="",
+       xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8,
+       cex.axis=0.8, las=1, tck=0, tick.number=5, lty.grid=3,
+       col.grid="grey", pch=16, cex.points=0.5, col.points="black",
+       lty.lines=1, lwd.lines=4, col.lines=c("red","blue"),
+       lty.bands=2*(!together), lwd.bands=1, col.bands="black",
+       plot.it=TRUE, ...)
+}
+\arguments{
+  \item{model}{fitted \code{scape} model containing element \code{LA}.}
+  \item{together}{whether both sexes should be plotted in one panel.}
+  \item{sex}{string indicating which sex should be plotted (both by
+    default).}
+  \item{axes}{whether axis values should be plotted.}
+  \item{same.limits}{whether panels should have same y-axis limits.}
+  \item{between}{list with \code{x} and \code{y} indicating panel
+    spacing.}
+  \item{ylim}{vector with lower and upper y-axis limits.}
+  \item{bands}{extent of error bands relative to standard error.}
+  \item{main}{main title.}
+  \item{xlab}{x-axis label.}
+  \item{ylab}{y-axis label.}
+  \item{cex.main}{size of main title.}
+  \item{cex.lab}{size of axis labels.}
+  \item{cex.strip}{size of strip labels.}
+  \item{cex.axis}{size of tick labels.}
+  \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
+    2=perpendicular, 3=vertical.}
+  \item{tck}{tick mark length.}
+  \item{tick.number}{number of tick marks.}
+  \item{lty.grid}{line type of gridlines.}
+  \item{col.grid}{colour of gridlines.}
+  \item{pch}{symbol for points, possibly a vector where element 2 refers
+    to males.}
+  \item{cex.points}{size of points, possibly a vector where element 2
+    refers to males.}
+  \item{col.points}{colour of points, possibly a vector where element 2
+    refers to males.}
+  \item{lty.lines}{line type of main lines, possibly a vector where
+    element 2 refers to males.}
+  \item{lwd.lines}{line width of main lines, possibly a vector where
+    element 2 refers to males.}
+  \item{col.lines}{colour of main lines, possibly a vector where element
+    2 refers to males.}
+  \item{lty.bands}{line type of error bands.}
+  \item{lwd.bands}{line width of error bands.}
+  \item{col.bands}{colour of error bands, possibly a vector where
+    element 2 refers to males.}
+  \item{plot.it}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot}.}
+}
+\value{
+  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  returned, containing the data used for plotting. When
+  \code{plot.it=FALSE}, a trellis object is returned.
+}
+\author{Arni Magnusson \email{arnima@u.washington.edu}}
+\note{
+  This function tries to draw the plot on a trellis device with a white
+  background.
+
+  The \code{Args} function from the \pkg{gdata} package is recommended
+  for reviewing the arguments, instead of \code{args}.
+}
+\seealso{
+  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+
+  Trellis plot details can be studied from the \code{\link{Lattice}}
+  help page.
+}
+\examples{
+plotLA(x.oreo, xlab="Age", ylab="Length (cm)")
+
+mykey <- list(text=list(lab=c("Female","Male")), space="right",
+              lines=list(lwd=4,col=c("red","blue")))
+plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)", pch=NA,
+       key=mykey)
+
+mykey <- list(text=list(lab=c("Female","Male")), space="right",
+              points=list(pch=16,cex=0.5,col=c("red","blue")))
+plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)",
+       col.points=c("red","blue"), lty.lines=0, key=mykey)
+}
+\keyword{hplot}

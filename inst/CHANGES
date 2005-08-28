@@ -1,0 +1,233 @@
+--------------------------------------------------------------------------------
+scape 1.0-2
+28 Aug 2005
+--------------------------------------------------------------------------------
+o plotIndex() and plotN() default arguments are identical in documentation and
+  in functions.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 1.0-1
+26 Aug 2005
+--------------------------------------------------------------------------------
+o plotB(), plotCA(), plotCL(), plotIndex(), and plotN() have a single default
+  argument for argument 'what'.
+
+o plotIndex() redundant argument 'fitted.also' removed, pass lty.lines=0 to
+  suppress fitted lines.
+
+o plotCA() and plotCL() argument 'fitted.also' shortened to 'fit'.
+
+o Examples spell out TRUE and FALSE.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 1.0-0
+25 Aug 2005
+--------------------------------------------------------------------------------
+o Graphical arguments standardized and vectorized further.
+
+o Submitted to CRAN.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.2-2
+24 Aug 2005
+--------------------------------------------------------------------------------
+o Directories reorganized according to CRAN specifications.
+
+o man directory contains Rd documentation files.
+
+o importRes() imports both survey and commercial selectivity.
+
+o Survey and Gear columns renamed to Series, in scape elements CAc, CAs, CLc,
+  CLs, and Sel.
+
+o plotCA() and plotCL() assume what="s" was intended if what="c" failed.
+
+o plotSel() supports 'together'.
+
+o Graphical arguments standardized further between plot functions.
+
+o CHANGES entries reformatted.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.2-1
+17 Aug 2005
+--------------------------------------------------------------------------------
+o plotB() supports three plot types ("d", "s", and "l") and 'cex.legend'.
+
+o plotN() supports 'ratio.bars'.
+
+o example directory contains example files (cod.res, l_at_age.dat, ling.res,
+  oreo.res, oreo.txt, sbw.res).
+
+o Documentation updated by adding DSC proceedings paper to scape/doc directory,
+  and removing obsolete text files.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.2-0
+10 Aug 2005
+--------------------------------------------------------------------------------
+o plotB() plots biomass trajectories, landings, and stock recruitment.
+
+o plotCA(), plotCL(), and plotIndex() assume first series by default.
+
+o plotLA() supports 'together'.
+
+o importRes() brands attributes call=[call] and scape.version=[version] for
+  imported Coleraine models. The info attribute is now empty quotes.
+
+o importRes() imports CPUE data without a Gear column. Series name can contain
+  the gear name if the user wishes.
+
+o scape element B has column Year, not Years.
+
+o Graphical arguments changed in all plot functions, to simplify and
+  standardize.
+
+o ling.res and ling.R updated to a newer version of Coleraine.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-7
+09 Nov 2004
+--------------------------------------------------------------------------------
+o plotIndex() makes plotCPUE() and plotSurvey() obsolete.
+
+o importRes() supports gear-specific vulnerable biomass, and labels annual Dev
+  elements with years instead of cohorts.
+
+o ling.R does not contain CLs element, since survey catch-at-length data were
+  not used in that assessment.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-6
+26 Jul 2004
+--------------------------------------------------------------------------------
+o plotSelMat() renamed to plotSel(), supporting gear-specific plots.
+
+o scape element SelMat renamed to Sel, with a new Gear column.
+
+o importRes() makes sure that CPUE element will not contain empty Gear:Series
+  combinations.
+
+o data directory contains additional files ling.R and ling.res.
+
+o DESCRIPTION typos fixed.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-5
+24 May 2004
+--------------------------------------------------------------------------------
+o  Updated documentation (1_introduction.txt, 2_walkthrough.txt, 3_mymodel.txt,
+   4_trellis, and 5_upcoming.txt).
+
+o  plotCPUE() and plotSurvey() have improved multipanel layout control, using
+   'as.table' instead of 'rev.series'.
+
+o  plotCPUE() and plotSurvey() have improved grid lines at low values.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-4
+23 May 2004
+--------------------------------------------------------------------------------
+o plotCPUE() and plotSurvey() argument 'div' renamed to 'q' to clarify its
+  purpose.
+
+o plotCPUE() and plotSurvey() internal arguments 'yobs' and 'yfit' do not cause
+  a conflict with top-level argument abbreviation 'fit'.
+
+o plotSelMat has default cex.points value 1.
+
+o importRes() suppresses getLA-specific warnings.
+
+o plotCPUE() and plotSurvey() display more informative strip labels.
+
+o plotCPUE(), plotLA(), and plotSurvey() support argument 'fitted.also'.
+
+o importRes() looks for correctly spelled Number_of_survey_C@A flag.
+
+o x.cod contains CAs element.
+
+o Documentation updated (2_walkthrough.txt).
+
+o importRes() calculates maturity without NaN values.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-3
+19 May 2004
+--------------------------------------------------------------------------------
+o Documentation updated (1_introduction.txt and 2_walkthrough.txt).
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-2
+18 May 2004
+--------------------------------------------------------------------------------
+o doc directory contains 1_introduction.txt, 2_walkthrough.txt, and
+  3_upcoming.txt.
+
+o data directory contains Coleraine output files (cod.res, l_at_age.txt,
+  oreo.res, oreo.txt, and sbw.res).
+
+o plotN() makes smarter y-axis.
+
+o importRes() brands attributes class="scape" and info=[path] for imported
+  Coleraine models.
+
+o Removed importCor(), plotB(), and plotPearsonCLc() from package.
+
+o CHANGES file in root.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-1
+12 May 2004
+--------------------------------------------------------------------------------
+o DESCRIPTION and INDEX files in root.
+
+o data directory contains cod.R, oreo.R, and sbw.R.
+
+o Uploaded to personal website for first time.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 0.1-0
+11 May 2004
+--------------------------------------------------------------------------------
+o R directory contains scape.R: importCor(), importRes(), plotB(), plotCA(),
+  plotCL(), plotCPUE(), plotLA(), plotN(), plotPearsonCLc(), plotSelMat(), and
+  plotSurvey().
