@@ -75,7 +75,7 @@ importRes(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
 \examples{
 \dontrun{
 path <- paste(.find.package("scape"), "/example/cod.res", sep="")
-x.cod <- importRes(path, dev=T, Survey=T, CAc=T, CAs=T)
+x.cod <- importRes(path, Dev=T, Survey=T, CAc=T, CAs=T)
 }
 }
 % Programming, Input/Ouput, and Miscellaneous

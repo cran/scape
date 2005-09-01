@@ -299,7 +299,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
   if(verbose) cat("\n")
 
   attr(model,"call") <- match.call()
-  attr(model,"scape.version") <- "1.0-2"
+  attr(model,"scape.version") <- "1.0-3"
   attr(model,"info") <- info
   class(model) <- "scape"
 

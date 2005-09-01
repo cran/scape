@@ -2900,4 +2900,4 @@ structure(list(N = structure(list(Sex = structure(as.integer(c(1,
     "364", "365", "366", "367", "368", "369", "370", "371", "372", 
     "373", "374", "375", "376", "377", "378"), class = "data.frame")), .Names = c("N", 
 "B", "Sel", "CPUE", "Survey", "CLc", "CLs", "LA"), call = quote(importRes(res.file = "d:/scape/example/oreo.res", 
-    CPUE = T, Survey = T, CLc = T, CLs = T, LA = T)), scape.version = "1.0-2", info = "", class = "scape")
+    CPUE = T, Survey = T, CLc = T, CLs = T, LA = T)), scape.version = "1.0-3", info = "", class = "scape")
