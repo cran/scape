@@ -2,9 +2,7 @@
 \alias{plotN}
 \concept{Fisheries stock assessment}
 \title{Plot Numbers at Age}
-\description{
-  Plot \code{scape} model predicted numbers at age.
-}
+\description{Plot \code{scape} model predicted numbers at age.}
 \usage{
 plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
       same.limits=TRUE, div=1, log.transform=FALSE, base.log=10,
@@ -23,7 +21,7 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
     plotted (all by default).}
   \item{ages}{vector of numbers indicating which ages should be plotted
     (all by default).}
-  \item{axes}{ ~~Describe \code{axes} here~~ .}
+  \item{axes}{whether axis values should be plotted.}
   \item{same.limits}{whether panels should have same y-axis limits.}
   \item{div}{denominator to shorten values on y axis.}
   \item{log.transform}{whether values should be log-transformed.}
@@ -69,8 +67,8 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotN(x.cod, div=1000, xlab=c("Age (years)","Year"),

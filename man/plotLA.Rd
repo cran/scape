@@ -2,9 +2,7 @@
 \alias{plotLA}
 \concept{Fisheries stock assessment}
 \title{Plot Length at Age}
-\description{
-  Plot \code{scape} model fit to length-at-age data.
-}
+\description{Plot \code{scape} model fit to length-at-age data.}
 \usage{
 plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
        between=list(x=axes,y=axes), ylim=NULL, bands=1, main="",
@@ -74,8 +72,8 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotLA(x.oreo, xlab="Age", ylab="Length (cm)")

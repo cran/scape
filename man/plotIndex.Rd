@@ -2,9 +2,7 @@
 \alias{plotIndex}
 \concept{Fisheries stock assessment}
 \title{Plot Abundance Index}
-\description{
-  Plot \code{scape} model fit to abundance index data
-}
+\description{Plot \code{scape} model fit to abundance index data}
 \usage{
 plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
           between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1,
@@ -70,8 +68,8 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotIndex(x.cod, "s", xlab="Year", ylab="Survey abundance index",

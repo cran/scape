@@ -2,9 +2,7 @@
 \alias{plotCL}
 \concept{Fisheries stock assessment}
 \title{Plot Catch at Length}
-\description{
-  Plot \code{scape} model fit to catch-at-length data.
-}
+\description{Plot \code{scape} model fit to catch-at-length data.}
 \usage{
 plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
        lengths=NULL, axes=TRUE, same.limits=TRUE, log.transform=FALSE,
@@ -76,8 +74,8 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotCL(x.ling, fit=FALSE, strip=FALSE, series="1", sex="Female",

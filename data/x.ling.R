@@ -2471,4 +2471,4 @@ structure(list(N = structure(list(Sex = structure(as.integer(c(1,
     "1034", "1035", "1036", "1037", "1038", "1039", "1040", "1041", 
     "1042", "1043", "1044"), class = "data.frame")), .Names = c("N", 
 "B", "Sel", "Dev", "CPUE", "Survey", "CAs", "CLc"), call = quote(importRes(res.file = "d:/scape/example/ling.res", 
-    Dev = T, CPUE = T, Survey = T, CAs = T, CLc = T)), scape.version = "1.0-3", info = "", class = "scape")
+    Dev = T, CPUE = T, Survey = T, CAs = T, CLc = T)), scape.version = "1.0-4", info = "", class = "scape")

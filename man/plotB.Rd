@@ -72,8 +72,8 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotB(x.ling, series=c("VB.1","VB.2","Y"), div=1000, xlab="Year\n",

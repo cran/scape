@@ -2,9 +2,7 @@
 \alias{plotCA}
 \concept{Fisheries stock assessment}
 \title{Plot Catch at Age}
-\description{
-  Plot \code{scape} model fit to catch-at-age data.
-}
+\description{Plot \code{scape} model fit to catch-at-age data.}
 \usage{
 plotCA(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
        ages=NULL, axes=TRUE, same.limits=TRUE, log.transform=FALSE,
@@ -76,8 +74,8 @@ plotCA(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotCA(x.sbw, fit=FALSE, strip=FALSE, xlab="Age", ylab="Year",

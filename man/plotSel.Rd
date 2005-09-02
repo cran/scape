@@ -62,8 +62,8 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
 \seealso{
   Fitted Coleraine models can be imported using \code{\link{importRes}}.
 
-  Trellis plot details can be studied from the \code{\link{Lattice}}
-  help page.
+  Trellis plot details can be studied from the
+  \code{\link[lattice]{Lattice}} help page.
 }
 \examples{
 plotSel(x.ling, xlab="Age", ylab="Selectivity and maturity")
