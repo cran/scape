@@ -1,8 +1,8 @@
 "plotN" <-
-function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log.transform=FALSE, base.log=10,
-         main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=what=="b",
-         tck=c(1,what=="b")/2, tick.number=10, lty.grid=3, col.grid="white", pch=16, cex.points=1, col.points="black",
-         ratio.bars=3, col.bars="grey", plot.it=TRUE, ...)
+function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log=FALSE, base=10, main="", xlab="",
+         ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=(what=="b"), tck=c(1,what=="b")/2,
+         tick.number=10, lty.grid=3, col.grid="white", pch=16, cex.points=1, col.points="black", ratio.bars=3,
+         col.bars="grey", plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.bar <- function(x, y, ...)  # barplot of N in one or more panel
@@ -36,8 +36,8 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   ok.ages  <- x$Age  %in% ages;  if(!any(ok.ages))  stop("Please check if the 'ages' argument is correct.")
   x <- x[ok.years & ok.ages,]
   x$N <- x$N / div
-  if(log.transform)
-    x$N <- log(x$N, base.log)
+  if(log)
+    x$N <- log(x$N, base)
 
   ## 4 PREPARE PLOT (check device, vectorize args, create list args)
   require(grid, quietly=TRUE, warn.conflicts=FALSE)
@@ -62,19 +62,19 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   ## 5 CREATE TRELLIS OBJECT
   printed <- FALSE
   fixed.ylim <- FALSE
-  if(what == "d")  # recursive flow: plotN("i",plot.it=F) -> print -> plotN("r",plot.it=F) -> print
+  if(what == "d")  # recursive flow: plotN("i",plot=F) -> print -> plotN("r",plot=F) -> print
   {
     graph <- plotN(model, what="i", years=years, ages=ages, axes=axes, relation=relation,
-                   div=div, log.transform=log.transform, base.log=base.log, main=main, xlab=xlab, ylab=ylab,
+                   div=div, log=log, base=base, main=main, xlab=xlab, ylab=ylab,
                    cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis, las=las,
                    tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points, col.points=col.points,
-                   ratio.bars=ratio.bars, col.bars=col.bars, plot.it=FALSE, ...)
+                   ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
     print(graph, split=c(1,1,1,2), more=TRUE)
     graph <- plotN(model, what="r", years=years, ages=ages, axes=axes, relation=relation,
-                   div=div, log.transform=log.transform, base.log=base.log, main=main, xlab=xlab, ylab=ylab,
+                   div=div, log=log, base=base, main=main, xlab=xlab, ylab=ylab,
                    cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis, las=las,
                    tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points, col.points=col.points,
-                   ratio.bars=ratio.bars, col.bars=col.bars, plot.it=FALSE, ...)
+                   ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
     print(graph, split=c(1,2,1,2))
     printed <- TRUE
   }
@@ -113,7 +113,7 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
     graph$y.limits <- rev(graph$y.limits)
     fixed.ylim <- TRUE
   }
-  if(!log.transform && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
+  if(!log && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
   {
     if(is.list(graph$y.limits))                                                 # set lower ylim to 0
       graph$y.limits <- lapply(graph$y.limits, function(y){y[1]<-0;return(y)})  # multi-panel plot
@@ -122,7 +122,7 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   }
 
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     if(!printed)
       print(graph)

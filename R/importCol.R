@@ -1,11 +1,11 @@
-"importRes" <-
+"importCol" <-
 function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE,
-         verbose=FALSE)
+         quiet=TRUE)
 {
   ## Implementation notes
   ## Generic read* functions: Vector, Matrix
   ## Specific get* functions: N, B, Sel, Dev, CPUE, Survey, CAc, CAs, CLc, CLs, LA
-  ## The only global objects (used inside get* functions) are *.file, *.vector, and verbose
+  ## The only global objects (used inside get* functions) are *.file, *.vector, and quiet
 
   readVector <- function(keyword, same.line=TRUE, file=res.file, vector=res.vector)
   {
@@ -15,7 +15,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
       as.numeric(scan(file, what="", skip=line-1, nlines=1, quiet=TRUE)[-1])
     else
       as.numeric(scan(file, what="", skip=line, nlines=1, quiet=TRUE))
-    if(verbose) cat("vector...")
+    if(!quiet) cat("vector...")
     return(v)
   }
 
@@ -29,14 +29,14 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     m <- matrix(m, byrow=TRUE, nrow=nrow)
     m <- switch(stripe, left=m[,seq(1,ncol(m)/2)], right=m[,seq(ncol(m)/2+1,ncol(m))], upper=m[seq(1,nrow(m)-1,by=2),],
                 lower=m[seq(2,nrow(m),by=2),], m)
-    if(verbose) cat("matrix...")
+    if(!quiet) cat("matrix...")
     return(m)
   }
 
   getN <- function(sexes, years, ages)
   {
     ## Look for "\"Numbers_at_age_by_Year,sex_and_age\" in colera31, or "Numbers_at_age_by_Year,sex_and_age" in colera32
-    if(verbose) cat("N         ")
+    if(!quiet) cat("N         ")
     nsexes <- length(sexes)
     nyears <- length(years)
     nages <- length(ages)
@@ -52,26 +52,26 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
       N <- data.frame(Sex=rep(sexes,each=nyears*nages), Year=rep(rep(years,each=nages),2), Age=rep(ages,2*nyears),
                       N=as.vector(t(rbind(Nf,Nm))))
     }
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(N)
   }
 
   getB <- function(years, gears)
   {
     ngears <- length(gears)
-    if(verbose) cat("B         ")
+    if(!quiet) cat("B         ")
     vb <- readMatrix("Vulnerable_Biomass_by_Method_and_Year", nrow=ngears)
     sb <- readVector("Spawning_Biomass_by_Year", same.line=FALSE)
     y  <- c(readVector("Total_Catch_by_Method_and_Year", same.line=FALSE), NA)
     B <- as.data.frame(cbind(years, t(vb), sb, y))
     names(B) <- if(ngears==1) c("Year","VB","SB","Y") else c("Year",paste("VB",gears,sep="."),"SB","Y")
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(B)
   }
 
   getSel <- function(gears, surveys, years, sexes, ages)
   {
-    if(verbose) cat("Sel       ")
+    if(!quiet) cat("Sel       ")
     ngears <- length(gears)
     nsurveys <- length(surveys)
     nyears <- length(years)
@@ -90,25 +90,25 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     Sel <- data.frame(Series=c(rep(gears,each=nsexes*nages),rep(surveys,each=nsexes*nages),rep("Maturity",nsexes*nages)),
                       Sex=rep(rep(sexes,each=nages),ngears+nsurveys+1), Age=rep(ages,(ngears+nsurveys+1)*nsexes),
                       P=c(t(com),t(srv),mat))
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(Sel)
   }
 
   getDev <- function(ages, years)
   {
-    if(verbose) cat("Dev       ")
+    if(!quiet) cat("Dev       ")
     Dev <- list()
     Dev$Initial <- readVector("log_InitialDev", same.line=TRUE)
     names(Dev$Initial) <- ages[-c(1,length(ages))]  # exclude first and last age
     Dev$Annual <- readVector("log_RecDev", same.line=TRUE)
     names(Dev$Annual) <- years[-length(years)]      # exclude last year
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(Dev)
   }
 
   getCPUE <- function(gears, years)
   {
-    if(verbose) cat("CPUE      ")
+    if(!quiet) cat("CPUE      ")
     nseries <- readVector("NCPUEindex")
     ngears <- length(gears)
     nyears <- length(years)
@@ -121,13 +121,13 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CPUE <- merge(sgkey, CPUE)  # add gear column
     CPUE <- data.frame(Series=paste("Series ",CPUE$Series,"-",CPUE$Gear,sep=""), Year=as.integer(CPUE$Year), Obs=CPUE$Obs,
                        CV=CPUE$CV, Fit=CPUE$Fit)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(CPUE)
   }
 
   getSurvey <- function(years)
   {
-    if(verbose) cat("Survey    ")
+    if(!quiet) cat("Survey    ")
     nyears <- length(years)
     nseries <- readVector("Nsurveyindex")
     obs <- readMatrix("indexyearvaluecv", nrow=readVector("Number_of_survey_data",same.line=FALSE))
@@ -137,13 +137,13 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     Survey <- merge(obs, fit, all=TRUE)
     Survey$Series <- as.integer(Survey$Series)
     Survey$Year <- as.integer(Survey$Year)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(Survey)
   }
 
   getCAc <- function(sexes, ages)
   {
-    if(verbose) cat("CAc       ")
+    if(!quiet) cat("CAc       ")
     nsexes <- length(sexes)
     nages <- length(ages)
     nobs <- readVector("Number_of_Commercial_C@A", same.line=FALSE)
@@ -155,13 +155,13 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CAc$Series <- as.integer(CAc$Series)
     CAc$Year <- as.integer(CAc$Year)
     CAc$Age <- as.integer(CAc$Age)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(CAc)
   }
 
   getCAs <- function(sexes, ages)
   {
-    if(verbose) cat("CAs       ")
+    if(!quiet) cat("CAs       ")
     nsexes <- length(sexes)
     nages <- length(ages)
     nobs <- readVector("Number_of_survey_C@A",same.line=FALSE)
@@ -173,13 +173,13 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CAs$Series <- as.integer(CAs$Series)
     CAs$Year <- as.integer(CAs$Year)
     CAs$Age <- as.integer(CAs$Age)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(CAs)
   }
 
   getCLc <- function(sexes, lengths)
   {
-    if(verbose) cat("CLc       ")
+    if(!quiet) cat("CLc       ")
     nsexes <- length(sexes)
     nlengths <- length(lengths)
     nobs <- readVector("Number_of_Commercial_C@L", same.line=FALSE)
@@ -191,13 +191,13 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CLc$Series <- as.integer(CLc$Series)
     CLc$Year <- as.integer(CLc$Year)
     CLc$Length <- as.integer(CLc$Length)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(CLc)
   }
 
   getCLs <- function(sexes, lengths)
   {
-    if(verbose) cat("CLs       ")
+    if(!quiet) cat("CLs       ")
     nsexes <- length(sexes)
     nlengths <- length(lengths)
     nobs <- readVector("Number_of_surveyC@L",same.line=FALSE)
@@ -209,14 +209,14 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CLs$Series <- as.integer(CLs$Series)
     CLs$Year <- as.integer(CLs$Year)
     CLs$Length <- as.integer(CLs$Length)
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(CLs)
   }
 
   getLA <- function(sexes, ages)
   {
     ## Sex | Age | Obs | Fit | CV
-    if(verbose) cat("LA        ")
+    if(!quiet) cat("LA        ")
     nsexes <- length(sexes)
     nages <- length(ages)
     nobs <- readVector("#femalesmales", same.line=FALSE, file=latage.file, vector=latage.vector)  # two elements
@@ -253,14 +253,14 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     LA$Age <- as.integer(LA$Age)
     LA$Fit <- LA$Fit
     LA$CV <- LA$CV
-    if(verbose) cat("OK\n")
+    if(!quiet) cat("OK\n")
     return(LA)
   }
 
   if(!file.exists(res.file)) stop("File ", res.file, " not found. Use / or \\\\ separators.")
   res.vector <- readLines(res.file)                                    # string vector, one element being one line
   res.vector <- gsub("\"","", gsub("\t","",gsub(" ","",res.vector)))   # remove white space and quotes
-  if(verbose) cat("\nParsing text file ", res.file, ":\n\nPreamble  ", sep="")
+  if(!quiet) cat("\nParsing text file ", res.file, ":\n\nPreamble  ", sep="")
   sexes <- if(readVector("Nsexes")==1) "Unisex" else c("Female","Male")
   gears <- seq(1, length.out=readVector("Nmethods"))        # possibly a vector of length zero
   surveys <- seq(1, length.out=readVector("Nsurveyindex"))  # "
@@ -268,7 +268,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
   ages <- seq(from=1, to=readVector("Nages"))
   lengths <- seq(from=readVector("First_length"), by=readVector("Length_class_increment"),
                  length.out=readVector("Number_of_length_classes"))
-  if(verbose) cat("OK\n")
+  if(!quiet) cat("OK\n")
   model <- list()
   model$N   <- getN(sexes, years, ages)
   model$B   <- getB(years, gears)            # Recruits:
@@ -296,10 +296,10 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     txt.vector <- gsub("\"","", gsub("\t","",gsub(" ","",txt.vector)))
     model$LA <- getLA(sexes, ages)
   }
-  if(verbose) cat("\n")
+  if(!quiet) cat("\n")
 
   attr(model,"call") <- match.call()
-  attr(model,"scape.version") <- "1.0-4"
+  attr(model,"scape.version") <- installed.packages()["scape","Version"]
   attr(model,"info") <- info
   class(model) <- "scape"
 

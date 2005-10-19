@@ -1,8 +1,8 @@
 "plotCL" <-
 function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, lengths=NULL, axes=TRUE, same.limits=TRUE,
-         log.transform=FALSE, base.log=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8,
-         cex.axis=0.8, las=!fit, tck=c(1,fit)/2, tick.number=5, lty.grid=3, col.grid="grey", pch=16, cex.points=0.5,
-         col.points="black", lty.lines=1, lwd.lines=2, col.lines=c("red","blue"), plot.it=TRUE, ...)
+         log=FALSE, base=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8,
+         las=!fit, tck=c(1,fit)/2, tick.number=5, lty.grid=3, col.grid="grey", pch=16, cex.points=0.5, col.points="black",
+         lty.lines=1, lwd.lines=2, col.lines=c("red","blue"), plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.bubble <- function(x, y, ...)  # bubble plot obs in one single-sex panel
@@ -68,8 +68,8 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, lengths=N
   if(nrow(x) == 0)
     stop("Empty data frame. Please check if subsetting args (series, sex, years, lengths) had mistakes.")
   nsexes <- length(unique(x$Sex))
-  if(log.transform)
-    x$P <- log(x$P+eps.log, base=base.log)
+  if(log)
+    x$P <- log(x$P+eps.log, base=base)
 
   ## 4 PREPARE PLOT (check device, vectorize args, create list args)
   require(grid, quietly=TRUE, warn.conflicts=FALSE)
@@ -123,7 +123,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, lengths=N
                     pch=pch, cex=cex.points, col.points=col.points[x$Sex], lty=lty.lines, lwd=lwd.lines,
                     col.lines=col.lines[x$Sex], ...)
   }
-  if(!log.transform && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
+  if(!log && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
   {
     if(is.list(graph$y.limits))                                                 # set lower ylim to 0
       graph$y.limits <- lapply(graph$y.limits, function(y){y[1]<-0;return(y)})  # multi-panel plot
@@ -132,7 +132,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, lengths=N
   }
 
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     print(graph)
     invisible(x)

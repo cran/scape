@@ -1,7 +1,7 @@
 \name{x.ling}
 \docType{data}
 \alias{x.ling}
-\title{Ling assessment}
+\title{Ling Assessment}
 \description{
   Stock assessment data and model fit for ling (\emph{Genypterus
     blacodes}) in New Zealand waters, using a Coleraine statistical
@@ -37,19 +37,24 @@
   recruitment deviates.
 }
 \note{
-  The list was imported from the file \code{scape/example/ling.res}
-  using \code{importRes}.
+  The list was imported from the file \file{scape/example/ling.res}
+  using \code{importCol}.
+
+  The functions \code{ll} (package \pkg{gdata}) and \code{head} are
+  recommended for browsing model results, e.g. \code{ll(x.ling);
+    ll(x.ling$N); head(x.ling$N)}.
 }
 \source{
   \cite{Annala, J.H., K.J. Sullivan, C.J. O'Brien, and N.W.M. Smith.
     (eds.) 2001. Report from the Fishery Assessment Plenary: Stock
     assessments and yield estimates. Wellington: NIWA.} Available from
-  NIWA library, Wellington.}
+  NIWA library, Wellington.
+}
 \references{
   \cite{Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P.
     Starr. 2003. Coleraine: A generalized age-structured stock
     assessment model. User's manual version 2.0. University of
-    Washington Report SAFS--UW--0116.} Available at
+    Washington Report SAFS-UW-0116.} Available at
   http://fish.washington.edu/research/coleraine/coleraine.pdf.
 
   \cite{Magnusson, A. 2001. SeaFIC assessment of Chatham Rise ling (LIN
@@ -57,8 +62,10 @@
     Zealand Ministry of Fisheries.} Available from the author.
 }
 \seealso{
-  \code{\link{importRes}}, \code{\link{x.cod}}, \code{\link{x.oreo}},
+  \code{\link{importCol}}, \code{\link{x.cod}}, \code{\link{x.oreo}},
   \code{\link{x.sbw}}
+
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotB(x.ling)

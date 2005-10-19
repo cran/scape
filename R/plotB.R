@@ -2,7 +2,7 @@
 function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, legend="bottom", main="", xlab="", ylab="",
          cex.main=1.2, cex.legend=1, cex.lab=1, cex.axis=0.8, las=1, tck=c(1,what=="d")/2, tick.number=5, lty.grid=3,
          col.grid="white", pch=16, cex.points=0.8, col.points="black", lty.lines=1:3, lwd.lines=2, col.lines="black",
-         ratio.bars=3, col.bars="grey", plot.it=TRUE, ...)
+         ratio.bars=3, col.bars="grey", plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.linebar <- function(x, y, bars, ...)  # biomass lines and/or yield bars
@@ -88,7 +88,7 @@ function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, legend="bot
   graph$y.limits[1] <- 0  # single-panel plot
 
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     print(graph)
     invisible(x)

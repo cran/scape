@@ -1,7 +1,7 @@
 \name{x.oreo}
 \docType{data}
 \alias{x.oreo}
-\title{Oreo assessment}
+\title{Oreo Assessment}
 \description{
   Stock assessment data and model fit for smooth oreo
   (\emph{Pseudocyttus maculatus}) in New Zealand waters, using a
@@ -41,19 +41,24 @@
   and CVmale.
 }
 \note{
-  The list was imported from the files \code{scape/example/oreo.res},
-  \code{oreo.txt}, and \code{l_at_age.dat} using \code{importRes}.
+  The list was imported from the files \file{scape/example/oreo.res},
+  \file{oreo.txt}, and \file{l\_at\_age.dat} using \code{importCol}.
+
+  The functions \code{ll} (package \pkg{gdata}) and \code{head} are
+  recommended for browsing model results, e.g. \code{ll(x.oreo);
+    ll(x.oreo$N); head(x.oreo$N)}.
 }
 \source{
   \cite{Annala, J.H., K.J. Sullivan, C.J. O'Brien, N.W.M. Smith, and
     S.M. Grayling (eds.) 2003. Report from the Fishery Assessment
     Plenary: Stock assessments and yield estimates. Wellington: Ministry
-    of Fisheries.} Available from NIWA library, Wellington.}
+    of Fisheries.} Available from NIWA library, Wellington.
+}
 \references{
   \cite{Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P.
     Starr. 2003. Coleraine: A generalized age-structured stock
     assessment model. User's manual version 2.0. University of
-    Washington Report SAFS--UW--0116.} Available at
+    Washington Report SAFS-UW-0116.} Available at
   http://fish.washington.edu/research/coleraine/coleraine.pdf.
 
   \cite{Magnusson, A. 2003. Stock assessment of Chatham Rise smooth oreo
@@ -61,8 +66,10 @@
     Ministry of Fisheries.} Available from the author.
 }
 \seealso{
-  \code{\link{importRes}}, \code{\link{x.cod}}, \code{\link{x.ling}},
+  \code{\link{importCol}}, \code{\link{x.cod}}, \code{\link{x.ling}},
   \code{\link{x.sbw}}
+
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotB(x.oreo)

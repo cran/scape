@@ -1,13 +1,13 @@
 "plotIndex" <-
 function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1,
-         log.transform=FALSE, base.log=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8,
-         las=1, tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white", pch=16, cex.points=1.2, col.points="black",
-         lty.lines=1, lwd.lines=4, col.lines="dimgrey", lty.bar=1, plot.it=TRUE, ...)
+         log=FALSE, base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1,
+         tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white", pch=16, cex.points=1.2, col.points="black",
+         lty.lines=1, lwd.lines=4, col.lines="dimgrey", lty.bar=1, plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.index <- function(x, y, subscripts, yobs, yfit, col.points, col.lines, ...)  # overlay obs and fit in series panels
   {
-    y.range <- range(c(rep(0,!log.transform),attr(yobs,"other"),y), na.rm=TRUE)
+    y.range <- range(c(rep(0,!log),attr(yobs,"other"),y), na.rm=TRUE)
     panel.abline(v=pretty(x,tick.number), h=pretty(y.range,tick.number), lty=lty.grid, col=col.grid)
     panel.xyplot(x, y, type="n", ...)
     panel.xyplot(x, yfit[subscripts], type="l", lty=lty.lines, lwd=lwd.lines, col=col.lines[subscripts], ...)
@@ -55,12 +55,12 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
   x$Fit <- x$Fit/q
   x$Hi  <- x$Obs*exp(bar*x$CV)
   x$Lo  <- x$Obs/exp(bar*x$CV)
-  if(log.transform)
+  if(log)
   {
-    x$Obs <- log(x$Obs, base=base.log)
-    x$Fit <- log(x$Fit, base=base.log)
-    x$Hi  <- log(x$Hi,  base=base.log)
-    x$Lo  <- log(x$Lo,  base=base.log)
+    x$Obs <- log(x$Obs, base=base)
+    x$Fit <- log(x$Fit, base=base)
+    x$Hi  <- log(x$Hi,  base=base)
+    x$Lo  <- log(x$Lo,  base=base)
   }
 
   ## 4 PREPARE PLOT (check device, vectorize args, create list args)
@@ -93,23 +93,25 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
   else  # ylim is null so find reasonable limits
   {
     extremes <- as.data.frame(lapply(split(x[,c("Fit","Hi","Lo")],x$Series), range, na.rm=TRUE))
-    if(!log.transform)
-      graph$y.limits <- as.list(rbind(0, 1.05*extremes[2,,drop=FALSE]))
+    if(!log)
+      graph$y.limits <- lapply(extremes, function(x) c(0,1.04*x[2]))
     else
-      graph$y.limits <- as.list(rbind(extremes[1,,drop=FALSE]-0.05, extremes[2,,drop=FALSE]+0.05))
+      graph$y.limits <- lapply(extremes, function(x) range(x)+c(-0.04,0.04)*diff(range(x)))
   }
-  if(relation == "same")
+  if(same.limits)
     graph$y.limits <- range(unlist(graph$y.limits))
 
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     print(graph)
-    invisible(x)
+    return(list(extremes=extremes, graph.y.limits=graph$y.limits))
+    ## invisible(x)
   }
   else
   {
-    invisible(graph)
+    return(list(extremes=extremes, graph.y.limits=graph$y.limits))
+    ## invisible(graph)
   }
 }
 

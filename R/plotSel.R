@@ -1,7 +1,7 @@
 "plotSel" <-
 function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom", main="", xlab="", ylab="", cex.main=1.2,
          cex.legend=1, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1, tck=0, tick.number=5, lty.grid=3, col.grid="grey",
-         pch="m", cex.points=1, col.points="black", lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot.it=TRUE, ...)
+         pch="m", cex.points=1, col.points="black", lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.each <- function(x, y, subscripts, maturity, col.lines.vector, ...)
@@ -84,7 +84,7 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
     graph$y.limits <- c(-0.005,1.005)                                                    # single-panel plot
   }
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     print(graph)
     invisible(x)

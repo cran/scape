@@ -1,7 +1,7 @@
 \name{x.cod}
 \docType{data}
 \alias{x.cod}
-\title{Cod assessment}
+\title{Cod Assessment}
 \description{
   Stock assessment data and model fit for cod (\emph{Gadus morhua}) in
   Icelandic waters, using a Coleraine statistical catch-at-age model.
@@ -36,18 +36,23 @@
   Sleft[survey], Sfull[s], q, and 41 recruitment deviates.
 }
 \note{
-  The list was imported from the file \code{scape/example/cod.res} using
-  \code{importRes}.
+  The list was imported from the file \file{scape/example/cod.res} using
+  \code{importCol}.
+
+  The functions \code{ll} (package \pkg{gdata}) and \code{head} are
+  recommended for browsing model results, e.g. \code{ll(x.cod);
+    ll(x.cod$N); head(x.cod$N)}.
 }
 \source{
   \cite{Marine Research Institute. 2003. State of marine stocks in
     Icelandic waters 2002/2003.} Available at
-  http://www.hafro.is/Astand/2003/astand-allt-03.pdf.}
+  http://www.hafro.is/Astand/2003/astand-allt-03.pdf.
+}
 \references{
   \cite{Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P.
     Starr. 2003. Coleraine: A generalized age-structured stock
     assessment model. User's manual version 2.0. University of
-    Washington Report SAFS--UW--0116.} Available at
+    Washington Report SAFS-UW-0116.} Available at
   http://fish.washington.edu/research/coleraine/coleraine.pdf.
 
   \cite{Magnusson, A. 2003. Coleraine assessment of the Icelandic cod
@@ -55,8 +60,10 @@
   Available from the author.
 }
 \seealso{
-  \code{\link{importRes}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
+  \code{\link{importCol}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
   \code{\link{x.sbw}}
+
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotB(x.cod)

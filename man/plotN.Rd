@@ -5,12 +5,11 @@
 \description{Plot \code{scape} model predicted numbers at age.}
 \usage{
 plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
-      same.limits=TRUE, div=1, log.transform=FALSE, base.log=10,
-      main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8,
-      cex.axis=0.8, las=what == "b", tck=c(1,what=="b")/2,
-      tick.number=10, lty.grid=3, col.grid="white", pch=16,
-      cex.points=1, col.points="black", ratio.bars=3, col.bars="grey",
-      plot.it=TRUE, ...)
+      same.limits=TRUE, div=1, log=FALSE, base=10, main="", xlab="",
+      ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8,
+      las=(what=="b"), tck=c(1,what=="b")/2, tick.number=10, lty.grid=3,
+      col.grid="white", pch=16, cex.points=1, col.points="black",
+      ratio.bars=3, col.bars="grey", plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
@@ -23,9 +22,9 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
     (all by default).}
   \item{axes}{whether axis values should be plotted.}
   \item{same.limits}{whether panels should have same y-axis limits.}
-  \item{div}{denominator to shorten values on y axis.}
-  \item{log.transform}{whether values should be log-transformed.}
-  \item{base.log}{logarithm base.}
+  \item{div}{denominator to shorten values on the y axis.}
+  \item{log}{whether values should be log-transformed.}
+  \item{base}{logarithm base.}
   \item{main}{main title.}
   \item{xlab}{x-axis label.}
   \item{ylab}{y-axis label.}
@@ -44,19 +43,19 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
   \item{col.points}{colour of points.}
   \item{ratio.bars}{width of bars.}
   \item{col.bars}{colour of bars.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot}, \code{panel.barchart}, and
+    \code{panel.xyplot}.}
 }
 \details{
   The \code{"d"}[efault] plot is a combination of
   \code{"i"}[nitial year] and \code{"r"}[ecruitment].
 }
 \value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
   returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
+  \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -64,11 +63,13 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.xyplot}},
+  \code{\link[lattice]{panel.barchart}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotN(x.cod, div=1000, xlab=c("Age (years)","Year"),
@@ -80,4 +81,5 @@ plotN(x.cod, "y", div=1000, ages=3:10, xlim=c(2,11), xlab="Age",
       ylab="Individuals (million)", cex.strip=0.7, cex.axis=0.7,
       tck=0.5)
 }
+% Graphics
 \keyword{hplot}

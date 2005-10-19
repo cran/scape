@@ -11,7 +11,7 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
        col.grid="grey", pch=16, cex.points=0.5, col.points="black",
        lty.lines=1, lwd.lines=4, col.lines=c("red","blue"),
        lty.bands=2*(!together), lwd.bands=1, col.bands="black",
-       plot.it=TRUE, ...)
+       plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{LA}.}
@@ -53,15 +53,14 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   \item{lwd.bands}{line width of error bands.}
   \item{col.bands}{colour of error bands, possibly a vector where
     element 2 refers to males.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot} and \code{panel.superpose.2}.}
 }
 \value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
   returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
+  \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -69,11 +68,13 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.xyplot}},
+  \code{\link[lattice]{panel.superpose}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotLA(x.oreo, xlab="Age", ylab="Length (cm)")
@@ -88,4 +89,5 @@ mykey <- list(text=list(lab=c("Female","Male")), space="right",
 plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)",
        col.points=c("red","blue"), lty.lines=0, key=mykey)
 }
+% Graphics
 \keyword{hplot}

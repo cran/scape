@@ -13,7 +13,7 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
       tck=c(1,what=="d")/2, tick.number=5, lty.grid=3, col.grid="white",
       pch=16, cex.points=0.8, col.points="black", lty.lines=1:3,
       lwd.lines=2, col.lines="black", ratio.bars=3, col.bars="grey",
-      plot.it=TRUE, ...)
+      plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
@@ -24,8 +24,8 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
   \item{years}{vector of numbers indicating which years should be
     included (all by default).}
   \item{axes}{whether axis values should be plotted.}
-  \item{div}{denominator to shorten values on y axis, or a vector with
-    two elements referring to x  and y axis.}
+  \item{div}{denominator to shorten values on the y axis, or a vector
+    with two elements referring to x and y axis.}
   \item{legend}{legend location: \code{"bottom"}, \code{"left"},
     \code{"top"}, \code{"right"}, or \code{""} to suppress legend.}
   \item{main}{main title.}
@@ -49,19 +49,18 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
   \item{col.lines}{colour of main lines, possibly a vector.}
   \item{ratio.bars}{width of bars.}
   \item{col.bars}{colour of bars.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot} and \code{panel.superpose}.}
 }
 \details{
   The \code{"d"}[efault] plot shows spawning biomass and vulnerable
   biomass as lines, and landings as bars, on the same scale.
 }
 \value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
   returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
+  \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -69,11 +68,13 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.barchart}},
+  \code{\link[lattice]{panel.superpose}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotB(x.ling, series=c("VB.1","VB.2","Y"), div=1000, xlab="Year\n",

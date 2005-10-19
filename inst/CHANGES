@@ -1,6 +1,33 @@
 --------------------------------------------------------------------------------
+scape 1.0-6
+19 Oct 2005
+--------------------------------------------------------------------------------
+o importCol.Rd, x.cod.Rd, x.ling.Rd, x.oreo.Rd, and x.sbw.Rd point to
+  scape-package help page.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 1.0-5
+18 Oct 2005
+--------------------------------------------------------------------------------
+o scape-package.Rd gives an overview of the package. Other help pages revised.
+
+o importCol() makes importRes obsolete.
+
+o plot* arguments shortened: 'log.transform'->'log', 'base.log'->'base', and
+  'plot.it'->'plot'.
+
+o plotIndex() and plotLA() default y-axis limits extend 4% beyond data extremes,
+  except lower limit is zero when values are not log-transformed.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 1.0-4
-2 Sep 2005
+02 Sep 2005
 --------------------------------------------------------------------------------
 o plotN() argument 'axes' is documented.
 
@@ -9,7 +36,7 @@ o plotN() argument 'axes' is documented.
 
 --------------------------------------------------------------------------------
 scape 1.0-3
-1 Sep 2005
+01 Sep 2005
 --------------------------------------------------------------------------------
 o importRes() example works.
 

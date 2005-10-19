@@ -2,7 +2,7 @@
 function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE, between=list(x=axes,y=axes), ylim=NULL, bands=1,
          main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1, tck=0, tick.number=5,
          lty.grid=3, col.grid="grey", pch=16, cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=4,
-         col.lines=c("red","blue"), lty.bands=2*!together, lwd.bands=1, col.bands="black", plot.it=TRUE, ...)
+         col.lines=c("red","blue"), lty.bands=2*!together, lwd.bands=1, col.bands="black", plot=TRUE, ...)
 {
   ## 1 DEFINE FUNCTIONS
   panel.each <- function(x, y, subscripts, col.points, col.lines, col.bands, ...)  # obs, fit, and bands in sex panels
@@ -69,7 +69,7 @@ function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE, between=l
 
   ## 5 CREATE TRELLIS OBJECT
   if(is.null(ylim))
-    ylim <- c(0,1.05*max(x$Length))
+    ylim <- c(0, 1.04*max(x$Length))
   if(nsexes==2 && together)
   {
     graph <- xyplot(Length~Age, groups=ObsFit, z=x$Sex, data=x, panel=panel.together, type=c("l","l","p"),
@@ -86,7 +86,7 @@ function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE, between=l
   }
 
   ## 6 FINISH
-  if(plot.it)
+  if(plot)
   {
     print(graph)
     invisible(x)

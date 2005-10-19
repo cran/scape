@@ -5,13 +5,12 @@
 \description{Plot \code{scape} model fit to catch-at-length data.}
 \usage{
 plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
-       lengths=NULL, axes=TRUE, same.limits=TRUE, log.transform=FALSE,
-       base.log=10, eps.log=1e-5, main="", xlab="", ylab="",
-       cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8,
-       las=!fit, tck=c(1,fit)/2, tick.number=5, lty.grid=3,
-       col.grid="grey", pch=16, cex.points=0.5, col.points="black",
-       lty.lines=1, lwd.lines=2, col.lines=c("red","blue"),
-       plot.it=TRUE, ...)
+       lengths=NULL, axes=TRUE, same.limits=TRUE, log=FALSE, base=10,
+       eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
+       cex.strip=0.8, cex.axis=0.8, las=!fit, tck=c(1,fit)/2,
+       tick.number=5, lty.grid=3, col.grid="grey", pch=16,
+       cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=2,
+       col.lines=c("red","blue"), plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{CLc}
@@ -29,8 +28,8 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     plotted (all by default).}
   \item{axes}{whether axis values should be plotted.}
   \item{same.limits}{whether panels should have same y-axis limits.}
-  \item{log.transform}{whether values should be log-transformed.}
-  \item{base.log}{logarithm base.}
+  \item{log}{whether values should be log-transformed.}
+  \item{base}{logarithm base.}
   \item{eps.log}{small number to add before log-transforming to avoid
     log 0.}
   \item{main}{main title.}
@@ -55,15 +54,15 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     element 2 refers to males.}
   \item{col.lines}{colour of main lines, possibly a vector where element
     2 refers to males.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot}, \code{panel.xyplot},
+    \code{panel.superpose}, and \code{panel.superpose.2}.}
 }
 \value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
   returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
+  \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -71,11 +70,14 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.xyplot}},
+  \code{\link[lattice]{panel.superpose}},
+  \code{\link[gplots]{balloonplot}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotCL(x.ling, fit=FALSE, strip=FALSE, series="1", sex="Female",
@@ -90,4 +92,5 @@ plotCL(x.oreo, "s", layout=c(2,1), xlab="Length (cm)",
 plotCL(x.ling, fit=FALSE, series="2", xlab="Length (cm)",
        ylab="Observed proportion in trawl catch")
 }
+% Graphics
 \keyword{hplot}

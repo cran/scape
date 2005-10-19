@@ -1,4 +1,4 @@
-importRes               Import Coleraine model results
+importCol               Import Coleraine model results
 plotB                   Plot biomass, recruitment, and landings
 plotCA                  Plot catch at age
 plotCL                  Plot catch at length

@@ -5,13 +5,12 @@
 \description{Plot \code{scape} model fit to abundance index data}
 \usage{
 plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
-          between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1,
-          log.transform=FALSE, base.log=10, main="", xlab="", ylab="",
-          cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1,
-          tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white",
-          pch=16, cex.points=1.2, col.points="black", lty.lines=1,
-          lwd.lines=4, col.lines="dimgrey", lty.bar=1, plot.it=TRUE,
-          ...)
+          between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1, log=FALSE,
+          base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
+          cex.strip=0.8, cex.axis=0.8, las=1, tck=c(1,0)/2,
+          tick.number=5, lty.grid=3, col.grid="white", pch=16,
+          cex.points=1.2, col.points="black", lty.lines=1, lwd.lines=4,
+          col.lines="dimgrey", lty.bar=1, plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{CPUE}
@@ -25,10 +24,10 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
   \item{between}{list with \code{x} and \code{y} indicating panel
     spacing.}
   \item{ylim}{vector with lower and upper y-axis limits.}
-  \item{q}{denominator to scale the y-axis, e.g. to vulnerable biomass.}
+  \item{q}{denominator to scale the y axis, e.g. to vulnerable biomass.}
   \item{bar}{extent of error bars relative to standard error.}
-  \item{log.transform}{whether values should be log-transformed.}
-  \item{base.log}{logarithm base.}
+  \item{log}{whether values should be log-transformed.}
+  \item{base}{logarithm base.}
   \item{main}{main title.}
   \item{xlab}{x-axis label.}
   \item{ylab}{y-axis label.}
@@ -49,15 +48,10 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
   \item{lwd.lines}{line width of main lines.}
   \item{col.lines}{colour of main lines, possibly a vector.}
   \item{lty.bar}{line type of error bars.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot}, \code{panel.xyplot}, and
+    \code{panel.xYplot}.}
 }
-\value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
-  returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
-}
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -65,11 +59,18 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\value{
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
+  returned, containing the data used for plotting. When
+  \code{plot=FALSE}, a trellis object is returned.
+}
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.xyplot}},
+  \code{\link[Hmisc]{panel.xYplot}}, \code{\link[gplots]{plotCI}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotIndex(x.cod, "s", xlab="Year", ylab="Survey abundance index",
@@ -78,4 +79,5 @@ plotIndex(x.cod, "s", xlab="Year", ylab="Survey abundance index",
 plotIndex(x.oreo, xlim=list(c(1981,1990),c(1992,2002)), xlab="Year",
           ylab="Observed CPUE", col.points=c("peru","red"), lty.lines=0)
 }
+% Graphics
 \keyword{hplot}

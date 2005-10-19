@@ -377,5 +377,5 @@ structure(list(N = structure(list(Sex = structure(as.integer(c(1,
     "230", "231", "232", "233", "234", "235", "236", "237", "238", 
     "239", "240", "241", "242", "243", "244", "245", "246", "247", 
     "248", "249", "250", "251", "252", "253"), class = "data.frame")), .Names = c("N", 
-"B", "Sel", "Dev", "Survey", "CAc"), call = quote(importRes(res.file = "d:/scape/example/sbw.res", 
-    Dev = T, Survey = T, CAc = T)), scape.version = "1.0-4", info = "", class = "scape")
+"B", "Sel", "Dev", "Survey", "CAc"), call = quote(importCol(res.file = "d:/scape/example/sbw.res", 
+    Dev = T, Survey = T, CAc = T)), scape.version = "1.0-6", info = "", class = "scape")

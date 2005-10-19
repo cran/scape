@@ -11,7 +11,7 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
         cex.legend=1, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1,
         tck=0, tick.number=5, lty.grid=3, col.grid="grey", pch="m",
         cex.points=1, col.points="black", lty.lines=1, lwd.lines=4,
-        col.lines=c("red","blue"), plot.it=TRUE, ...)
+        col.lines=c("red","blue"), plot=TRUE, ...)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
@@ -43,15 +43,15 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
   \item{lty.lines}{line type of main lines, possibly a vector.}
   \item{lwd.lines}{line width of main lines, possibly a vector.}
   \item{col.lines}{colour of main lines, possibly a vector.}
-  \item{plot.it}{whether to draw plot.}
-  \item{\dots}{passed to \code{xyplot}.}
+  \item{plot}{whether to draw plot.}
+  \item{\dots}{passed to \code{xyplot}, \code{panel.points},
+    \code{panel.lines}, and \code{panel.superpose}.}
 }
 \value{
-  When \code{plot.it=TRUE}, a trellis plot is drawn and a data frame is
+  When \code{plot=TRUE}, a trellis plot is drawn and a data frame is
   returned, containing the data used for plotting. When
-  \code{plot.it=FALSE}, a trellis object is returned.
+  \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
 \note{
   This function tries to draw the plot on a trellis device with a white
   background.
@@ -59,11 +59,14 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
+\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
-  Fitted Coleraine models can be imported using \code{\link{importRes}}.
+  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
+  \code{\link[lattice]{panel.points}},
+  \code{\link[lattice]{panel.lines}},
+  \code{\link[lattice]{panel.superpose}}.
 
-  Trellis plot details can be studied from the
-  \code{\link[lattice]{Lattice}} help page.
+  \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
 plotSel(x.ling, xlab="Age", ylab="Selectivity and maturity")
@@ -71,4 +74,5 @@ plotSel(x.ling, xlab="Age", ylab="Selectivity and maturity")
 plotSel(x.cod, together=TRUE, xlab="Age\n", ylab="Selectivity",
         pch=NA, col.lines=c("seagreen","salmon"), strip=FALSE)
 }
+% Graphics
 \keyword{hplot}
