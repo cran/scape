@@ -105,13 +105,11 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
   if(plot)
   {
     print(graph)
-    return(list(extremes=extremes, graph.y.limits=graph$y.limits))
-    ## invisible(x)
+    invisible(x)
   }
   else
   {
-    return(list(extremes=extremes, graph.y.limits=graph$y.limits))
-    ## invisible(graph)
+    invisible(graph)
   }
 }
 

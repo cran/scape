@@ -1,6 +1,6 @@
 Package: scape
-Version: 1.0-6
-Date: 2005-10-19
+Version: 1.0-7
+Date: 2005-10-24
 Title: Statistical catch-at-age plotting environment
 Author: Arni Magnusson
 Maintainer: Arni Magnusson <arnima@u.washington.edu>
@@ -11,4 +11,4 @@ Description: Import and plot results from statistical catch-at-age
   models, used in fisheries stock assessments.
 License: GPL version 2 or newer
 URL: http://students.washington.edu/arnima/s/
-Packaged: Wed Oct 19 09:15:35 2005; arnima
+Packaged: Mon Oct 24 22:23:00 2005; arnima
