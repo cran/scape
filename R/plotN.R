@@ -109,7 +109,7 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   {
     graph <- xyplot(Year~Age, data=x, panel=panel.bubble,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales,
-                    pch=pch, cex=cex.points*sqrt(x$N/mean(x$N)), ...)
+                    pch=pch, cex=cex.points*sqrt(x$N/mean(x$N)), col=col.points, ...)
     graph$y.limits <- rev(graph$y.limits)
     fixed.ylim <- TRUE
   }

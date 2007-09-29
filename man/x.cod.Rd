@@ -61,7 +61,7 @@
 }
 \seealso{
   \code{\link{importCol}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
-  \code{\link{x.sbw}}
+  \code{\link{x.sbw}}.
 
   \code{\link{scape-package}} gives an overview of the package.
 }
