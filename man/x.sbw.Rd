@@ -42,21 +42,21 @@
     ll(x.sbw$N); head(x.sbw$N)}.
 }
 \source{
-  \cite{Annala, J.H., K.J. Sullivan, C.J. O'Brien, N.W.M. Smith, and
-    S.M. Grayling (eds.) 2003. Report from the Fishery Assessment
-    Plenary: Stock assessments and yield estimates. Wellington: Ministry
-    of Fisheries.} Available from NIWA library, Wellington.
+  Annala, J.H., K.J. Sullivan, C.J. O'Brien, N.W.M. Smith, and S.M.
+  Grayling (eds.) 2003. \cite{Report from the Fishery Assessment
+    Plenary: Stock assessments and yield estimates.} Wellington:
+  Ministry of Fisheries. Available from NIWA library, Wellington.
 }
 \references{
-  \cite{Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P.
-    Starr. 2003. Coleraine: A generalized age-structured stock
-    assessment model. User's manual version 2.0. University of
-    Washington Report SAFS-UW-0116.} Available at
+  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
+  2003. \cite{Coleraine: A generalized age-structured stock assessment
+    model.} User's manual version 2.0. University of Washington Report
+  SAFS-UW-0116. Available at
   http://fish.washington.edu/research/coleraine/coleraine.pdf.
 
-  \cite{Magnusson, A. and R. Hilborn. 2004. What is it in fisheries data
-    that tells us about population abundance? Poster presented at the
-    4th World Fisheries Congress, Vancouver, BC.} Available from the
+  Magnusson, A. and R. Hilborn. 2004. \cite{What is it in fisheries data
+    that tells us about population abundance?} Poster presented at the
+  4th World Fisheries Congress, Vancouver, BC. Available from the
   author.
 }
 \seealso{

@@ -104,7 +104,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   }
   if(nsexes==1 && fit)
   {
-    graph <- xyplot(P~Age|factor(Year), groups=ObsFit, data=x, panel=panel.fit, type=c("l","p"), as.table=TRUE,
+    graph <- xyplot(P~Age|factor(Year), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
                     pch=pch, cex=cex.points, col.points=col.points[x$Sex], lty=lty.lines, lwd=lwd.lines,
                     col.lines=col.lines[x$Sex], ...)
@@ -112,13 +112,13 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   if(nsexes==2 && !fit)
   {
     x <- x[x$ObsFit=="Obs",]
-    graph <- xyplot(P~Age|factor(Year), groups=Sex, data=x, panel=panel.obs, type="l", as.table=TRUE,
+    graph <- xyplot(P~Age|factor(Year), data=x, groups=x$Sex, panel=panel.obs, type="l", as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
                     lty=lty.lines, lwd=lwd.lines, col=col.lines, ...)
   }
   if(nsexes==2 && fit)
   {
-    graph <- xyplot(P~Age|factor(Year)*Sex, groups=ObsFit, data=x, panel=panel.fit, type=c("l","p"), as.table=TRUE,
+    graph <- xyplot(P~Age|factor(Year)*Sex, data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
                     pch=pch, cex=cex.points, col.points=col.points[x$Sex], lty=lty.lines, lwd=lwd.lines,
                     col.lines=col.lines[x$Sex], ...)

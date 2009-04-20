@@ -249,7 +249,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
       fit$CV[fit$Sex==sexes[1]] <- CV1[1] + CV1[1]*(CVratio[1]-1)/(Ln[1]-L1[1])*(fit$Fit[fit$Sex==sexes[1]]-L1[1])
       fit$CV[fit$Sex==sexes[2]] <- CV1[2] + CV1[2]*(CVratio[2]-1)/(Ln[2]-L1[2])*(fit$Fit[fit$Sex==sexes[2]]-L1[2])
     }
-    LA <- merge(obs, fit, by=c("Sex","Age"), all=T)
+    LA <- merge(obs, fit, by=c("Sex","Age"), all=TRUE)
     LA$Age <- as.integer(LA$Age)
     LA$Fit <- LA$Fit
     LA$CV <- LA$CV

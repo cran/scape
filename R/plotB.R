@@ -76,7 +76,7 @@ function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, legend="bot
   }
   else if(what=="d" && nrow(Bframe)>0)
   {
-    graph <- xyplot(Value~Year, groups=Series, data=Bframe, panel=panel.linebar, type="l", bars=Yframe,
+    graph <- xyplot(Value~Year, data=Bframe, groups=Bframe$Series, panel=panel.linebar, type="l", bars=Yframe,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, key=mykey,
                     lty=lty.lines, lwd=lwd.lines, col=col.lines, ...)
   }

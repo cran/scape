@@ -31,20 +31,26 @@
     \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
     \code{\link{x.sbw}} \tab cod, ling, oreo, and whiting assessments
   }
-  The vignette \file{scape/doc/dsc.pdf} provides background information
-  and introduces the design of \pkg{scape} and \pkg{scapeMCMC}, but is
-  not updated. Additional details are found on the
-  \code{help(package="scape")} page.
 }
 \note{
+  Tutorials can be found in the \file{scape/doc} directory.
+
   The functions \code{Args} and \code{ll} (package \pkg{gdata}) can be
   useful for browsing unwieldy functions and objects.
 }
 \author{Arni Magnusson \email{arnima@u.washington.edu}.}
+\references{
+  Magnusson, A. (2005) \cite{R goes fishing: Analyzing fisheries data
+    using AD Model Builder and R.} Proceedings of the 5th International
+  Workshop on Distributed Statistical Computing. Available at
+  http://students.washington.edu/arnima/s/pdf/dsc.pdf.
+}
 \seealso{
   All \pkg{scape} graphics are \code{trellis} plots, rendered with the
-  \pkg{lattice} package. Once the best model(s) have been chosen, the
-  \pkg{scapeMCMC} package can be used to diagnose MCMC runs.
+  \pkg{lattice} package.
+
+  Once the best model(s) have been chosen, the \pkg{scapeMCMC} package
+  can be used to diagnose MCMC runs.
 }
 % Graphics
 \keyword{hplot}

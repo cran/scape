@@ -61,14 +61,14 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
   ## 5 CREATE TRELLIS OBJECT
   if(!together)
   {
-    graph <- xyplot(P~Age|Series*Sex, maturity=mat, data=sel, panel=panel.each, as.table=TRUE,
+    graph <- xyplot(P~Age|Series*Sex, data=sel, panel=panel.each, maturity=mat, as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
                     pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines,
                     col.lines.vector=col.lines[x$Sex], ...)
   }
   else
   {
-    graph <- xyplot(P~Age|Sex, maturity=mat, groups=Series, data=sel, panel=panel.together,
+    graph <- xyplot(P~Age|Sex, data=sel, groups=sel$Series, panel=panel.together, maturity=mat,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip, key=mykey,
                     pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines, ...)
   }

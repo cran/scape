@@ -57,10 +57,10 @@ importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
 }
 \author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \references{
-  \cite{Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P.
-    Starr. 2003. Coleraine: A generalized age-structured stock
-    assessment model. User's manual version 2.0. University of
-    Washington Report SAFS-UW-0116.} Available at
+  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
+  2003. \cite{Coleraine: A generalized age-structured stock assessment
+    model.} User's manual version 2.0. University of Washington Report
+  SAFS-UW-0116. Available at
   http://fish.washington.edu/research/coleraine/coleraine.pdf.
 }
 \seealso{
@@ -73,7 +73,7 @@ importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
 \examples{
 \dontrun{
 path <- paste(.find.package("scape"), "/example/cod.res", sep="")
-x.cod <- importCol(path, Dev=T, Survey=T, CAc=T, CAs=T)
+x.cod <- importCol(path, Dev=TRUE, Survey=TRUE, CAc=TRUE, CAs=TRUE)
 }
 }
 % Programming

@@ -1,4 +1,4 @@
-This section describes briefly how to import statistical catch-at-age model
+Here is a brief description of how to import statistical catch-at-age model
 output from any stock assessment into scape. The user is expected to be familiar
 with basic R concepts, such as reading data from text files and manipulating
 lists and data frames.

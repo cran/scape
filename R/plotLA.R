@@ -72,13 +72,13 @@ function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE, between=l
     ylim <- c(0, 1.04*max(x$Length))
   if(nsexes==2 && together)
   {
-    graph <- xyplot(Length~Age, groups=ObsFit, z=x$Sex, data=x, panel=panel.together, type=c("l","l","p"),
+    graph <- xyplot(Length~Age, data=x, groups=x$ObsFit, z=x$Sex, panel=panel.together, type=c("l","l","p"),
                     ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
                     pch=pch, cex=cex.points, col.points=col.points, col.lines=col.lines, ...)
   }
   else
   {
-    graph <- xyplot(Length~Age|Sex, groups=ObsFit, data=x, panel=panel.each, type=c("l","l","p"), as.table=TRUE,
+    graph <- xyplot(Length~Age|Sex, data=x, groups=x$ObsFit, panel=panel.each, type=c("l","l","p"), as.table=TRUE,
                     between=between, ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales,
                     par.strip.text=mystrip, pch=pch, cex=cex.points, col.points=col.points[x$Sex],
                     lty=c(lty.lines[1],lty.bands[1]), lwd=c(lwd.lines[1],lwd.bands[1]), col.lines=col.lines[x$Sex],
