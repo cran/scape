@@ -46,22 +46,24 @@
 \source{
   Marine Research Institute. 2003. \cite{State of marine stocks in
     Icelandic waters 2002/2003.} Available at
-  http://www.hafro.is/Astand/2003/astand-allt-03.pdf.
+  \url{http://www.hafro.is/Astand/2003/astand-allt-03.pdf}.
 }
 \references{
   Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
   2003. \cite{Coleraine: A generalized age-structured stock assessment
   model.} User's manual version 2.0. University of Washington Report
   SAFS-UW-0116. Available at
-  http://fish.washington.edu/research/coleraine/coleraine.pdf.
+  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 
   Magnusson, A. 2003. \cite{Coleraine assessment of the Icelandic cod
   stock.} Report for the Icelandic Marine Research Institute. Available
   from the author.
 }
 \seealso{
-  \code{\link{importCol}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
-  \code{\link{x.sbw}}.
+  \code{\link{importCol}} was used to import the fitted model.
+
+  \code{\link{x.ling}}, \code{\link{x.oreo}}, and \code{\link{x.sbw}}
+  are other examples of fitted \code{scape} models to explore.
 
   \code{\link{scape-package}} gives an overview of the package.
 }

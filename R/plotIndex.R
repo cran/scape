@@ -1,11 +1,11 @@
-"plotIndex" <-
-function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1,
-         log=FALSE, base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1,
-         tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white", pch=16, cex.points=1.2, col.points="black",
-         lty.lines=1, lwd.lines=4, col.lines="dimgrey", lty.bar=1, plot=TRUE, ...)
+plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE, between=list(x=axes,y=axes),
+                      ylim=NULL, q=1, bar=1, log=FALSE, base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
+                      cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=1, tck=c(1,0)/2, tick.number=5, lty.grid=3,
+                      col.grid="white", pch=16, cex.points=1.2, col.points="black", lty.lines=1, lwd.lines=4,
+                      col.lines="dimgray", lty.bar=1, plot=TRUE, ...)
 {
-  ## 1 DEFINE FUNCTIONS
-  panel.index <- function(x, y, subscripts, yobs, yfit, col.points, col.lines, ...)  # overlay obs and fit in series panels
+  ## 1  Define functions
+  panel.index <- function(x, y, subscripts, yobs, yfit, col.points, col.lines, ...)  # overlay obs&fit in series panels
   {
     y.range <- range(c(rep(0,!log),attr(yobs,"other"),y), na.rm=TRUE)
     panel.abline(v=pretty(x,tick.number), h=pretty(y.range,tick.number), lty=lty.grid, col=col.grid)
@@ -15,35 +15,44 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
     if(lty.bar == 0)
       panel.xyplot(x, yobs[subscripts], col=col.points, ...)
     else
-      panel.xYplot(x[ok.Y], yobs[subscripts][ok.Y], subscripts=subscripts[ok.Y], col=col.points[subscripts],
-                   lty.bar=lty.bar, ...)
+      Hmisc::panel.xYplot(x[ok.Y], yobs[subscripts][ok.Y], subscripts=subscripts[ok.Y], col=col.points[subscripts],
+                          lty.bar=lty.bar, ...)
   }
 
-  ## 2 PARSE ARGS
+  ## 2  Parse args
   if(class(model) != "scape")
     stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
   what <- match.arg(what, c("c","s"))
   relation <- if(same.limits) "same" else "free"
 
-  ## 3 PREPARE DATA (extract, filter, add columns, transform)
+  ## 3  Prepare data (extract, filter, add columns, transform)
   if(what == "c")
   {
     if(any(names(model) == "CPUE"))
       x <- model$CPUE
+    else if(any(names(model) == "Survey"))
+    {
+      x <- model$Survey
+      cat("Element 'CPUE' found. Assuming user intended what=\"s\".\n")
+    }
     else
     {
-      what <- "s"
-      cat("Commercial CPUE data (", substitute(model), "$CPUE) not found. Assuming user intended what=\"s\".\n", sep="")
+      stop("Elements 'CPUE' and 'Survey' not found. Please verify that model contains abundance index data.")
     }
   }
   if(what == "s")  # 'what' may have changed since last if statement
   {
     if(any(names(model) == "Survey"))
       x <- model$Survey
+    else if(any(names(model) == "CPUE"))
+    {
+      x <- model$CPUE
+      cat("Element 'Survey' not found. Assuming user intended what=\"c\".\n")
+    }
     else
-      stop("Found neither commercial CPUE data (", substitute(model), "$CPUE) nor survey abundance data (",
-           substitute(model), "$Survey).\nPlease verify that ", substitute(model),
-           " is a 'scape' model that contains abundance index data.")
+    {
+      stop("Elements 'CPUE' and 'Survey' not found. Please verify that model contains abundance index data.")
+    }
   }
   if(is.null(series))
     series <- unique(x$Series)
@@ -63,15 +72,10 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
     x$Lo  <- log(x$Lo,  base=base)
   }
 
-  ## 4 PREPARE PLOT (check device, vectorize args, create list args)
-  require(grid, quietly=TRUE, warn.conflicts=FALSE)
-  require(Hmisc, quietly=TRUE, warn.conflicts=FALSE)
-  require(lattice, quietly=TRUE, warn.conflicts=FALSE)
-  if(trellis.par.get()$background$col == "#909090")
-  {
-    for(d in dev.list()) dev.off()
-    trellis.device(color=FALSE)
-  }
+  ## 4  Prepare plot (set pars, vectorize args, create list args)
+  ocol <- trellis.par.get("strip.background")$col
+  trellis.par.set(strip.background=list(col=col.strip))
+  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   col.points <- rep(col.points, length.out=nlevels(x$Series))
   col.lines <- rep(col.lines, length.out=nlevels(x$Series))
   mymain <- list(label=main, cex=cex.main)
@@ -82,10 +86,11 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
   mystrip <- list(cex=cex.strip)
 
-  ## 5 CREATE TRELLIS OBJECT
-  graph <- xyplot(Fit~Year|Series, data=x, panel=panel.index, yobs=Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit, as.table=TRUE,
-                  between=between, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
-                  pch=pch, cex=cex.points, col.points=col.points[x$Series], col.lines=col.lines[x$Series], ...)
+  ## 5  Create trellis object
+  graph <- xyplot(Fit~Year|Series, data=x, panel=panel.index, yobs=Hmisc::Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
+                  as.table=TRUE, between=between, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip,
+                  scales=myscales, pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Series)],
+                  col.lines=col.lines[as.factor(x$Series)], ...)
   if(is.list(ylim))
     graph$y.limits <- rep(ylim, length.out=length(series))
   else if(is.numeric(ylim))
@@ -101,7 +106,7 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
   if(same.limits)
     graph$y.limits <- range(unlist(graph$y.limits))
 
-  ## 6 FINISH
+  ## 6  Finish
   if(plot)
   {
     print(graph)
@@ -112,4 +117,3 @@ function(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE, between=lis
     invisible(graph)
   }
 }
-

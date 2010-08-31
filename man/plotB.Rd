@@ -1,6 +1,5 @@
 \name{plotB}
 \alias{plotB}
-\concept{Fisheries stock assessment}
 \title{Plot Biomass, Recruitment, and Landings}
 \description{
   Plot \code{scape} model predicted biomass, stock recruitment, and
@@ -12,8 +11,8 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
       cex.legend=1, cex.lab=1, cex.axis=0.8, las=1,
       tck=c(1,what=="d")/2, tick.number=5, lty.grid=3, col.grid="white",
       pch=16, cex.points=0.8, col.points="black", lty.lines=1:3,
-      lwd.lines=2, col.lines="black", ratio.bars=3, col.bars="grey",
-      plot=TRUE, ...)
+      lwd.lines=2, col.lines="black", ratio.bars=3, col.bars="gray",
+      plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
@@ -40,15 +39,15 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
   \item{tck}{tick mark length.}
   \item{tick.number}{number of tick marks.}
   \item{lty.grid}{line type of gridlines.}
-  \item{col.grid}{colour of gridlines.}
+  \item{col.grid}{color of gridlines.}
   \item{pch}{symbol for points.}
   \item{cex.points}{size of points.}
-  \item{col.points}{colour of points.}
+  \item{col.points}{color of points.}
   \item{lty.lines}{line type of main lines, possibly a vector.}
   \item{lwd.lines}{line width of main lines, possibly a vector.}
-  \item{col.lines}{colour of main lines, possibly a vector.}
+  \item{col.lines}{color of main lines, possibly a vector.}
   \item{ratio.bars}{width of bars.}
-  \item{col.bars}{colour of bars.}
+  \item{col.bars}{color of bars.}
   \item{plot}{whether to draw plot.}
   \item{\dots}{passed to \code{xyplot} and \code{panel.superpose}.}
 }
@@ -68,11 +67,17 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
   \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
-  \code{\link[lattice]{panel.barchart}},
-  \code{\link[lattice]{panel.superpose}}.
+  \code{\link[lattice]{panel.barchart}}, and
+  \code{\link[lattice]{panel.superpose}} are the underlying drawing
+  functions.
+
+  \code{\link{plotCA}}, \code{\link{plotCL}}, \code{\link{plotIndex}},
+  and \code{\link{plotLA}} plot model fit and data.
+
+  \code{plotB}, \code{\link{plotN}}, and \code{\link{plotSel}} plot
+  derived quantities.
 
   \code{\link{scape-package}} gives an overview of the package.
 }

@@ -1,0 +1,10 @@
+\documentclass[a4paper]{article}
+%\VignettePackage{scape}
+%\VignetteIndexEntry{R goes fishing}
+\usepackage{pdfpages}
+\usepackage[nogin]{Sweave}
+\begin{document}
+
+\includepdf[pages=-,noautoscale=true,fitpaper=false]{dsc.pdf}
+
+\end{document}

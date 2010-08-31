@@ -1,10 +1,10 @@
-"plotCA" <-
-function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, log=FALSE,
-         base=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=!fit,
-         tck=c(1,fit)/2, tick.number=5, lty.grid=3, col.grid="grey", pch=16, cex.points=0.5, col.points="black",
-         lty.lines=1, lwd.lines=2, col.lines=c("red","blue"), plot=TRUE, ...)
+plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE,
+                   log=FALSE, base=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8,
+                   cex.strip=0.8, col.strip="gray95", las=!fit, tck=c(1,fit)/2, tick.number=5, lty.grid=3,
+                   col.grid="gray", pch=16, cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=2,
+                   col.lines=c("red","blue"), plot=TRUE, ...)
 {
-  ## 1 DEFINE FUNCTIONS
+  ## 1  Define functions
   panel.bubble <- function(x, y, ...)  # bubble plot obs in one single-sex panel
   {
     panel.abline(v=pretty(x,tick.number), h=pretty(y,tick.number), lty=lty.grid, col=col.grid)
@@ -18,22 +18,23 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   panel.fit <- function(x, y, subscripts, col.points, col.lines, ...)  # overlay obs and fit in sex:year panels
   {
     panel.abline(v=pretty(x,tick.number), lty=lty.grid, col=col.grid)
-    panel.superpose.2(x, y, subscripts=subscripts, col.symbol=col.points[subscripts], col.line=col.lines[subscripts], ...)
+    panel.superpose.2(x, y, subscripts=subscripts, col.symbol=col.points[subscripts], col.line=col.lines[subscripts],
+                      ...)
   }
 
-  ## 2 PARSE ARGS
+  ## 2  Parse args
   if(class(model) != "scape")
     stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
   what <- match.arg(what, c("c","s"))
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
 
-  ## 3 PREPARE DATA (extract, rearrange, filter, transform)
+  ## 3  Prepare data (extract, rearrange, filter, transform)
   if(what == "c")
   {
     if(!any(names(model)=="CAc"))
     {
-      cat("Commercial C@A data (", substitute(model), "$CAc) not found. Assuming what=\"s\" was intended.\n", sep="")
+      cat("Element 'CAc' (commercial C@A) not found. Assuming what=\"s\" was intended.\n")
       what <- "s"
     }
     else
@@ -42,7 +43,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   if(what == "s")  # value of 'what' may have changed
   {
     if(!any(names(model)=="CAs"))
-      stop("Survey C@A data (", substitute(model), "$CAs) not found, try plotCA(x, what=\"c\") to plot commercial C@A")
+      stop("Element 'CAs' (survey C@A) not found. Try plotCA(x, what=\"c\") to plot commercial C@A")
     x <- model$CAs
   }
   x <- data.frame(Series=rep(x$Series,2), Year=rep(x$Year,2), SS=rep(x$SS,2), Sex=rep(x$Sex,2), Age=rep(x$Age,2),
@@ -71,14 +72,10 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   if(log)
     x$P <- log(x$P+eps.log, base=base)
 
-  ## 4 PREPARE PLOT (check device, vectorize args, create list args)
-  require(grid, quietly=TRUE, warn.conflicts=FALSE)
-  require(lattice, quietly=TRUE, warn.conflicts=FALSE)
-  if(trellis.par.get()$background$col == "#909090")
-  {
-    for(d in dev.list()) dev.off()
-    trellis.device(color=FALSE)
-  }
+  ## 4  Prepare plot (set pars, vectorize args, create list args)
+  ocol <- trellis.par.get("strip.background")$col
+  trellis.par.set(strip.background=list(col=col.strip))
+  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   col.points <- rep(col.points, length.out=2)
   col.lines <- rep(col.lines, length.out=2)
   mymain <- list(label=main, cex=cex.main)
@@ -89,7 +86,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
   mystrip <- list(cex=cex.strip)
 
-  ## 5 CREATE TRELLIS OBJECT
+  ## 5  Create trellis object
   fixed.ylim <- FALSE
   if(nsexes==1 && !fit)
   {
@@ -106,8 +103,8 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   {
     graph <- xyplot(P~Age|factor(Year), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
-                    pch=pch, cex=cex.points, col.points=col.points[x$Sex], lty=lty.lines, lwd=lwd.lines,
-                    col.lines=col.lines[x$Sex], ...)
+                    pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
+                    col.lines=col.lines[as.factor(x$Sex)], ...)
   }
   if(nsexes==2 && !fit)
   {
@@ -120,8 +117,8 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
   {
     graph <- xyplot(P~Age|factor(Year)*Sex, data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
-                    pch=pch, cex=cex.points, col.points=col.points[x$Sex], lty=lty.lines, lwd=lwd.lines,
-                    col.lines=col.lines[x$Sex], ...)
+                    pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
+                    col.lines=col.lines[as.factor(x$Sex)], ...)
   }
   if(!log && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
   {
@@ -131,7 +128,7 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
       graph$y.limits[1] <- 0                                                    # single-panel plot
   }
 
-  ## 6 FINISH
+  ## 6  Finish
   if(plot)
   {
     print(graph)
@@ -142,4 +139,3 @@ function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, ages=NULL
     invisible(graph)
   }
 }
-

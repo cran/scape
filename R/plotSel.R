@@ -1,9 +1,9 @@
-"plotSel" <-
-function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom", main="", xlab="", ylab="", cex.main=1.2,
-         cex.legend=1, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=1, tck=0, tick.number=5, lty.grid=3, col.grid="grey",
-         pch="m", cex.points=1, col.points="black", lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE, ...)
+plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom", main="", xlab="", ylab="",
+                    cex.main=1.2, cex.legend=1, cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=1,
+                    tck=0, tick.number=5, lty.grid=3, col.grid="gray", pch="m", cex.points=1, col.points="black",
+                    lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE, ...)
 {
-  ## 1 DEFINE FUNCTIONS
+  ## 1  Define functions
   panel.each <- function(x, y, subscripts, maturity, col.lines.vector, ...)
   {
     panel.grid(h=-1, v=-1, lty=lty.grid, col=col.grid)
@@ -17,11 +17,11 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
     panel.superpose(x, y, type="l", subscripts=subscripts, col=col.lines, ...)
   }
 
-  ## 2 PARSE ARGS
+  ## 2  Parse args
   if(class(model) != "scape")
     stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
 
-  ## 3 PREPARE DATA (extract, rearrange, filter)
+  ## 3  Prepare data (extract, rearrange, filter)
   x <- model$Sel
   mat <- x[x$Series=="Maturity",]
   if(is.null(series))
@@ -37,14 +37,10 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
   sel <- x[x$Series!="Maturity",]
   sel$Series <- factor(as.character(sel$Series))  # update levels
 
-  ## 4 PREPARE PLOT (check device, vectorize args, create list args)
-  require(grid, quietly=TRUE, warn.conflicts=FALSE)
-  require(lattice, quietly=TRUE, warn.conflicts=FALSE)
-  if(trellis.par.get()$background$col == "#909090")
-  {
-    for(d in dev.list()) dev.off()
-    trellis.device(color=FALSE)
-  }
+  ## 4  Prepare plot (set pars, vectorize args, create list args)
+  ocol <- trellis.par.get("strip.background")$col
+  trellis.par.set(strip.background=list(col=col.strip))
+  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   lty.lines <- rep(lty.lines, length.out=max(2,nlevels(sel$Series)))  # 2 <= length(lty.lines) <- nlevels(sel$Series)
   lwd.lines <- rep(lwd.lines, length.out=max(2,nlevels(sel$Series)))  #             lwd.lines
   col.lines <- rep(col.lines, length.out=max(2,nlevels(sel$Series)))  #             col.lines
@@ -58,22 +54,23 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
   mykey <- list(space=legend, text=list(lab=levels(sel$Series),cex=cex.legend),
                 lines=list(lty=lty.lines,lwd=lwd.lines,col=col.lines))
 
-  ## 5 CREATE TRELLIS OBJECT
+  ## 5  Create trellis object
   if(!together)
   {
     graph <- xyplot(P~Age|Series*Sex, data=sel, panel=panel.each, maturity=mat, as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
                     pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines,
-                    col.lines.vector=col.lines[x$Sex], ...)
+                    col.lines.vector=col.lines[as.factor(x$Sex)], ...)
   }
   else
   {
     graph <- xyplot(P~Age|Sex, data=sel, groups=sel$Series, panel=panel.together, maturity=mat,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip, key=mykey,
-                    pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines, ...)
+                    pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines,
+                    ...)
   }
   ages <- sort(unique(x$Age))
-  if(is.list(graph$x.limits))                                                            # set xlim=0,max(ages) & ylim=0,1
+  if(is.list(graph$x.limits))                                                            # set xlim=0,max(ages)&ylim=0,1
   {
     graph$x.limits <- lapply(graph$x.limits, function(x){x<-c(0,max(ages));return(x)})   # multi-panel plot
     graph$y.limits <- lapply(graph$y.limits, function(y){y<-c(-0.005,1.005);return(y)})  # multi-panel plot
@@ -83,7 +80,7 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
     graph$x.limits <- c(0, max(ages))                                                    # single-panel plot
     graph$y.limits <- c(-0.005,1.005)                                                    # single-panel plot
   }
-  ## 6 FINISH
+  ## 6  Finish
   if(plot)
   {
     print(graph)
@@ -94,4 +91,3 @@ function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom
     invisible(graph)
   }
 }
-

@@ -1,0 +1,162 @@
+\documentclass[a4paper]{article}
+\SweaveOpts{echo=FALSE,eps=FALSE,fig=TRUE,keep.source=TRUE}
+%\VignettePackage{scape}
+%\VignetteIndexEntry{Gallery}
+\usepackage{parskip}
+\usepackage{hyperref}
+\newcommand{\p}[1]{{\fontseries{b}\selectfont #1}}
+\begin{document}
+
+\title{The \p{scape} gallery}
+\author{Arni Magnusson}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+~\vspace{3em}
+\begin{flushright}
+  \begin{minipage}{3in}
+    \textsf{\textit{{\fontfamily{cmss}\fontseries{bx}\fontshape{it}\selectfont
+          scape, n.} A view of scenery of any kind,\\
+        whether consisting of land, water, cloud,\\
+        or anything else.}\\
+      \hspace*{5em}---\hspace{1pt}Oxford English Dictionary}
+  \end{minipage}
+\end{flushright}
+
+\section{Overview}%=============================================================
+
+This vignette is only a series of plots, demonstrating how the \p{scape} plot
+examples look in a PDF document, as opposed to the default graphics device.
+Mainly intended for package maintenance.
+
+The general introduction to the \p{scape} and \p{scapeMCMC} packages is the
+vignette \href{dsc.pdf}{R goes fishing}.
+
+<<require,fig=FALSE>>=
+require(scape)
+@
+
+\newpage
+
+\section{plotB}%================================================================
+
+<<plotB_1>>=
+plotB(x.ling, series=c("VB.1","VB.2","Y"), div=1000, xlab="Year\n",
+      ylab="Biomass and landings (1000 t)")
+@
+
+<<plotB_2>>=
+plotB(x.ling, "s", div=1000, xlab="Biomass age 4+ (1000 t)",
+      ylab="Recruitment (million one-year-olds)")
+@
+
+\section{plotCA}%===============================================================
+
+<<plotCA_1>>=
+plotCA(x.sbw, fit=FALSE, strip=FALSE, xlab="Age", ylab="Year",
+       tick.number=10)
+@
+
+<<plotCA_2>>=
+plotCA(x.cod, xlab="Age", ylab="Proportion in catch", cex.strip=0.7,
+       cex.axis=0.7, col.lines="brown", layout=c(8,4))
+@
+
+<<plotCA_3>>=
+plotCA(x.ling, "s", col.points=c("red","blue"), lty.lines=0, xlab="Age",
+       ylab="Observed proportion in survey", tck=0.5, cex.strip=0.7,
+       cex.axis=0.7)
+@
+
+<<plotCA_4>>=
+plotCA(x.ling, "s", xlab="Age", ylab="Observed proportion in survey",
+       fit=FALSE, cex.strip=0.7, cex.axis=0.7, tck=0.5, layout=c(5,2))
+@
+
+\section{plotCL}%===============================================================
+
+<<plotCL_1>>=
+plotCL(x.ling, fit=FALSE, strip=FALSE, series="1", sex="Female",
+       xlab="Length (cm)", ylab="Year")
+@
+
+<<plotCL_2>>=
+plotCL(x.oreo, xlab="Length (cm)", ylab="Proportion in catch")
+@
+
+<<plotCL_3>>=
+plotCL(x.oreo, "s", layout=c(2,1), xlab="Length (cm)",
+       ylab="Observed proportion in survey", cex.points=0.8,
+       col.points=c("red","blue"), lty.lines=0)
+@
+
+<<plotCL_4>>=
+plotCL(x.ling, fit=FALSE, series="2", xlab="Length (cm)",
+       ylab="Observed proportion in trawl catch", tck=0.5)
+@
+
+\section{plotIndex}%============================================================
+
+<<plotIndex_1>>=
+plotIndex(x.cod, xlab="Year", ylab="Survey abundance index",
+          strip=FALSE)
+@
+
+<<plotIndex_2>>=
+plotIndex(x.oreo, "c", xlim=list(c(1981,1990),c(1992,2002)),
+          xlab="Year", ylab="Observed CPUE",
+          col.points=c("salmon","seagreen"), lty.lines=0)
+@
+
+\section{plotLA}%===============================================================
+
+<<plotLA_1>>=
+plotLA(x.oreo, xlab="Age", ylab="Length (cm)")
+@
+
+<<plotLA_2>>=
+mykey <- list(text=list(lab=c("Female","Male")), space="right",
+              lines=list(lwd=4,col=c("red","blue")))
+plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)", pch=NA,
+       key=mykey)
+@
+
+<<plotLA_3>>=
+mykey <- list(text=list(lab=c("Female","Male")), space="right",
+              points=list(pch=16,cex=0.5,col=c("red","blue")))
+plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)",
+       col.points=c("red","blue"), lty.lines=0, key=mykey)
+@
+
+\section{plotN}%================================================================
+
+<<plotN_1>>=
+plotN(x.cod, div=1000, xlab=c("Age (years)","Year"),
+      ylab=c("Individuals (million)","One-year-olds (million)"))
+@
+
+<<plotN_2>>=
+plotN(x.cod, "b", xlab="Age (years)", ylab="Year", cex.points=0.7)
+@
+
+<<plotN_3>>=
+plotN(x.cod, "y", div=1000, ages=3:10, xlim=c(2,11), xlab="Age",
+      ylab="Individuals (million)", cex.strip=0.7, cex.axis=0.7,
+      tck=0.5)
+@
+
+\section{plotSel}%==============================================================
+
+<<plotSel_1>>=
+plotSel(x.ling, xlab="Age", ylab="Selectivity and maturity")
+@
+
+<<plotSel_2>>=
+plotSel(x.cod, together=TRUE, xlab="Age\n", ylab="Selectivity",
+        pch=NA, col.lines=c("coral","navyblue"), strip=FALSE)
+@
+
+\end{document}

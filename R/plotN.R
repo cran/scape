@@ -1,10 +1,9 @@
-"plotN" <-
-function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log=FALSE, base=10, main="", xlab="",
-         ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8, cex.axis=0.8, las=(what=="b"), tck=c(1,what=="b")/2,
-         tick.number=10, lty.grid=3, col.grid="white", pch=16, cex.points=1, col.points="black", ratio.bars=3,
-         col.bars="grey", plot=TRUE, ...)
+plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log=FALSE, base=10,
+                  main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95",
+                  las=(what=="b"), tck=c(1,what=="b")/2, tick.number=10, lty.grid=3, col.grid="white", pch=16,
+                  cex.points=1, col.points="black", ratio.bars=3, col.bars="gray", plot=TRUE, ...)
 {
-  ## 1 DEFINE FUNCTIONS
+  ## 1  Define functions
   panel.bar <- function(x, y, ...)  # barplot of N in one or more panel
   {
     panel.abline(h=pretty(y,tick.number), lty=lty.grid, col=col.grid)
@@ -16,14 +15,14 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
     panel.xyplot(x, y, ...)
   }
 
-  ## 2 PARSE ARGS
+  ## 2  Parse args
   if(class(model) != "scape")
     stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
   what <- match.arg(what, c("d","i","r","y","b"))
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
 
-  ## 3 PREPARE DATA (extract, rearrange, filter, transform)
+  ## 3  Prepare data (extract, rearrange, filter, transform)
   x <- model$N
   x <- aggregate(list(N=x$N), list(Year=x$Year,Age=x$Age), sum)
   x$Year <- as.integer(as.character(x$Year))
@@ -39,14 +38,10 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   if(log)
     x$N <- log(x$N, base)
 
-  ## 4 PREPARE PLOT (check device, vectorize args, create list args)
-  require(grid, quietly=TRUE, warn.conflicts=FALSE)
-  require(lattice, quietly=TRUE, warn.conflicts=FALSE)
-  if(trellis.par.get()$background$col == "#909090")
-  {
-    for(d in dev.list()) dev.off()
-    trellis.device(color=FALSE)
-  }
+  ## 4  Prepare plot (set pars, vectorize args, create list args)
+  ocol <- trellis.par.get("strip.background")$col
+  trellis.par.set(strip.background=list(col=col.strip))
+  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   main <- rep(main, length.out=2)
   xlab <- rep(xlab, length.out=2)
   ylab <- rep(ylab, length.out=2)
@@ -59,22 +54,22 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
   mystrip <- list(cex=cex.strip)
 
-  ## 5 CREATE TRELLIS OBJECT
+  ## 5  Create trellis object
   printed <- FALSE
   fixed.ylim <- FALSE
   if(what == "d")  # recursive flow: plotN("i",plot=F) -> print -> plotN("r",plot=F) -> print
   {
     graph <- plotN(model, what="i", years=years, ages=ages, axes=axes, relation=relation,
                    div=div, log=log, base=base, main=main, xlab=xlab, ylab=ylab,
-                   cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis, las=las,
-                   tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points, col.points=col.points,
-                   ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
+                   cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis,
+                   las=las, tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points,
+                   col.points=col.points, ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
     print(graph, split=c(1,1,1,2), more=TRUE)
     graph <- plotN(model, what="r", years=years, ages=ages, axes=axes, relation=relation,
                    div=div, log=log, base=base, main=main, xlab=xlab, ylab=ylab,
-                   cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis, las=las,
-                   tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points, col.points=col.points,
-                   ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
+                   cex.main=cex.main, cex.lab=cex.lab, cex.strip=cex.strip, col.grid=col.grid, cex.axis=cex.axis,
+                   las=las, tck=tck, tick.number=tick.number, lty.grid=lty.grid, cex.points=cex.points,
+                   col.points=col.points, ratio.bars=ratio.bars, col.bars=col.bars, plot=FALSE, ...)
     print(graph, split=c(1,2,1,2))
     printed <- TRUE
   }
@@ -121,7 +116,7 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
       graph$y.limits[1] <- 0                                                    # single-panel plot
   }
 
-  ## 6 FINISH
+  ## 6  Finish
   if(plot)
   {
     if(!printed)
@@ -133,4 +128,3 @@ function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, di
     invisible(graph)
   }
 }
-

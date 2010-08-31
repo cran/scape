@@ -52,7 +52,7 @@
   2003. \cite{Coleraine: A generalized age-structured stock assessment
     model.} User's manual version 2.0. University of Washington Report
   SAFS-UW-0116. Available at
-  http://fish.washington.edu/research/coleraine/coleraine.pdf.
+  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 
   Magnusson, A. and R. Hilborn. 2004. \cite{What is it in fisheries data
     that tells us about population abundance?} Poster presented at the
@@ -60,8 +60,10 @@
   author.
 }
 \seealso{
-  \code{\link{importCol}}, \code{\link{x.cod}}, \code{\link{x.ling}},
-  \code{\link{x.oreo}}.
+  \code{\link{importCol}} was used to import the fitted model.
+
+  \code{\link{x.cod}}, \code{\link{x.ling}}, and \code{\link{x.oreo}}
+  are other examples of fitted \code{scape} models to explore.
 
   \code{\link{scape-package}} gives an overview of the package.
 }

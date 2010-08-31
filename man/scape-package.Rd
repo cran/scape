@@ -2,7 +2,6 @@
 \alias{scape-package}
 \alias{scape}
 \docType{package}
-\concept{Fisheries stock assessment}
 \title{Statistical Catch-at-Age Plotting Environment}
 \description{
   Import and plot results from statistical catch-at-age models, used in
@@ -33,17 +32,18 @@
   }
 }
 \note{
-  Tutorials can be found in the \file{scape/doc} directory.
+  \code{browseVignettes()} shows the vignettes, found in the
+  \file{scape/doc} directory.
 
   The functions \code{Args} and \code{ll} (package \pkg{gdata}) can be
   useful for browsing unwieldy functions and objects.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}.}
+\author{Arni Magnusson.}
 \references{
   Magnusson, A. (2005) \cite{R goes fishing: Analyzing fisheries data
     using AD Model Builder and R.} Proceedings of the 5th International
   Workshop on Distributed Statistical Computing. Available at
-  http://students.washington.edu/arnima/s/pdf/dsc.pdf.
+  \url{http://www.hafro.is/~arnima/uw/s/pdf/dsc.pdf}.
 }
 \seealso{
   All \pkg{scape} graphics are \code{trellis} plots, rendered with the

@@ -1,12 +1,12 @@
-"importCol" <-
-function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE,
-         quiet=TRUE)
+importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=FALSE, CLc=FALSE,
+                      CLs=FALSE, LA=FALSE, quiet=TRUE)
 {
   ## Implementation notes
   ## Generic read* functions: Vector, Matrix
   ## Specific get* functions: N, B, Sel, Dev, CPUE, Survey, CAc, CAs, CLc, CLs, LA
   ## The only global objects (used inside get* functions) are *.file, *.vector, and quiet
 
+  ## 1  Define functions
   readVector <- function(keyword, same.line=TRUE, file=res.file, vector=res.vector)
   {
     ## Extract white-space delimited numeric vector followed by keyword
@@ -87,7 +87,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
       gears <- paste("Gear", gears)
     if(is.numeric(surveys))
       surveys <- paste("Survey", surveys)
-    Sel <- data.frame(Series=c(rep(gears,each=nsexes*nages),rep(surveys,each=nsexes*nages),rep("Maturity",nsexes*nages)),
+    Sel <- data.frame(Series=
+                      c(rep(gears,each=nsexes*nages),rep(surveys,each=nsexes*nages),rep("Maturity",nsexes*nages)),
                       Sex=rep(rep(sexes,each=nages),ngears+nsurveys+1), Age=rep(ages,(ngears+nsurveys+1)*nsexes),
                       P=c(t(com),t(srv),mat))
     if(!quiet) cat("OK\n")
@@ -119,8 +120,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     CPUE <- merge(obs[,names(obs)!="Gear"], fit, all=TRUE)  # merge without looking at gear
     sgkey <- unique(obs[,c("Series","Gear")])
     CPUE <- merge(sgkey, CPUE)  # add gear column
-    CPUE <- data.frame(Series=paste("Series ",CPUE$Series,"-",CPUE$Gear,sep=""), Year=as.integer(CPUE$Year), Obs=CPUE$Obs,
-                       CV=CPUE$CV, Fit=CPUE$Fit)
+    CPUE <- data.frame(Series=paste("Series ",CPUE$Series,"-",CPUE$Gear,sep=""), Year=as.integer(CPUE$Year),
+                       Obs=CPUE$Obs, CV=CPUE$CV, Fit=CPUE$Fit)
     if(!quiet) cat("OK\n")
     return(CPUE)
   }
@@ -147,8 +148,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     nsexes <- length(sexes)
     nages <- length(ages)
     nobs <- readVector("Number_of_Commercial_C@A", same.line=FALSE)
-    obs <- readMatrix("methodyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs)                     # "Observed_C@A"  not unique
-    fit <- readMatrix("methodyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@A" not unique
+    obs <- readMatrix("methodyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs)                     # "Observed_C@A"  !unique
+    fit <- readMatrix("methodyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@A" !unique
     CAc <- data.frame(Series=rep(obs[,1],each=nsexes*nages), Year=rep(obs[,2],each=nsexes*nages),
                       SS=rep(obs[,3],each=nsexes*nages), Sex=rep(rep(sexes,each=nages),nobs),
                       Age=rep(ages,nsexes*nobs), Obs=as.vector(t(obs[,-(1:3)])), Fit=as.vector(t(fit)))
@@ -165,8 +166,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     nsexes <- length(sexes)
     nages <- length(ages)
     nobs <- readVector("Number_of_survey_C@A",same.line=FALSE)
-    obs <- readMatrix("surveyyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs)                     # "Observed_C@A"  not unique
-    fit <- readMatrix("surveyyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@A" not unique
+    obs <- readMatrix("surveyyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs)                     # "Observed_C@A"  !unique
+    fit <- readMatrix("surveyyearsamplesizesex1a1sex1a2sex1a3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@A" !unique
     CAs <- data.frame(Series=rep(obs[,1],each=nsexes*nages), Year=rep(obs[,2],each=nsexes*nages),
                       SS=rep(obs[,3],each=nsexes*nages), Sex=rep(rep(sexes,each=nages),nobs),
                       Age=rep(ages,nsexes*nobs), Obs=as.vector(t(obs[,-(1:3)])), Fit=as.vector(t(fit)))
@@ -183,8 +184,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     nsexes <- length(sexes)
     nlengths <- length(lengths)
     nobs <- readVector("Number_of_Commercial_C@L", same.line=FALSE)
-    obs <- readMatrix("methodyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs)                 # "Observed_C@L"  not unique
-    fit <- readMatrix("methodyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs, header=nobs+1)  # "Predicted_C@L" not unique
+    obs <- readMatrix("methodyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs)                 # "Observed_C@L"  !unique
+    fit <- readMatrix("methodyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs, header=nobs+1)  # "Predicted_C@L" !unique
     CLc <- data.frame(Series=rep(obs[,1],each=nsexes*nlengths), Year=rep(obs[,2],each=nsexes*nlengths),
                       SS=rep(obs[,3],each=nsexes*nlengths), Sex=rep(rep(sexes,each=nlengths),nobs),
                       Length=rep(lengths,nsexes*nobs), Obs=as.vector(t(obs[,-(1:3)])), Fit=as.vector(t(fit)))
@@ -201,8 +202,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     nsexes <- length(sexes)
     nlengths <- length(lengths)
     nobs <- readVector("Number_of_surveyC@L",same.line=FALSE)
-    obs <- readMatrix("surveyyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs)                     # "Observed_C@L"  not unique
-    fit <- readMatrix("surveyyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@L" not unique
+    obs <- readMatrix("surveyyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs)                     # "Observed_C@L"  !unique
+    fit <- readMatrix("surveyyearsamplesizesex1l1sex1l2sex1l3", nrow=nobs, header=2*(nobs+1))  # "Predicted_C@L" !unique
     CLs <- data.frame(Series=rep(obs[,1],each=nsexes*nlengths), Year=rep(obs[,2],each=nsexes*nlengths),
                       SS=rep(obs[,3],each=nsexes*nlengths), Sex=rep(rep(sexes,each=nlengths),nobs),
                       Length=rep(lengths,nsexes*nobs), Obs=as.vector(t(obs[,-(1:3)])), Fit=as.vector(t(fit)))
@@ -257,7 +258,10 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
     return(LA)
   }
 
+  ## 2  Parse args
   if(!file.exists(res.file)) stop("File ", res.file, " not found. Use / or \\\\ separators.")
+
+  ## 3  Read dimensions
   res.vector <- readLines(res.file)                                    # string vector, one element being one line
   res.vector <- gsub("\"","", gsub("\t","",gsub(" ","",res.vector)))   # remove white space and quotes
   if(!quiet) cat("\nParsing text file ", res.file, ":\n\nPreamble  ", sep="")
@@ -269,6 +273,8 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
   lengths <- seq(from=readVector("First_length"), by=readVector("Length_class_increment"),
                  length.out=readVector("Number_of_length_classes"))
   if(!quiet) cat("OK\n")
+
+  ## 4  Read N, B, R, Sel
   model <- list()
   model$N   <- getN(sexes, years, ages)
   model$B   <- getB(years, gears)            # Recruits:
@@ -277,6 +283,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
   model$B$R <- c(rec[-1], NA)                #  align with spawning stock
   model$Sel <- getSel(gears, surveys, years, sexes, ages)
 
+  ## 5  Read Dev, CPUE, Survey, CAc, CAs, CLc, CLs, LA
   if(Dev)    model$Dev    <- getDev(ages, years)
   if(CPUE)   model$CPUE   <- getCPUE(gears, years)
   if(Survey) model$Survey <- getSurvey(years)
@@ -298,6 +305,7 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
   }
   if(!quiet) cat("\n")
 
+  ## 6  Create attributes
   attr(model,"call") <- match.call()
   attr(model,"scape.version") <- installed.packages()["scape","Version"]
   attr(model,"info") <- info
@@ -305,4 +313,3 @@ function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=
 
   return(model)
 }
-

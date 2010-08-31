@@ -1,17 +1,16 @@
 \name{plotLA}
 \alias{plotLA}
-\concept{Fisheries stock assessment}
 \title{Plot Length at Age}
 \description{Plot \code{scape} model fit to length-at-age data.}
 \usage{
 plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
        between=list(x=axes,y=axes), ylim=NULL, bands=1, main="",
-       xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.strip=0.8,
-       cex.axis=0.8, las=1, tck=0, tick.number=5, lty.grid=3,
-       col.grid="grey", pch=16, cex.points=0.5, col.points="black",
-       lty.lines=1, lwd.lines=4, col.lines=c("red","blue"),
-       lty.bands=2*(!together), lwd.bands=1, col.bands="black",
-       plot=TRUE, ...)
+       xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8,
+       cex.strip=0.8, col.strip="gray95", las=1, tck=0, tick.number=5,
+       lty.grid=3, col.grid="gray", pch=16, cex.points=0.5,
+       col.points="black", lty.lines=1, lwd.lines=4,
+       col.lines=c("red","blue"), lty.bands=2*(!together), lwd.bands=1,
+       col.bands="black", plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{LA}.}
@@ -29,30 +28,31 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   \item{ylab}{y-axis label.}
   \item{cex.main}{size of main title.}
   \item{cex.lab}{size of axis labels.}
-  \item{cex.strip}{size of strip labels.}
   \item{cex.axis}{size of tick labels.}
+  \item{cex.strip}{size of strip labels.}
+  \item{col.strip}{color of strip labels.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}
   \item{tck}{tick mark length.}
   \item{tick.number}{number of tick marks.}
   \item{lty.grid}{line type of gridlines.}
-  \item{col.grid}{colour of gridlines.}
+  \item{col.grid}{color of gridlines.}
   \item{pch}{symbol for points, possibly a vector where element 2 refers
     to males.}
   \item{cex.points}{size of points, possibly a vector where element 2
     refers to males.}
-  \item{col.points}{colour of points, possibly a vector where element 2
+  \item{col.points}{color of points, possibly a vector where element 2
     refers to males.}
   \item{lty.lines}{line type of main lines, possibly a vector where
     element 2 refers to males.}
   \item{lwd.lines}{line width of main lines, possibly a vector where
     element 2 refers to males.}
-  \item{col.lines}{colour of main lines, possibly a vector where element
+  \item{col.lines}{color of main lines, possibly a vector where element
     2 refers to males.}
   \item{lty.bands}{line type of error bands.}
   \item{lwd.bands}{line width of error bands.}
-  \item{col.bands}{colour of error bands, possibly a vector where
-    element 2 refers to males.}
+  \item{col.bands}{color of error bands, possibly a vector where element
+    2 refers to males.}
   \item{plot}{whether to draw plot.}
   \item{\dots}{passed to \code{xyplot} and \code{panel.superpose.2}.}
 }
@@ -68,11 +68,17 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
   \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
-  \code{\link[lattice]{panel.xyplot}},
-  \code{\link[lattice]{panel.superpose}}.
+  \code{\link[lattice]{panel.xyplot}}, and
+  \code{\link[lattice]{panel.superpose}} are the underlying drawing
+  functions.
+
+  \code{\link{plotCA}}, \code{\link{plotCL}}, \code{\link{plotIndex}},
+  and \code{plotLA} plot model fit and data.
+
+  \code{\link{plotB}}, \code{\link{plotN}}, and \code{\link{plotSel}}
+  plot derived quantities.
 
   \code{\link{scape-package}} gives an overview of the package.
 }

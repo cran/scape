@@ -1,16 +1,15 @@
 \name{plotIndex}
 \alias{plotIndex}
-\concept{Fisheries stock assessment}
 \title{Plot Abundance Index}
 \description{Plot \code{scape} model fit to abundance index data}
 \usage{
-plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
+plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
           between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1, log=FALSE,
           base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
-          cex.strip=0.8, cex.axis=0.8, las=1, tck=c(1,0)/2,
-          tick.number=5, lty.grid=3, col.grid="white", pch=16,
-          cex.points=1.2, col.points="black", lty.lines=1, lwd.lines=4,
-          col.lines="dimgrey", lty.bar=1, plot=TRUE, ...)
+          cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=1,
+          tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white",
+          pch=16, cex.points=1.2, col.points="black", lty.lines=1,
+          lwd.lines=4, col.lines="dimgray", lty.bar=1, plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{CPUE}
@@ -33,20 +32,21 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
   \item{ylab}{y-axis label.}
   \item{cex.main}{size of main title.}
   \item{cex.lab}{size of axis labels.}
-  \item{cex.strip}{size of strip labels.}
   \item{cex.axis}{size of tick labels.}
+  \item{cex.strip}{size of strip labels.}
+  \item{col.strip}{color of strip labels.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}
   \item{tck}{tick mark length.}
   \item{tick.number}{number of tick marks.}
   \item{lty.grid}{line type of gridlines.}
-  \item{col.grid}{colour of gridlines.}
+  \item{col.grid}{color of gridlines.}
   \item{pch}{symbol for points.}
   \item{cex.points}{size of points.}
-  \item{col.points}{colour of points, possibly a vector.}
+  \item{col.points}{color of points, possibly a vector.}
   \item{lty.lines}{line type of main lines.}
   \item{lwd.lines}{line width of main lines.}
-  \item{col.lines}{colour of main lines, possibly a vector.}
+  \item{col.lines}{color of main lines, possibly a vector.}
   \item{lty.bar}{line type of error bars.}
   \item{plot}{whether to draw plot.}
   \item{\dots}{passed to \code{xyplot}, \code{panel.xyplot}, and
@@ -64,20 +64,27 @@ plotIndex(model, what="c", series=NULL, axes=TRUE, same.limits=FALSE,
   returned, containing the data used for plotting. When
   \code{plot=FALSE}, a trellis object is returned.
 }
-\author{Arni Magnusson \email{arnima@u.washington.edu}.}
 \seealso{
   \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
-  \code{\link[lattice]{panel.xyplot}},
-  \code{\link[Hmisc]{panel.xYplot}}, \code{\link[gplots]{plotCI}}.
+  \code{\link[lattice]{panel.xyplot}}, and
+  \code{\link[Hmisc]{panel.xYplot}} are the underlying drawning
+  functions.
+
+  \code{\link{plotCA}}, \code{\link{plotCL}}, \code{plotIndex}, and
+  \code{\link{plotLA}} plot model fit and data.
+
+  \code{\link{plotB}}, \code{\link{plotN}}, and \code{\link{plotSel}}
+  plot derived quantities.
 
   \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
-plotIndex(x.cod, "s", xlab="Year", ylab="Survey abundance index",
+plotIndex(x.cod, xlab="Year", ylab="Survey abundance index",
           strip=FALSE)
 
-plotIndex(x.oreo, xlim=list(c(1981,1990),c(1992,2002)), xlab="Year",
-          ylab="Observed CPUE", col.points=c("peru","red"), lty.lines=0)
+plotIndex(x.oreo, "c", xlim=list(c(1981,1990),c(1992,2002)),
+          xlab="Year", ylab="Observed CPUE",
+          col.points=c("salmon","seagreen"), lty.lines=0)
 }
 % Graphics
 \keyword{hplot}
