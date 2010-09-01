@@ -8,7 +8,7 @@
 \usage{
 importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
           CAc=FALSE, CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE,
-          quiet=TRUE)
+          quiet=TRUE, \dots)
 }
 \arguments{
   \item{res.file}{name of Coleraine model results file to import.}
@@ -25,6 +25,8 @@ importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
   \item{CLs}{whether model was fitted to survey catch-at-length data.}
   \item{LA}{whether model was fitted to length-at-age data.}
   \item{quiet}{whether to report progress while parsing file.}
+  \item{\dots}{passed to \code{data.frame}, e.g.
+    \samp{stringsAsFactors=FALSE}.}
 }
 \value{
   A list of class \code{scape} containing at least \code{N}, \code{B},
@@ -46,9 +48,6 @@ importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
   catch-at-age software, and can serve as a template for \pkg{scape}
   users who would like to implement import functions for specific stock
   assessment software.
-
-  The example datasets \code{x.cod}, \code{x.ling}, \code{x.oreo}, and
-  \code{x.sbw} were generated using \code{importCol}.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
   recommended for browsing model results, e.g. \code{ll(x.cod);

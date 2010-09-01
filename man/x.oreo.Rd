@@ -68,9 +68,8 @@
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.
 
-  \code{\link{x.cod}}, \code{\link{x.ling}}, and \code{\link{x.sbw}} are
-  other examples of fitted \code{scape} models to explore.
-
+  \code{\link{x.cod}}, \code{\link{x.ling}}, \code{x.oreo}, and
+  \code{\link{x.sbw}} are fitted \code{scape} models to explore.
 
   \code{\link{scape-package}} gives an overview of the package.
 }
