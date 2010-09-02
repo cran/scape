@@ -401,4 +401,4 @@ structure(list(N = structure(list(Sex = c("Unisex", "Unisex",
     "Year", "SS", "Sex", "Age", "Obs", "Fit"), row.names = c(NA, 
     -253L), class = "data.frame")), .Names = c("N", "B", "Sel", 
 "Dev", "Survey", "CAc"), call = quote(importCol(res.file = "c:/scape/example/sbw.res", 
-    Dev = T, Survey = T, CAc = T)), scape.version = "1.1-2", info = "", class = "scape")
+    Dev = T, Survey = T, CAc = T)), scape.version = "1.1-4", info = "", class = "scape")

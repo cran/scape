@@ -53,9 +53,6 @@ plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
     \code{panel.xYplot}.}
 }
 \note{
-  This function tries to draw the plot on a trellis device with a white
-  background.
-
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
@@ -65,9 +62,8 @@ plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
   \code{plot=FALSE}, a trellis object is returned.
 }
 \seealso{
-  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
-  \code{\link[lattice]{panel.xyplot}}, and
-  \code{\link[Hmisc]{panel.xYplot}} are the underlying drawning
+  \code{\link[lattice]{xyplot}}, \code{\link[lattice]{panel.xyplot}},
+  and \code{\link[Hmisc]{panel.xYplot}} are the underlying drawing
   functions.
 
   \code{\link{plotCA}}, \code{\link{plotCL}}, \code{plotIndex}, and

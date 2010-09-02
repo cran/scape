@@ -58,16 +58,12 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
   \code{plot=FALSE}, a trellis object is returned.
 }
 \note{
-  This function tries to draw the plot on a trellis device with a white
-  background.
-
   The \code{Args} function from the \pkg{gdata} package is recommended
   for reviewing the arguments, instead of \code{args}.
 }
 \seealso{
-  \code{\link[lattice]{Lattice}}, \code{\link[lattice]{xyplot}},
-  \code{\link[lattice]{panel.xyplot}}, and
-  \code{\link[lattice]{panel.barchart}} are the underlying drawing
+  \code{\link[lattice]{xyplot}}, \code{\link[lattice]{panel.xyplot}},
+  and \code{\link[lattice]{panel.barchart}} are the underlying drawing
   functions.
 
   \code{\link{plotCA}}, \code{\link{plotCL}}, \code{\link{plotIndex}},
