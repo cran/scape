@@ -34,8 +34,8 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   {
     if(!any(names(model)=="CAc"))
     {
-      cat("Element 'CAc' (commercial C@A) not found. Assuming what=\"s\" was intended.\n")
       what <- "s"
+      cat("Element 'CAc' (commercial C@A) not found. Assuming what=\"s\" was intended.\n")
     }
     else
       x <- model$CAc
@@ -59,7 +59,7 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   if(length(series) > 1)
   {
     series <- sort(series)[1]
-    cat("More than one C@A series found. Assuming series=\"", series[1], "\" was intended.\n", sep="")
+    cat("More than one C@A series found. Assuming series=\"", series, "\" was intended.\n", sep="")
   }
   ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
   ok.sex    <- x$Sex    %in% sex;    if(!any(ok.sex))    stop("Please check if the 'sex' argument is correct.")
@@ -103,8 +103,8 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   {
     graph <- xyplot(P~Age|factor(Year), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
-                    pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
-                    col.lines=col.lines[as.factor(x$Sex)], ...)
+                    pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
+                    col.lines=col.lines[factor(x$Sex)], ...)
   }
   if(nsexes==2 && !fit)
   {
@@ -115,10 +115,10 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   }
   if(nsexes==2 && fit)
   {
-    graph <- xyplot(P~Age|factor(Year)*Sex, data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
-                    main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
-                    pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
-                    col.lines=col.lines[as.factor(x$Sex)], ...)
+    graph <- xyplot(P~Age|factor(Year)*factor(Sex), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"),
+                    as.table=TRUE, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+                    pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
+                    col.lines=col.lines[factor(x$Sex)], ...)
   }
   if(!log && !fixed.ylim)  # leave ylim alone if log-transformed or bubble plot
   {

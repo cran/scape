@@ -33,7 +33,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   obs <- x[!is.na(x$Obs),]
   fit <- aggregate(list(Fit=x$Fit,CV=x$CV), list(Sex=x$Sex,Age=x$Age), mean)
   fit$Age <- as.integer(as.character(fit$Age))
-  fit <- fit[order(as.integer(fit$Sex)+fit$Age/100),]
+  fit <- fit[order(fit$Sex,fit$Age),]
   x <- data.frame(Sex=c(as.character(obs$Sex),as.character(rep(fit$Sex,3))),
                   Age=c(obs$Age,rep(fit$Age,3)),
                   ObsFit=c(rep("Obs",nrow(obs)),rep("Fit",nrow(fit)),rep("Upper",nrow(fit)),rep("Lower",nrow(fit))),
@@ -70,7 +70,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
     ylim <- c(0, 1.04*max(x$Length))
   if(nsexes==2 && together)
   {
-    graph <- xyplot(Length~Age, data=x, groups=x$ObsFit, z=x$Sex, panel=panel.together, type=c("l","l","p"),
+    graph <- xyplot(Length~Age, data=x, groups=x$ObsFit, z=factor(x$Sex), panel=panel.together, type=c("l","l","p"),
                     ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
                     pch=pch, cex=cex.points, col.points=col.points, col.lines=col.lines, ...)
   }
@@ -78,9 +78,9 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   {
     graph <- xyplot(Length~Age|Sex, data=x, groups=x$ObsFit, panel=panel.each, type=c("l","l","p"), as.table=TRUE,
                     between=between, ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales,
-                    par.strip.text=mystrip, pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Sex)],
+                    par.strip.text=mystrip, pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)],
                     lty=c(lty.lines[1],lty.bands[1]), lwd=c(lwd.lines[1],lwd.bands[1]),
-                    col.lines=col.lines[as.factor(x$Sex)], col.bands=col.bands[as.factor(x$Sex)], ...)
+                    col.lines=col.lines[factor(x$Sex)], col.bands=col.bands[factor(x$Sex)], ...)
   }
 
   ## 6  Finish

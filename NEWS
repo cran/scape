@@ -1,15 +1,48 @@
 --------------------------------------------------------------------------------
+scape 1.1-5
+03 Sep 2010
+--------------------------------------------------------------------------------
+o Improved handling of character/factor/integer in plotting functions.
+
+o Improved importCol() so that Year column is integer, not double.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 1.1-4
 02 Sep 2010
 --------------------------------------------------------------------------------
-o Added argument 'col.strip' to plotCA(), plotCL(), plotIndex(), plotLA(),
-  plotN(), and plotSel().
+o Minor improvements in help pages.
 
+
+
+
+--------------------------------------------------------------------------------
+scape 1.1-2
+01 Sep 2010
+--------------------------------------------------------------------------------
 o Added argument '...' to importCol(), e.g. to pass stringsAsFactors=FALSE.
+
+o Example objects x.cod, x.ling, x.oreo, and x.sbw have character instead of
+  factor columns.
+
+
+
+
+--------------------------------------------------------------------------------
+scape 1.1-0
+31 Aug 2010
+--------------------------------------------------------------------------------
+o Changed default value of 'what' in plotIndex() to "s" (survey biomass index).
+
+o Added argument 'col.strip' to plotCA(), plotCL(), plotIndex(), plotLA(),
+  plotN(), and plotSel(), with gray as default.
 
 o Reduced clutter during startup, by importing Hmisc and suggesting gdata.
 
-o Added vignettes.
+o Added three vignettes: dsc-vignette.pdf, gallery.pdf, and mymodel.pdf.
+
 
 
 

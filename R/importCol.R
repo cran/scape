@@ -64,7 +64,7 @@ importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CA
     vb <- readMatrix("Vulnerable_Biomass_by_Method_and_Year", nrow=ngears)
     sb <- readVector("Spawning_Biomass_by_Year", same.line=FALSE)
     y  <- c(readVector("Total_Catch_by_Method_and_Year", same.line=FALSE), NA)
-    B <- as.data.frame(cbind(years, t(vb), sb, y), ...)
+    B <- data.frame(years=years, vb=t(vb), sb=sb, y=y, ...)
     names(B) <- if(ngears==1) c("Year","VB","SB","Y") else c("Year",paste("VB",gears,sep="."),"SB","Y")
     if(!quiet) cat("OK\n")
     return(B)

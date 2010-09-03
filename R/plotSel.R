@@ -23,7 +23,6 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
 
   ## 3  Prepare data (extract, rearrange, filter)
   x <- model$Sel
-  mat <- x[x$Series=="Maturity",]
   if(is.null(series))
     series <- unique(x$Series)
   if(is.null(sex))
@@ -31,7 +30,7 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
   ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
   ok.sex <- x$Sex %in% sex; if(!any(ok.sex)) stop("Please check if the 'sex' argument is correct.")
   x <- x[ok.series & ok.sex,]
-  if(!is.factor(x$Series))
+  if(is.numeric(x$Series))
     x$Series <- factor(paste("Series", x$Series))
   mat <- x[x$Series=="Maturity",]
   sel <- x[x$Series!="Maturity",]
@@ -41,9 +40,10 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
   ocol <- trellis.par.get("strip.background")$col
   trellis.par.set(strip.background=list(col=col.strip))
   on.exit(trellis.par.set(strip.background=list(col=ocol)))
-  lty.lines <- rep(lty.lines, length.out=max(2,nlevels(sel$Series)))  # 2 <= length(lty.lines) <- nlevels(sel$Series)
-  lwd.lines <- rep(lwd.lines, length.out=max(2,nlevels(sel$Series)))  #             lwd.lines
-  col.lines <- rep(col.lines, length.out=max(2,nlevels(sel$Series)))  #             col.lines
+  nseries <- length(unique(sel$Series))
+  lty.lines <- rep(lty.lines, length.out=max(2,nseries))
+  lwd.lines <- rep(lwd.lines, length.out=max(2,nseries))
+  col.lines <- rep(col.lines, length.out=max(2,nseries))
   mymain <- list(label=main, cex=cex.main)
   myxlab <- list(label=xlab, cex=cex.lab)
   myylab <- list(label=ylab, cex=cex.lab)
@@ -60,7 +60,7 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
     graph <- xyplot(P~Age|Series*Sex, data=sel, panel=panel.each, maturity=mat, as.table=TRUE,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
                     pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines,
-                    col.lines.vector=col.lines[as.factor(x$Sex)], ...)
+                    col.lines.vector=col.lines[factor(x$Sex)], ...)
   }
   else
   {

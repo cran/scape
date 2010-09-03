@@ -32,8 +32,8 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
       x <- model$CPUE
     else if(any(names(model) == "Survey"))
     {
-      x <- model$Survey
-      cat("Element 'CPUE' found. Assuming user intended what=\"s\".\n")
+      what <- "s"
+      cat("Element 'CPUE' not found. Assuming what=\"s\" was intended.\n")
     }
     else
     {
@@ -47,7 +47,7 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
     else if(any(names(model) == "CPUE"))
     {
       x <- model$CPUE
-      cat("Element 'Survey' not found. Assuming user intended what=\"c\".\n")
+      cat("Element 'Survey' not found. Assuming what=\"c\" was intended.\n")
     }
     else
     {
@@ -76,8 +76,8 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
   ocol <- trellis.par.get("strip.background")$col
   trellis.par.set(strip.background=list(col=col.strip))
   on.exit(trellis.par.set(strip.background=list(col=ocol)))
-  col.points <- rep(col.points, length.out=nlevels(x$Series))
-  col.lines <- rep(col.lines, length.out=nlevels(x$Series))
+  col.points <- rep(col.points, length.out=length(unique(x$Series)))
+  col.lines <- rep(col.lines, length.out=length(unique(x$Series)))
   mymain <- list(label=main, cex=cex.main)
   myxlab <- list(label=xlab, cex=cex.lab)
   myylab <- list(label=ylab, cex=cex.lab)
@@ -87,10 +87,10 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
   mystrip <- list(cex=cex.strip)
 
   ## 5  Create trellis object
-  graph <- xyplot(Fit~Year|Series, data=x, panel=panel.index, yobs=Hmisc::Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
+  graph <- xyplot(Fit~Year|factor(Series), data=x, panel=panel.index, yobs=Hmisc::Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
                   as.table=TRUE, between=between, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip,
-                  scales=myscales, pch=pch, cex=cex.points, col.points=col.points[as.factor(x$Series)],
-                  col.lines=col.lines[as.factor(x$Series)], ...)
+                  scales=myscales, pch=pch, cex=cex.points, col.points=col.points[factor(x$Series)],
+                  col.lines=col.lines[factor(x$Series)], ...)
   if(is.list(ylim))
     graph$y.limits <- rep(ylim, length.out=length(series))
   else if(is.numeric(ylim))

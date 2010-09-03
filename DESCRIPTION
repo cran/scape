@@ -1,6 +1,6 @@
 Package: scape
-Version: 1.1-4
-Date: 2010-09-02
+Version: 1.1-5
+Date: 2010-09-03
 Title: Statistical Catch-at-Age Plotting Environment
 Author: Arni Magnusson
 Maintainer: Arni Magnusson <arnima@hafro.is>
@@ -9,8 +9,8 @@ Imports: Hmisc
 Suggests: gdata
 LazyData: yes
 Description: Import and plot results from statistical catch-at-age
-        models, used in fisheries stock assessments.
+        models, used in fisheries stock assessment.
 License: GPL (>= 2)
-Packaged: 2010-09-02 15:23:28 UTC; arnima
+Packaged: 2010-09-03 21:55:23 UTC; arnima
 Repository: CRAN
-Date/Publication: 2010-09-02 19:49:29
+Date/Publication: 2010-09-05 06:47:19

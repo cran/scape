@@ -27,21 +27,20 @@ plotB <- function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, le
   x <- data.frame(Year=rep(x$Year,ncol(x)-1), Series=rep(names(x)[-1],each=nrow(x)), Value=as.vector(as.matrix(x[,-1])))
   x$Value <- x$Value
   if(is.null(series))
-    series <- unique(as.character(x$Series))
+    series <- unique(x$Series)
   if(is.null(years))
     years <- unique(x$Year)
   ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
   ok.years  <- x$Year   %in% years;  if(!any(ok.years))  stop("Please check if the 'years' argument is correct.")
   x <- x[ok.series & ok.years,]
   Bframe <- x[x$Series %in% grep("B",series,value=TRUE),]
-  Bframe$Series <- factor(Bframe$Series)  # update levels
   Rframe <- x[x$Series=="R",]
   Yframe <- x[x$Series=="Y",]
   Bframe$Value <- Bframe$Value / div[1]
   Rframe$Value <- Rframe$Value / rep(div,length.out=2)[2]
   Yframe$Value <- Yframe$Value / div[1]
 
-  ## 4  Prepare plot (set pars, vectorize args, create list args)
+  ## 4  Prepare plot (vectorize args, create list args)
   main <- rep(main, length.out=2)
   xlab <- rep(xlab, length.out=2)
   ylab <- rep(ylab, length.out=2)
@@ -52,10 +51,10 @@ plotB <- function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, le
   myrot <- switch(as.character(las[1]), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  lty.lines <- rep(lty.lines, length.out=nlevels(Bframe$Series))
-  lwd.lines <- rep(lwd.lines, length.out=nlevels(Bframe$Series))
-  col.lines <- rep(col.lines, length.out=nlevels(Bframe$Series))
-  mykey <- list(space=legend, text=list(lab=levels(Bframe$Series),cex=cex.legend),
+  lty.lines <- rep(lty.lines, length.out=length(unique(Bframe$Series)))
+  lwd.lines <- rep(lwd.lines, length.out=length(unique(Bframe$Series)))
+  col.lines <- rep(col.lines, length.out=length(unique(Bframe$Series)))
+  mykey <- list(space=legend, text=list(lab=levels(factor(Bframe$Series)),cex=cex.legend),
                 lines=list(lty=lty.lines,lwd=lwd.lines,col=col.lines))
 
   ## 5  Create trellis object
