@@ -19,7 +19,7 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
 
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
 
   ## 3  Prepare data (extract, rearrange, filter)
   x <- model$Sel
@@ -27,8 +27,8 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
     series <- unique(x$Series)
   if(is.null(sex))
     sex <- unique(x$Sex)
-  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
-  ok.sex <- x$Sex %in% sex; if(!any(ok.sex)) stop("Please check if the 'sex' argument is correct.")
+  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct")
+  ok.sex <- x$Sex %in% sex; if(!any(ok.sex)) stop("Please check if the 'sex' argument is correct")
   x <- x[ok.series & ok.sex,]
   if(is.numeric(x$Series))
     x$Series <- factor(paste("Series", x$Series))
@@ -69,15 +69,14 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
                     pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines,
                     ...)
   }
-  ages <- sort(unique(x$Age))
   if(is.list(graph$x.limits))                                                            # set xlim=0,max(ages)&ylim=0,1
   {
-    graph$x.limits <- lapply(graph$x.limits, function(x){x<-c(0,max(ages));return(x)})   # multi-panel plot
+    graph$x.limits <- lapply(graph$x.limits, function(x){x<-c(0,max(x$Age));return(x)})  # multi-panel plot
     graph$y.limits <- lapply(graph$y.limits, function(y){y<-c(-0.005,1.005);return(y)})  # multi-panel plot
   }
   else
   {
-    graph$x.limits <- c(0, max(ages))                                                    # single-panel plot
+    graph$x.limits <- c(0, max(x$Age))                                                   # single-panel plot
     graph$y.limits <- c(-0.005,1.005)                                                    # single-panel plot
   }
   ## 6  Finish

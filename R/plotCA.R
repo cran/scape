@@ -24,7 +24,7 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
 
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
   what <- match.arg(what, c("c","s"))
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
@@ -35,7 +35,7 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     if(!any(names(model)=="CAc"))
     {
       what <- "s"
-      cat("Element 'CAc' (commercial C@A) not found. Assuming what=\"s\" was intended.\n")
+      warning("Element 'CAc' (commercial C@A) not found; assuming what=\"s\" was intended")
     }
     else
       x <- model$CAc
@@ -43,7 +43,7 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   if(what == "s")  # value of 'what' may have changed
   {
     if(!any(names(model)=="CAs"))
-      stop("Element 'CAs' (survey C@A) not found. Try plotCA(x, what=\"c\") to plot commercial C@A")
+      stop("Element 'CAs' (survey C@A) not found; try plotCA(x, what=\"c\") to plot commercial C@A")
     x <- model$CAs
   }
   x <- data.frame(Series=rep(x$Series,2), Year=rep(x$Year,2), SS=rep(x$SS,2), Sex=rep(x$Sex,2), Age=rep(x$Age,2),
@@ -58,16 +58,16 @@ plotCA <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     ages <- unique(x$Age)
   if(length(series) > 1)
   {
-    series <- sort(series)[1]
-    cat("More than one C@A series found. Assuming series=\"", series, "\" was intended.\n", sep="")
+    series <- series[1]
+    warning("More than one C@A series found; assuming series=\"", series, "\" was intended", sep="")
   }
-  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
-  ok.sex    <- x$Sex    %in% sex;    if(!any(ok.sex))    stop("Please check if the 'sex' argument is correct.")
-  ok.years  <- x$Year   %in% years;  if(!any(ok.years))  stop("Please check if the 'years' argument is correct.")
-  ok.ages   <- x$Age    %in% ages;   if(!any(ok.ages))   stop("Please check if the 'ages' argument is correct.")
+  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct")
+  ok.sex    <- x$Sex    %in% sex;    if(!any(ok.sex))    stop("Please check if the 'sex' argument is correct")
+  ok.years  <- x$Year   %in% years;  if(!any(ok.years))  stop("Please check if the 'years' argument is correct")
+  ok.ages   <- x$Age    %in% ages;   if(!any(ok.ages))   stop("Please check if the 'ages' argument is correct")
   x <- x[ok.series & ok.sex & ok.years & ok.ages,]
   if(nrow(x) == 0)
-    stop("Empty data frame. Please check if subsetting args (series, sex, years, ages) had mistakes.")
+    stop("Empty data frame; please check if subsetting args (series, sex, years, ages) had mistakes")
   nsexes <- length(unique(x$Sex))
   if(log)
     x$P <- log(x$P+eps.log, base=base)

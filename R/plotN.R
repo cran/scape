@@ -17,7 +17,7 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
 
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
   what <- match.arg(what, c("d","i","r","y","b"))
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
@@ -31,8 +31,8 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
     years <- unique(x$Year)
   if(is.null(ages))
     ages <- unique(x$Age)
-  ok.years <- x$Year %in% years; if(!any(ok.years)) stop("Please check if the 'years' argument is correct.")
-  ok.ages  <- x$Age  %in% ages;  if(!any(ok.ages))  stop("Please check if the 'ages' argument is correct.")
+  ok.years <- x$Year %in% years; if(!any(ok.years)) stop("Please check if the 'years' argument is correct")
+  ok.ages  <- x$Age  %in% ages;  if(!any(ok.ages))  stop("Please check if the 'ages' argument is correct")
   x <- x[ok.years & ok.ages,]
   x$N <- x$N / div
   if(log)

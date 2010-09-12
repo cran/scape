@@ -17,13 +17,15 @@ plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
   \item{what}{what should be plotted: \code{"c"}[ommercial] or
     \code{"s"}[urvey] abundance index.}
   \item{series}{vector of strings indicating which gears or surveys
-    should be plotted (first by default).}
+    should be plotted (all by default).}
   \item{axes}{whether axis values should be plotted.}
   \item{same.limits}{whether panels should have same y-axis limits.}
   \item{between}{list with \code{x} and \code{y} indicating panel
     spacing.}
   \item{ylim}{vector with lower and upper y-axis limits.}
-  \item{q}{denominator to scale the y axis, e.g. to vulnerable biomass.}
+  \item{q}{denominator to scale the y axis, e.g. to vulnerable biomass.
+    Similar to the \code{div} argument in \code{plotN} and
+    \code{plotB}.}
   \item{bar}{extent of error bars relative to standard error.}
   \item{log}{whether values should be log-transformed.}
   \item{base}{logarithm base.}
@@ -43,10 +45,10 @@ plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
   \item{col.grid}{color of gridlines.}
   \item{pch}{symbol for points.}
   \item{cex.points}{size of points.}
-  \item{col.points}{color of points, possibly a vector.}
+  \item{col.points}{color of points and error bars.}
   \item{lty.lines}{line type of main lines.}
   \item{lwd.lines}{line width of main lines.}
-  \item{col.lines}{color of main lines, possibly a vector.}
+  \item{col.lines}{color of main lines.}
   \item{lty.bar}{line type of error bars.}
   \item{plot}{whether to draw plot.}
   \item{\dots}{passed to \code{xyplot}, \code{panel.xyplot}, and
@@ -77,6 +79,8 @@ plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
 \examples{
 plotIndex(x.cod, xlab="Year", ylab="Survey abundance index",
           strip=FALSE)
+
+plotIndex(x.oreo, "c", series="Series 1-1", xlim=c(1981,1990))
 
 plotIndex(x.oreo, "c", xlim=list(c(1981,1990),c(1992,2002)),
           xlab="Year", ylab="Observed CPUE",

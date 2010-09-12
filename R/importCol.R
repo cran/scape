@@ -100,6 +100,8 @@ importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CA
   {
     if(!quiet) cat("Dev       ")
     Dev <- list()
+    Dev$sigmaR <- c(readVector("p_log_InitialDev",same.line=TRUE)[6], readVector("p_log_RecDev",same.line=TRUE)[6])
+    names(Dev$sigmaR) <- c("Initial", "Annual")
     Dev$Initial <- readVector("log_InitialDev", same.line=TRUE)
     names(Dev$Initial) <- ages[-c(1,length(ages))]  # exclude first and last age
     Dev$Annual <- readVector("log_RecDev", same.line=TRUE)
@@ -260,7 +262,7 @@ importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CA
   }
 
   ## 2  Parse args
-  if(!file.exists(res.file)) stop("File ", res.file, " not found. Use / or \\\\ separators.")
+  if(!file.exists(res.file)) stop("File ", res.file, " not found; use / or \\\\ separators")
 
   ## 3  Read dimensions
   res.vector <- readLines(res.file)                                    # string vector, one element being one line
@@ -295,11 +297,11 @@ importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CA
   if(LA)
   {
     latage.file <- paste(dirname(res.file),"l_at_age.dat",sep="/")
-    if(!file.exists(latage.file)) stop("File ", latage.file, " not found. Use / or \\\\ separators.")
+    if(!file.exists(latage.file)) stop("File ", latage.file, " not found; use / or \\\\ separators")
     latage.vector <- readLines(latage.file)  # LAnobs for each sex
     latage.vector <- gsub("\"","", gsub("\t","",gsub(" ","",latage.vector)))
     txt.file <- gsub("\\.res", "\\.txt", res.file)
-    if(!file.exists(txt.file)) stop("File ", txt.file, " not found. Use / or \\\\ separators.")
+    if(!file.exists(txt.file)) stop("File ", txt.file, " not found; use / or \\\\ separators")
     txt.vector <- readLines(txt.file)  # sigmaLA~x
     txt.vector <- gsub("\"","", gsub("\t","",gsub(" ","",txt.vector)))
     model$LA <- getLA(sexes, ages)

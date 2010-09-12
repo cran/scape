@@ -18,7 +18,7 @@ plotB <- function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, le
 
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
   what <- match.arg(what, c("d","s","l"))
   las <- as.numeric(las)
 
@@ -30,8 +30,8 @@ plotB <- function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1, le
     series <- unique(x$Series)
   if(is.null(years))
     years <- unique(x$Year)
-  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
-  ok.years  <- x$Year   %in% years;  if(!any(ok.years))  stop("Please check if the 'years' argument is correct.")
+  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct")
+  ok.years  <- x$Year   %in% years;  if(!any(ok.years))  stop("Please check if the 'years' argument is correct")
   x <- x[ok.series & ok.years,]
   Bframe <- x[x$Series %in% grep("B",series,value=TRUE),]
   Rframe <- x[x$Series=="R",]

@@ -25,7 +25,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   }
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
   relation <- if(same.limits) "same" else "free"
 
   ## 3  Prepare data (extract, rearrange, filter)
@@ -40,7 +40,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
                   Length=c(obs$Obs,fit$Fit,fit$Fit*exp(bands*fit$CV),fit$Fit/exp(bands*fit$CV)))
   if(is.null(sex))
     sex <- unique(x$Sex)
-  ok.sex <- x$Sex %in% sex; if(!any(ok.sex)) stop("Please check if the 'sex' argument is correct.")
+  ok.sex <- x$Sex %in% sex; if(!any(ok.sex)) stop("Please check if the 'sex' argument is correct")
   x <- x[ok.sex,]
   if(!bands)
     x <- x[x$ObsFit!="Upper"|x$ObsFit!="Lower",]

@@ -17,8 +17,8 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   \item{what}{what should be plotted: \code{"c"}[ommercial] or
     \code{"s"}[urvey] catch at length.}
   \item{fit}{whether fitted values should be overlaid on observed data.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be plotted (first by default).}
+  \item{series}{string indicating which gear or survey should be plotted
+    (first by default).}
   \item{sex}{string indicating which sex should be plotted (both by
     default).}
   \item{years}{vector of numbers indicating which years should be

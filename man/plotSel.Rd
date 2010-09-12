@@ -41,9 +41,9 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
   \item{pch}{symbol for points.}
   \item{cex.points}{size of points.}
   \item{col.points}{color of points.}
-  \item{lty.lines}{line type of main lines, possibly a vector.}
-  \item{lwd.lines}{line width of main lines, possibly a vector.}
-  \item{col.lines}{color of main lines, possibly a vector.}
+  \item{lty.lines}{line type of main lines.}
+  \item{lwd.lines}{line width of main lines.}
+  \item{col.lines}{color of main lines.}
   \item{plot}{whether to draw plot.}
   \item{\dots}{passed to \code{xyplot}, \code{panel.points},
     \code{panel.lines}, and \code{panel.superpose}.}

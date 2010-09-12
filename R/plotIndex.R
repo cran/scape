@@ -11,17 +11,15 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
     panel.abline(v=pretty(x,tick.number), h=pretty(y.range,tick.number), lty=lty.grid, col=col.grid)
     panel.xyplot(x, y, type="n", ...)
     panel.xyplot(x, yfit[subscripts], type="l", lty=lty.lines, lwd=lwd.lines, col=col.lines[subscripts], ...)
-    ok.Y <- !is.na(yobs[subscripts])  # NAs in panel.xYplot are fine on screen, but crash PDF and PS files
     if(lty.bar == 0)
       panel.xyplot(x, yobs[subscripts], col=col.points, ...)
     else
-      Hmisc::panel.xYplot(x[ok.Y], yobs[subscripts][ok.Y], subscripts=subscripts[ok.Y], col=col.points[subscripts],
-                          lty.bar=lty.bar, ...)
+      panel.xYplot(x, yobs[subscripts], subscripts=subscripts, col=col.points[subscripts], lty.bar=lty.bar, ...)
   }
 
   ## 2  Parse args
   if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", chartr("."," ",class(model)), ".")
+    stop("The 'model' argument should be a scape object, not ", class(model))
   what <- match.arg(what, c("c","s"))
   relation <- if(same.limits) "same" else "free"
 
@@ -33,11 +31,11 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
     else if(any(names(model) == "Survey"))
     {
       what <- "s"
-      cat("Element 'CPUE' not found. Assuming what=\"s\" was intended.\n")
+      warning("Element 'CPUE' not found; assuming what=\"s\" was intended")
     }
     else
     {
-      stop("Elements 'CPUE' and 'Survey' not found. Please verify that model contains abundance index data.")
+      stop("Elements 'CPUE' and 'Survey' not found; please verify that model contains abundance index data")
     }
   }
   if(what == "s")  # 'what' may have changed since last if statement
@@ -47,16 +45,16 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
     else if(any(names(model) == "CPUE"))
     {
       x <- model$CPUE
-      cat("Element 'Survey' not found. Assuming what=\"c\" was intended.\n")
+      warning("Element 'Survey' not found; assuming what=\"c\" was intended")
     }
     else
     {
-      stop("Elements 'CPUE' and 'Survey' not found. Please verify that model contains abundance index data.")
+      stop("Elements 'CPUE' and 'Survey' not found; please verify that model contains abundance index data")
     }
   }
   if(is.null(series))
     series <- unique(x$Series)
-  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct.")
+  ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct")
   x <- x[ok.series,]
   if(is.numeric(x$Series))
     x$Series <- factor(paste("Series", x$Series))
@@ -87,7 +85,7 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
   mystrip <- list(cex=cex.strip)
 
   ## 5  Create trellis object
-  graph <- xyplot(Fit~Year|factor(Series), data=x, panel=panel.index, yobs=Hmisc::Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
+  graph <- xyplot(Fit~Year|factor(Series), data=x, panel=panel.index, yobs=Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
                   as.table=TRUE, between=between, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip,
                   scales=myscales, pch=pch, cex=cex.points, col.points=col.points[factor(x$Series)],
                   col.lines=col.lines[factor(x$Series)], ...)

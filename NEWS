@@ -1,4 +1,17 @@
 --------------------------------------------------------------------------------
+scape 2.0-0
+12 Sep 2010
+--------------------------------------------------------------------------------
+o Added suite of functions to diagnose sigmas and sample sizes: estN(),
+  estN.int(), estSigmaI(), estSigmaR(), getN(), getSigmaI(), getSigmaR(), and
+  iterate().
+
+o Fixed missing error bars in plotIndex, by reestablishing Hmisc dependency.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 1.1-5
 03 Sep 2010
 --------------------------------------------------------------------------------
