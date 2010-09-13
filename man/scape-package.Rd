@@ -25,6 +25,15 @@
     \code{\link{plotN}}   \tab numbers at age\cr
     \code{\link{plotSel}} \tab selectivity and maturity
   }
+  \emph{Sigmas and sample sizes:}
+  \tabular{ll}{
+    \code{\link{getN}}, \code{\link{getSigmaI}}, \code{\link{getSigmaR}}
+    \tab extract\cr
+    \code{\link{estN}}, \code{\link{estSigmaI}}, \code{\link{estSigmaR}}
+    \tab estimate\cr
+    \code{\link{iterate}} \tab combine all \code{get*} and
+    \code{est*}\cr
+  }
   \emph{Examples:}
   \tabular{ll}{
     \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}},

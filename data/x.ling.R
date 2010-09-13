@@ -2440,4 +2440,4 @@ structure(list(N = structure(list(Sex = c("Female", "Female",
 "SS", "Sex", "Length", "Obs", "Fit"), row.names = c(NA, -1044L
 ), class = "data.frame")), .Names = c("N", "B", "Sel", "Dev", 
 "CPUE", "Survey", "CAs", "CLc"), call = quote(importCol(res.file = "c:/scape/example/ling.res", 
-    Dev = TRUE, CPUE = TRUE, Survey = TRUE, CAs = TRUE, CLc = TRUE)), scape.version = "2.0-0", info = "", class = "scape")
+    Dev = TRUE, CPUE = TRUE, Survey = TRUE, CAs = TRUE, CLc = TRUE)), scape.version = "2.0-1", info = "", class = "scape")

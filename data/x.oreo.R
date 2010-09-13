@@ -2992,4 +2992,4 @@ structure(list(N = structure(list(Sex = c("Female", "Female",
         0.0560167116572219)), .Names = c("Sex", "Age", "Obs", 
     "Fit", "CV"), row.names = c(NA, -378L), class = "data.frame")), .Names = c("N", 
 "B", "Sel", "CPUE", "Survey", "CLc", "CLs", "LA"), call = quote(importCol(res.file = "c:/scape/example/oreo.res", 
-    CPUE = TRUE, Survey = TRUE, CLc = TRUE, CLs = TRUE, LA = TRUE)), scape.version = "2.0-0", info = "", class = "scape")
+    CPUE = TRUE, Survey = TRUE, CLc = TRUE, CLs = TRUE, LA = TRUE)), scape.version = "2.0-1", info = "", class = "scape")
