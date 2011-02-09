@@ -665,4 +665,4 @@ structure(list(N = structure(list(Sex = c("Unisex", "Unisex",
         0.0118643)), .Names = c("Series", "Year", "SS", "Sex", 
     "Age", "Obs", "Fit"), row.names = c(NA, -190L), class = "data.frame")), .Names = c("N", 
 "B", "Sel", "Dev", "Survey", "CAc", "CAs"), call = quote(importCol(res.file = "c:/scape/example/cod.res", 
-    Dev = TRUE, Survey = TRUE, CAc = TRUE, CAs = TRUE)), scape.version = "2.0-1", info = "", class = "scape")
+    Dev = TRUE, Survey = TRUE, CAc = TRUE, CAs = TRUE)), scape.version = "2.0-2", info = "", class = "scape")

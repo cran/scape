@@ -397,5 +397,5 @@ structure(list(N = structure(list(Sex = c("Unisex", "Unisex",
         0.0115264, 0.023058, 0.0405382, 0.158628)), .Names = c("Series", 
     "Year", "SS", "Sex", "Age", "Obs", "Fit"), row.names = c(NA, 
     -253L), class = "data.frame")), .Names = c("N", "B", "Sel", 
-"Dev", "Survey", "CAc"), call = quote(importCol(res.file = "c:/~/scape/example/sbw.res", 
-    Dev = TRUE, Survey = TRUE, CAc = TRUE)), scape.version = "2.0-1", info = "", class = "scape")
+"Dev", "Survey", "CAc"), call = quote(importCol(res.file = "c:/scape/example/sbw.res", 
+    Dev = TRUE, Survey = TRUE, CAc = TRUE)), scape.version = "2.0-2", info = "", class = "scape")
