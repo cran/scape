@@ -1,7 +1,8 @@
-plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log=FALSE, base=10,
-                  main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95",
-                  las=(what=="b"), tck=c(1,what=="b")/2, tick.number=10, lty.grid=3, col.grid="white", pch=16,
-                  cex.points=1, col.points="black", ratio.bars=3, col.bars="gray", plot=TRUE, ...)
+plotN <- function(model, what="d", swap=FALSE, years=NULL, ages=NULL, axes=TRUE, same.limits=TRUE, div=1, log=FALSE,
+                  base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8, cex.strip=0.8,
+                  col.strip="gray95", strip=strip.custom(bg=col.strip), las=(what=="b"), tck=c(1,what=="b")/2,
+                  tick.number=10, lty.grid=3, col.grid="white", pch=16, cex.points=1, col.points="black", ratio.bars=3,
+                  col.bars="gray", plot=TRUE, ...)
 {
   ## 1  Define functions
   panel.bar <- function(x, y, ...)  # barplot of N in one or more panel
@@ -18,7 +19,7 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
   ## 2  Parse args
   if(class(model) != "scape")
     stop("The 'model' argument should be a scape object, not ", class(model))
-  what <- match.arg(what, c("d","i","r","y","b"))
+  what <- match.arg(what, c("d","i","l","r","p","b"))
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
 
@@ -39,9 +40,6 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
     x$N <- log(x$N, base)
 
   ## 4  Prepare plot (set pars, vectorize args, create list args)
-  ocol <- trellis.par.get("strip.background")$col
-  trellis.par.set(strip.background=list(col=col.strip))
-  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   main <- rep(main, length.out=2)
   xlab <- rep(xlab, length.out=2)
   ylab <- rep(ylab, length.out=2)
@@ -52,7 +50,8 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
   myrot <- switch(as.character(las[1]), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  mystrip <- list(cex=cex.strip)
+  mystrip <- strip.custom(bg=col.strip)
+  mytext <- list(cex=cex.strip)
 
   ## 5  Create trellis object
   printed <- FALSE
@@ -77,11 +76,21 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
   {
     x <- x[x$Year==min(x$Year),]
     graph <- xyplot(N~Age|"Initial population", data=x, panel=panel.bar, horizontal=FALSE,
-                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     box.ratio=ratio.bars, col=col.bars, ...)
-    graph$x.limits <- c(min(x$Age)-0.5, max(x$Age)+0.5)
+    if(!("xlim" %in% names(as.list(substitute(list(...)))[-1])))
+      graph$x.limits <- c(min(x$Age)-0.5, max(x$Age)+0.5)
   }
-  if(what == "r")  # Year-1 aligns cohorts
+  if(what == "l")
+  {
+    x <- x[x$Year==max(x$Year),]
+    graph <- xyplot(N~Age|factor(Year), data=x, panel=panel.bar, horizontal=FALSE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
+                    box.ratio=ratio.bars, col=col.bars, ...)
+    if(!("xlim" %in% names(as.list(substitute(list(...)))[-1])))
+      graph$x.limits <- c(min(x$Age)-0.5, max(x$Age)+0.5)
+  }
+  if(what == "r")  # Year-min(x$Age) aligns cohorts
   {
     x <- x[x$Age==min(x$Age),]
     mymain <- list(label=main[2], cex=cex.main)
@@ -89,20 +98,24 @@ plotN <- function(model, what="d", years=NULL, ages=NULL, axes=TRUE, same.limits
     myylab <- list(label=ylab[2], cex=cex.lab)
     myrot <- switch(as.character(las[2]), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                     "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
-    graph <- xyplot(N~Year-1|"Cohorts", data=x, panel=panel.bar, horizontal=FALSE,
-                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
+    mytitle <- paste("Cohorts (age ", min(x$Age), ")", sep="")
+    graph <- xyplot(N~Year-min(x$Age)|mytitle, data=x, panel=panel.bar, horizontal=FALSE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     box.ratio=ratio.bars, col=col.bars, ...)
-    graph$x.limits <- c(min(x$Year-1)-0.5, max(x$Year-1)+0.5)
+    if(!("xlim" %in% names(as.list(substitute(list(...)))[-1])))
+      graph$x.limits <- c(min(x$Year-min(x$Age))-0.5, max(x$Year-min(x$Age))+0.5)
   }
-  if(what == "y")
+  if(what == "p")
   {
-    graph <- xyplot(N~Age|factor(Year), data=x, panel=panel.bar, horizontal=FALSE, as.table=TRUE,
-                    main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+    myformula <- if(!swap) N~Age|factor(Year) else N~Year|factor(Age)
+    graph <- xyplot(myformula, data=x, panel=panel.bar, horizontal=FALSE, as.table=TRUE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     box.ratio=ratio.bars, col=col.bars, ...)
   }
   if(what == "b")
   {
-    graph <- xyplot(Year~Age, data=x, panel=panel.bubble,
+    myformula <- if(!swap) Year~Age else Age~Year
+    graph <- xyplot(myformula, data=x, panel=panel.bubble,
                     main=mymain, xlab=myxlab, ylab=myylab, scales=myscales,
                     pch=pch, cex=cex.points*sqrt(x$N/mean(x$N)), col=col.points, ...)
     graph$y.limits <- rev(graph$y.limits)

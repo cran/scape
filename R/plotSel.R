@@ -1,7 +1,8 @@
 plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, legend="bottom", main="", xlab="", ylab="",
-                    cex.main=1.2, cex.legend=1, cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=1,
-                    tck=0, tick.number=5, lty.grid=3, col.grid="gray", pch="m", cex.points=1, col.points="black",
-                    lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE, ...)
+                    cex.main=1.2, cex.legend=1, cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95",
+                    strip=strip.custom(bg=col.strip), las=1, tck=0, tick.number=5, lty.grid=3, col.grid="gray", pch="m",
+                    cex.points=1, col.points="black", lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE,
+                    ...)
 {
   ## 1  Define functions
   panel.each <- function(x, y, subscripts, maturity, col.lines.vector, ...)
@@ -37,9 +38,6 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
   sel$Series <- factor(as.character(sel$Series))  # update levels
 
   ## 4  Prepare plot (set pars, vectorize args, create list args)
-  ocol <- trellis.par.get("strip.background")$col
-  trellis.par.set(strip.background=list(col=col.strip))
-  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   nseries <- length(unique(sel$Series))
   lty.lines <- rep(lty.lines, length.out=max(2,nseries))
   lwd.lines <- rep(lwd.lines, length.out=max(2,nseries))
@@ -50,7 +48,8 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
   myrot <- switch(as.character(las), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  mystrip <- list(cex=cex.strip)
+  mystrip <- strip.custom(bg=col.strip)
+  mytext <- list(cex=cex.strip)
   mykey <- list(space=legend, text=list(lab=levels(sel$Series),cex=cex.legend),
                 lines=list(lty=lty.lines,lwd=lwd.lines,col=col.lines))
 
@@ -58,15 +57,16 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE, leg
   if(!together)
   {
     graph <- xyplot(P~Age|Series*Sex, data=sel, panel=panel.each, maturity=mat, as.table=TRUE,
-                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
-                    pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
+                    pch=pch, cex=cex.points, col.points=col.points, lty=lty.lines, lwd=lwd.lines,
                     col.lines.vector=col.lines[factor(x$Sex)], ...)
   }
   else
   {
     graph <- xyplot(P~Age|Sex, data=sel, groups=sel$Series, panel=panel.together, maturity=mat,
-                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip, key=mykey,
-                    pch=pch, col.points=col.points, cex=cex.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
+                    key=mykey,
+                    pch=pch, cex=cex.points, col.points=col.points, lty=lty.lines, lwd=lwd.lines, col.line=col.lines,
                     ...)
   }
   if(is.list(graph$x.limits))                                                            # set xlim=0,max(ages)&ylim=0,1

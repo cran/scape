@@ -17,8 +17,8 @@ estN.int(P, Phat)  # internal function
     catch-at-length data.}
   \item{what}{name of model element: \code{"CAc"}, \code{"CAs"},
     \code{"CLc"}, or \code{"CLs"}.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be analyzed (all by default).}
+  \item{series}{vector of strings indicating which gears or surveys to
+    analyze (all by default).}
   \item{init}{initial sample size, determining the relative pattern of
     the effective sample size between years.}
   \item{FUN}{function to standardize the effective sample size.}

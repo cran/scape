@@ -16,13 +16,13 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
-  \item{what}{what should be plotted: \code{"d"}[efault],
-    \code{"s"}[tock recruitment], or \code{"l"}[andings].}
+  \item{what}{what to plot: \code{"d"}[efault], \code{"s"}[tock
+    recruitment], or \code{"l"}[andings].}
   \item{series}{vector of strings indicating which column names in
-    \code{model$B} data frame should be plotted (all by default).}
-  \item{years}{vector of numbers indicating which years should be
-    included (all by default).}
-  \item{axes}{whether axis values should be plotted.}
+    \code{model$B} data frame to plot (all by default).}
+  \item{years}{vector of numbers indicating which years to include (all
+    by default).}
+  \item{axes}{whether to plot axis values.}
   \item{div}{denominator to shorten values on the y axis, or a vector
     with two elements referring to x and y axis.}
   \item{legend}{legend location: \code{"bottom"}, \code{"left"},

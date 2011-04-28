@@ -6,7 +6,8 @@
 plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
        between=list(x=axes,y=axes), ylim=NULL, bands=1, main="",
        xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8,
-       cex.strip=0.8, col.strip="gray95", las=1, tck=0, tick.number=5,
+       cex.strip=0.8, col.strip="gray95",
+       strip=strip.custom(bg=col.strip), las=1, tck=0, tick.number=5,
        lty.grid=3, col.grid="gray", pch=16, cex.points=0.5,
        col.points="black", lty.lines=1, lwd.lines=4,
        col.lines=c("red","blue"), lty.bands=2*(!together), lwd.bands=1,
@@ -14,10 +15,9 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{LA}.}
-  \item{together}{whether both sexes should be plotted in one panel.}
-  \item{sex}{string indicating which sex should be plotted (both by
-    default).}
-  \item{axes}{whether axis values should be plotted.}
+  \item{together}{whether to plot both sexes in one panel.}
+  \item{sex}{string indicating which sex to plot (both by default).}
+  \item{axes}{whether to plot axis values.}
   \item{same.limits}{whether panels should have same y-axis limits.}
   \item{between}{list with \code{x} and \code{y} indicating panel
     spacing.}
@@ -31,6 +31,8 @@ plotLA(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   \item{cex.axis}{size of tick labels.}
   \item{cex.strip}{size of strip labels.}
   \item{col.strip}{color of strip labels.}
+  \item{strip}{logical flag (whether to plot strip labels), or a
+    function passed to \code{xyplot}.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}
   \item{tck}{tick mark length.}

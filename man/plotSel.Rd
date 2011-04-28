@@ -8,19 +8,18 @@
 plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
         legend="bottom", main="", xlab="", ylab="", cex.main=1.2,
         cex.legend=1, cex.lab=1, cex.axis=0.8, cex.strip=0.8,
-        col.strip="gray95", las=1, tck=0, tick.number=5, lty.grid=3,
-        col.grid="gray", pch="m", cex.points=1, col.points="black",
-        lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), plot=TRUE,
-        \dots)
+        col.strip="gray95", strip=strip.custom(bg=col.strip), las=1,
+        tck=0, tick.number=5, lty.grid=3, col.grid="gray", pch="m",
+        cex.points=1, col.points="black", lty.lines=1, lwd.lines=4,
+        col.lines=c("red","blue"), plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
-  \item{together}{whether gears should be plotted in one panel.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be plotted (all by default).}
-  \item{sex}{string indicating which sex should be plotted (both by
-    default).}
-  \item{axes}{whether axis values should be plotted.}
+  \item{together}{whether to plot gears in one panel.}
+  \item{series}{vector of strings indicating which gears or surveys to
+    plot (all by default).}
+  \item{sex}{string indicating which sex to plot (both by default).}
+  \item{axes}{whether to plot axis values.}
   \item{legend}{legend location: \code{"bottom"}, \code{"left"},
     \code{"top"}, \code{"right"}, or \code{""} to suppress legend.}
   \item{main}{main title.}
@@ -31,6 +30,8 @@ plotSel(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
   \item{cex.lab}{size of axis labels.}
   \item{cex.axis}{size of tick labels.}
   \item{cex.strip}{size of strip labels.}
+  \item{strip}{logical flag (whether to plot strip labels), or a
+    function passed to \code{xyplot}.}
   \item{col.strip}{color of strip labels.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}

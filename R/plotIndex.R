@@ -1,8 +1,8 @@
 plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE, between=list(x=axes,y=axes),
                       ylim=NULL, q=1, bar=1, log=FALSE, base=10, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
-                      cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=1, tck=c(1,0)/2, tick.number=5, lty.grid=3,
-                      col.grid="white", pch=16, cex.points=1.2, col.points="black", lty.lines=1, lwd.lines=4,
-                      col.lines="dimgray", lty.bar=1, plot=TRUE, ...)
+                      cex.axis=0.8, cex.strip=0.8, col.strip="gray95", strip=strip.custom(bg=col.strip), las=1,
+                      tck=c(1,0)/2, tick.number=5, lty.grid=3, col.grid="white", pch=16, cex.points=1.2,
+                      col.points="black", lty.lines=1, lwd.lines=4, col.lines="dimgray", lty.bar=1, plot=TRUE, ...)
 {
   ## 1  Define functions
   panel.index <- function(x, y, subscripts, yobs, yfit, col.points, col.lines, ...)  # overlay obs&fit in series panels
@@ -71,9 +71,6 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
   }
 
   ## 4  Prepare plot (set pars, vectorize args, create list args)
-  ocol <- trellis.par.get("strip.background")$col
-  trellis.par.set(strip.background=list(col=col.strip))
-  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   col.points <- rep(col.points, length.out=length(unique(x$Series)))
   col.lines <- rep(col.lines, length.out=length(unique(x$Series)))
   mymain <- list(label=main, cex=cex.main)
@@ -82,12 +79,14 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE
   myrot <- switch(as.character(las), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  mystrip <- list(cex=cex.strip)
+  mystrip <- strip.custom(bg=col.strip)
+  mytext <- list(cex=cex.strip)
 
   ## 5  Create trellis object
   graph <- xyplot(Fit~Year|factor(Series), data=x, panel=panel.index, yobs=Cbind(x$Obs,x$Hi,x$Lo), yfit=x$Fit,
-                  as.table=TRUE, between=between, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip,
-                  scales=myscales, pch=pch, cex=cex.points, col.points=col.points[factor(x$Series)],
+                  as.table=TRUE, between=between,
+                  main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
+                  pch=pch, cex=cex.points, col.points=col.points[factor(x$Series)],
                   col.lines=col.lines[factor(x$Series)], ...)
   if(is.list(ylim))
     graph$y.limits <- rep(ylim, length.out=length(series))

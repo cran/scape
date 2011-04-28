@@ -15,8 +15,8 @@ estSigmaI(model, what="s", series=NULL, init=NULL, FUN=mean, p=1,
     and/or \code{Survey}.}
   \item{what}{which effective sigma to estimate: \code{"c"}[ommercial]
     or \code{"s"}[urvey] abundance index.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be analyzed (all by default).}
+  \item{series}{vector of strings indicating which gears or surveys to
+    analyze (all by default).}
   \item{init}{initial sigma, determining the relative pattern of the
     effective sigmas between years.}
   \item{FUN}{function to use when scaling a vector of sigmas.}

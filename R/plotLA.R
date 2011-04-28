@@ -1,8 +1,8 @@
 plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE, between=list(x=axes,y=axes), ylim=NULL,
                    bands=1, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8, cex.strip=0.8,
-                   col.strip="gray95", las=1, tck=0, tick.number=5, lty.grid=3, col.grid="gray", pch=16, cex.points=0.5,
-                   col.points="black", lty.lines=1, lwd.lines=4, col.lines=c("red","blue"), lty.bands=2*!together,
-                   lwd.bands=1, col.bands="black", plot=TRUE, ...)
+                   col.strip="gray95", strip=strip.custom(bg=col.strip), las=1, tck=0, tick.number=5, lty.grid=3,
+                   col.grid="gray", pch=16, cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=4,
+                   col.lines=c("red","blue"), lty.bands=2*!together, lwd.bands=1, col.bands="black", plot=TRUE, ...)
 {
   ## 1  Define functions
   panel.each <- function(x, y, subscripts, col.points, col.lines, col.bands, ...)  # obs, fit, and bands in sex panels
@@ -47,9 +47,6 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   nsexes <- length(unique(x$Sex))
 
   ## 4  Prepare plot (set pars, vectorize args, create list args)
-  ocol <- trellis.par.get("strip.background")$col
-  trellis.par.set(strip.background=list(col=col.strip))
-  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   pch <- rep(pch, length.out=2)
   cex.points <- rep(cex.points, length.out=2)
   col.points <- rep(col.points, length.out=2)
@@ -63,7 +60,8 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   myrot <- switch(as.character(las), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  mystrip <- list(cex=cex.strip)
+  mystrip <- strip.custom(bg=col.strip)
+  mytext <- list(cex=cex.strip)
 
   ## 5  Create trellis object
   if(is.null(ylim))
@@ -71,16 +69,19 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
   if(nsexes==2 && together)
   {
     graph <- xyplot(Length~Age, data=x, groups=x$ObsFit, z=factor(x$Sex), panel=panel.together, type=c("l","l","p"),
-                    ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, par.strip.text=mystrip,
+                    ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip,
+                    par.strip.text=mytext,
                     pch=pch, cex=cex.points, col.points=col.points, col.lines=col.lines, ...)
   }
   else
   {
     graph <- xyplot(Length~Age|Sex, data=x, groups=x$ObsFit, panel=panel.each, type=c("l","l","p"), as.table=TRUE,
-                    between=between, ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales,
-                    par.strip.text=mystrip, pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)],
-                    lty=c(lty.lines[1],lty.bands[1]), lwd=c(lwd.lines[1],lwd.bands[1]),
-                    col.lines=col.lines[factor(x$Sex)], col.bands=col.bands[factor(x$Sex)], ...)
+                    between=between,
+                    ylim=ylim, main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip,
+                    par.strip.text=mytext,
+                    pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)], lty=c(lty.lines[1],lty.bands[1]),
+                    lwd=c(lwd.lines[1],lwd.bands[1]), col.lines=col.lines[factor(x$Sex)],
+                    col.bands=col.bands[factor(x$Sex)], ...)
   }
 
   ## 6  Finish

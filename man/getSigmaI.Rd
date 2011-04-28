@@ -13,8 +13,8 @@ getSigmaI(model, what="s", series=NULL, digits=NULL)
     and/or \code{Survey}.}
   \item{what}{which sigma to extract: \code{"c"}[ommercial] or
     \code{"s"}[urvey] abundance index.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be analyzed (all by default).}
+  \item{series}{vector of strings indicating which gears or surveys to
+    analyze (all by default).}
   \item{digits}{number of decimal places to use when rounding, or
     \code{NULL} to suppress rounding.}
 }

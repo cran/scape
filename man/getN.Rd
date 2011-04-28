@@ -13,8 +13,8 @@ getN(model, what="CAc", series=NULL, digits=NULL)
     catch-at-length data.}
   \item{what}{name of model element: \code{"CAc"}, \code{"CAs"},
     \code{"CLc"}, or \code{"CLs"}.}
-  \item{series}{vector of strings indicating which gears or surveys
-    should be analyzed (all by default).}
+  \item{series}{vector of strings indicating which gears or surveys to
+    analyze (all by default).}
   \item{digits}{number of decimal places to use when rounding, or
     \code{NULL} to suppress rounding.}
 }

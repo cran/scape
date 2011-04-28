@@ -1,4 +1,20 @@
 --------------------------------------------------------------------------------
+scape 2.1-0 (2011-04-28)
+--------------------------------------------------------------------------------
+o Added argument 'swap' to plotCA(), plotCL(), and plotN().
+
+o Added argument 'strip' to plotCA(), plotCL(), plotIndex(), plotLA(), plotN(),
+  and plotSel().
+
+o Added type "l"[ast year] to plotN().
+
+o Improved type "r"[ecruitment] plotN(), so age at recruitment is no longer
+  hardwired as 1.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 2.0-2 (2011-02-09)
 --------------------------------------------------------------------------------
 o No user-visible changes.

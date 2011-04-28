@@ -3,31 +3,32 @@
 \title{Plot Catch at Length}
 \description{Plot \code{scape} model fit to catch-at-length data.}
 \usage{
-plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
-       lengths=NULL, axes=TRUE, same.limits=TRUE, log=FALSE, base=10,
-       eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2, cex.lab=1,
-       cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=!fit,
-       tck=c(1,fit)/2, tick.number=5, lty.grid=3, col.grid="gray",
-       pch=16, cex.points=0.5, col.points="black", lty.lines=1,
-       lwd.lines=2, col.lines=c("red","blue"), plot=TRUE, \dots)
+plotCL(model, what="c", fit=TRUE, swap=FALSE, series=NULL, sex=NULL,
+       years=NULL, lengths=NULL, axes=TRUE, same.limits=TRUE, log=FALSE,
+       base=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2,
+       cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95",
+       strip=strip.custom(bg=col.strip), las=!fit, tck=c(1,fit)/2,
+       tick.number=5, lty.grid=3, col.grid="gray", pch=16,
+       cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=2,
+       col.lines=c("red","blue"), plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{CLc}
     and/or \code{CLs}.}
-  \item{what}{what should be plotted: \code{"c"}[ommercial] or
-    \code{"s"}[urvey] catch at length.}
-  \item{fit}{whether fitted values should be overlaid on observed data.}
-  \item{series}{string indicating which gear or survey should be plotted
-    (first by default).}
-  \item{sex}{string indicating which sex should be plotted (both by
+  \item{what}{what to plot: \code{"c"}[ommercial] or \code{"s"}[urvey]
+    catch at length.}
+  \item{fit}{whether to overlay fitted values on observed data.}
+  \item{swap}{whether to swap lengths and years between axes or panels.}
+  \item{series}{string indicating which gear or survey to plot (first by
     default).}
-  \item{years}{vector of numbers indicating which years should be
-    plotted (all by default).}
-  \item{lengths}{vector of numbers indicating which lengths should be
-    plotted (all by default).}
-  \item{axes}{whether axis values should be plotted.}
+  \item{sex}{string indicating which sex to plot (both by default).}
+  \item{years}{vector of numbers indicating which years to plot plot
+    (all by default).}
+  \item{lengths}{vector of numbers indicating which lengths to plot (all
+    by default).}
+  \item{axes}{whether to plot axis values.}
   \item{same.limits}{whether panels should have same y-axis limits.}
-  \item{log}{whether values should be log-transformed.}
+  \item{log}{whether to log-transform values.}
   \item{base}{logarithm base.}
   \item{eps.log}{small number to add before log-transforming to avoid
     log 0.}
@@ -39,6 +40,8 @@ plotCL(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   \item{cex.axis}{size of tick labels.}
   \item{cex.strip}{size of strip labels.}
   \item{col.strip}{color of strip labels.}
+  \item{strip}{logical flag (whether to plot strip labels), or a
+    function passed to \code{xyplot}.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}
   \item{tck}{tick mark length.}
@@ -92,6 +95,8 @@ plotCL(x.oreo, "s", layout=c(2,1), xlab="Length (cm)",
 
 plotCL(x.ling, fit=FALSE, series="2", xlab="Length (cm)",
        ylab="Observed proportion in trawl catch", tck=0.5)
+
+plotCL(x.ling, series="2", swap=TRUE, lengths=70:150, lty.grid=0)
 }
 % Graphics
 \keyword{hplot}

@@ -1,8 +1,8 @@
-plotCL <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL, lengths=NULL, axes=TRUE,
+plotCL <- function(model, what="c", fit=TRUE, swap=FALSE, series=NULL, sex=NULL, years=NULL, lengths=NULL, axes=TRUE,
                    same.limits=TRUE, log=FALSE, base=10, eps.log=1e-5, main="", xlab="", ylab="", cex.main=1.2,
-                   cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95", las=!fit, tck=c(1,fit)/2, tick.number=5,
-                   lty.grid=3, col.grid="gray", pch=16, cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=2,
-                   col.lines=c("red","blue"), plot=TRUE, ...)
+                   cex.lab=1, cex.axis=0.8, cex.strip=0.8, col.strip="gray95", strip=strip.custom(bg=col.strip),
+                   las=!fit, tck=c(1,fit)/2, tick.number=5, lty.grid=3, col.grid="gray", pch=16, cex.points=0.5,
+                   col.points="black", lty.lines=1, lwd.lines=2, col.lines=c("red","blue"), plot=TRUE, ...)
 {
   ## 1  Define functions
   panel.bubble <- function(x, y, ...)  # bubble plot obs in one single-sex panel
@@ -73,9 +73,6 @@ plotCL <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     x$P <- log(x$P+eps.log, base=base)
 
   ## 4  Prepare plot (set pars, vectorize args, create list args)
-  ocol <- trellis.par.get("strip.background")$col
-  trellis.par.set(strip.background=list(col=col.strip))
-  on.exit(trellis.par.set(strip.background=list(col=ocol)))
   col.points <- rep(col.points, length.out=2)
   col.lines <- rep(col.lines, length.out=2)
   mymain <- list(label=main, cex=cex.main)
@@ -84,7 +81,8 @@ plotCL <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
   myrot <- switch(as.character(las), "0"=list(x=list(rot=0),y=list(rot=90)), "1"=list(x=list(rot=0),y=list(rot=0)),
                   "2"=list(x=list(rot=90),y=list(rot=0)), "3"=list(x=list(rot=90),y=list(rot=90)))
   myscales <- c(list(draw=axes,relation=relation,cex=cex.axis,tck=tck,tick.number=tick.number), myrot)
-  mystrip <- list(cex=cex.strip)
+  mystrip <- strip.custom(bg=col.strip)
+  mytext <- list(cex=cex.strip)
 
   ## 5  Create trellis object
   fixed.ylim <- FALSE
@@ -93,30 +91,35 @@ plotCL <- function(model, what="c", fit=TRUE, series=NULL, sex=NULL, years=NULL,
     x <- x[x$ObsFit=="Obs",]
     col.points <- ifelse(x$P==0, "transparent", col.points)
     mycex <- cex.points*sqrt(x$P/mean(x$P)) + 1/1000  # cex=0 is illegal on PDF device
-    graph <- xyplot(Year~Length|switch(what,c="Commercial C@L","Survey C@L"), data=x, panel=panel.bubble,
-                    main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+    myformula <- if(!swap) Year~Length|switch(what,c="Commercial C@L","Survey C@L")
+    else Length~Year|switch(what,c="Commercial C@L","Survey C@L")
+    graph <- xyplot(myformula, data=x, panel=panel.bubble,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     pch=pch, cex=mycex, col=col.points, ...)
     graph$y.limits <- rev(graph$y.limits)
     fixed.ylim <- TRUE
   }
   if(nsexes==1 && fit)
   {
-    graph <- xyplot(P~Length|factor(Year), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
-                    main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+    myformula <- if(!swap) P~Length|factor(Year) else P~Year|factor(Length)
+    graph <- xyplot(myformula, data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
                     col.lines=col.lines[factor(x$Sex)], ...)
   }
   if(nsexes==2 && !fit)
   {
     x <- x[x$ObsFit=="Obs",]
-    graph <- xyplot(P~Length|factor(Year), data=x, groups=x$Sex, panel=panel.obs, type="l", as.table=TRUE,
-                    main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+    myformula <- if(!swap) P~Length|factor(Year) else P~Year|factor(Length)
+    graph <- xyplot(myformula, data=x, groups=x$Sex, panel=panel.obs, type="l", as.table=TRUE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     lty=lty.lines, lwd=lwd.lines, col=col.lines, ...)
   }
   if(nsexes==2 && fit)
   {
-    graph <- xyplot(P~Length|factor(Year)*factor(Sex), data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"),
-                    as.table=TRUE, main=mymain, xlab=myxlab, ylab=myylab, par.strip.text=mystrip, scales=myscales,
+    myformula <- if(!swap) P~Length|factor(Year)*factor(Sex) else P~Year|factor(Length)*factor(Sex)
+    graph <- xyplot(myformula, data=x, groups=x$ObsFit, panel=panel.fit, type=c("l","p"), as.table=TRUE,
+                    main=mymain, xlab=myxlab, ylab=myylab, scales=myscales, strip=strip, par.strip.text=mytext,
                     pch=pch, cex=cex.points, col.points=col.points[factor(x$Sex)], lty=lty.lines, lwd=lwd.lines,
                     col.lines=col.lines[factor(x$Sex)], ...)
   }

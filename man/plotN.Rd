@@ -3,27 +3,28 @@
 \title{Plot Numbers at Age}
 \description{Plot \code{scape} model predicted numbers at age.}
 \usage{
-plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
+plotN(model, what="d", swap=FALSE, years=NULL, ages=NULL, axes=TRUE,
       same.limits=TRUE, div=1, log=FALSE, base=10, main="", xlab="",
       ylab="", cex.main=1.2, cex.lab=1, cex.axis=0.8, cex.strip=0.8,
-      col.strip="gray95", las=(what=="b"), tck=c(1,what=="b")/2,
-      tick.number=10, lty.grid=3, col.grid="white", pch=16,
-      cex.points=1, col.points="black", ratio.bars=3, col.bars="gray",
-      plot=TRUE, \dots)
+      col.strip="gray95", strip=strip.custom(bg=col.strip),
+      las=(what=="b"), tck=c(1,what=="b")/2, tick.number=10, lty.grid=3,
+      col.grid="white", pch=16, cex.points=1, col.points="black",
+      ratio.bars=3, col.bars="gray", plot=TRUE, \dots)
 }
 \arguments{
   \item{model}{fitted \code{scape} model.}
-  \item{what}{what should be plotted: \code{"d"}[efault],
-    \code{"i"}[nitial year], \code{"r"}[ecruitment],
-    \code{"y"}[ear panels], \code{"b"}[ubble plot].}
-  \item{years}{vector of numbers indicating which years should be
-    plotted (all by default).}
-  \item{ages}{vector of numbers indicating which ages should be plotted
-    (all by default).}
-  \item{axes}{whether axis values should be plotted.}
+  \item{what}{what to plot: \code{"d"}[efault],
+    \code{"i"}[nitial year], \code{"l"}[ast year],
+    \code{"r"}[ecruitment], \code{"p"}[panels], \code{"b"}[ubble plot].}
+  \item{swap}{whether to swap ages and years between axes or panels.}
+  \item{years}{vector of numbers indicating which years to plot (all by
+    default).}
+  \item{ages}{vector of numbers indicating which ages to plot (all by
+    default).}
+  \item{axes}{whether to plot axis values.}
   \item{same.limits}{whether panels should have same y-axis limits.}
   \item{div}{denominator to shorten values on the y axis.}
-  \item{log}{whether values should be log-transformed.}
+  \item{log}{whether to log-transform values.}
   \item{base}{logarithm base.}
   \item{main}{main title.}
   \item{xlab}{x-axis label.}
@@ -33,6 +34,8 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
   \item{cex.axis}{size of tick labels.}
   \item{cex.strip}{size of strip labels.}
   \item{col.strip}{color of strip labels.}
+  \item{strip}{logical flag (whether to plot strip labels), or a
+    function passed to \code{xyplot}.}
   \item{las}{orientation of tick labels: 0=parallel, 1=horizontal,
     2=perpendicular, 3=vertical.}
   \item{tck}{tick mark length.}
@@ -76,13 +79,17 @@ plotN(model, what="d", years=NULL, ages=NULL, axes=TRUE,
 }
 \examples{
 plotN(x.cod, div=1000, xlab=c("Age (years)","Year"),
-      ylab=c("Individuals (million)","One-year-olds (million)"))
+      ylab="Individuals (million)")
 
-plotN(x.cod, "b", xlab="Age (years)", ylab="Year", cex.points=0.7)
+plotN(x.cod, "l", div=1000, xlab="Age", ylab="Individuals (million)")
 
-plotN(x.cod, "y", div=1000, ages=3:10, xlim=c(2,11), xlab="Age",
+plotN(x.cod, "r", age=3, div=1000, xlim=c(1967,2002))
+
+plotN(x.cod, "p", div=1000, ages=3:10, xlim=c(2,11), xlab="Age",
       ylab="Individuals (million)", cex.strip=0.7, cex.axis=0.7,
       tck=0.5)
+
+plotN(x.cod, "b", xlab="Age (years)", ylab="Year", cex.points=0.7)
 }
 % Graphics
 \keyword{hplot}
