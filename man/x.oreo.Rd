@@ -31,6 +31,9 @@
   }
 }
 \details{
+  Hilborn et al. (2003) give a general description of the Coleraine
+  generalized model.
+
   Since relatively few smooth oreo individuals have been aged, this
   assessment admits uncertainty about the von Bertalanffy growth curve,
   which is estimated for each sex. The acoustic survey abundance
@@ -45,25 +48,26 @@
   \file{oreo.txt}, and \file{l\_at\_age.dat} using \code{importCol}.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
-  recommended for browsing model results, e.g. \code{ll(x.oreo);
-    ll(x.oreo$N); head(x.oreo$N)}.
+  recommended for browsing nested objects, e.g. \code{ll(x.oreo)},
+  \code{ll(x.oreo$N)}, and \code{head(x.oreo$N)}.
 }
 \source{
-  Annala, J.H., K.J. Sullivan, C.J. O'Brien, N.W.M. Smith, and S.M.
-  Grayling (eds.) 2003. \cite{Report from the Fishery Assessment
+  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M., and
+  Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
     Plenary: Stock assessments and yield estimates.} Wellington:
   Ministry of Fisheries. Available from NIWA library, Wellington.
 }
 \references{
-  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
-  2003. \cite{Coleraine: A generalized age-structured stock assessment
-    model.} User's manual version 2.0. University of Washington Report
-  SAFS-UW-0116. Available at
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  P. (2003) \emph{Coleraine: A generalized age-structured stock
+    assessment model.} User's manual version 2.0. University of
+  Washington Report SAFS-UW-0116. Available at
   \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 
-  Magnusson, A. 2003. \cite{Stock assessment of Chatham Rise smooth oreo
-    (SSO4).} Deepwater Working Group Doc. 16. Report for the New Zealand
-  Ministry of Fisheries. Available from the author.
+  Magnusson, A. (2003) \emph{Stock assessment of Chatham Rise smooth
+    oreo (SSO4).} Deepwater Working Group Doc. 16. Report for the New
+    Zealand Ministry of Fisheries. Available at
+    \url{http://www.hafro.is/~arnima/pdf/2003-oreo.pdf}.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.

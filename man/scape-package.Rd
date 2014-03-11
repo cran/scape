@@ -10,7 +10,7 @@
 \details{
   \emph{Import model results:}
   \tabular{ll}{
-    \code{\link{importCol}} \tab Coleraine model output
+    \code{\link{importCol}} \tab Coleraine model results
   }
   \emph{Plot model fit to data:}
   \tabular{ll}{
@@ -34,32 +34,47 @@
     \code{\link{iterate}} \tab combine all \code{get*} and
     \code{est*}\cr
   }
+  \emph{Import MCMC results:}
+  \tabular{ll}{
+    \code{\link{importMCMC}} \tab traces of likelihoods, parameters,
+    biomass and recruitment\cr
+    \code{\link{importProj}} \tab medium-term projections of biomass and
+    catch
+  }
   \emph{Examples:}
   \tabular{ll}{
     \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
-    \code{\link{x.sbw}} \tab cod, ling, oreo, and whiting assessments
+    \code{\link{x.sbw}} \tab cod, ling, oreo, and whiting assessments\cr
+    \code{\link{xmcmc}}, \code{\link{xproj}} \tab MCMC results
   }
 }
 \note{
   \code{browseVignettes()} shows the vignettes, found in the
   \file{scape/doc} directory.
-
-  The functions \code{Args} and \code{ll} (package \pkg{gdata}) can be
-  useful for browsing unwieldy functions and objects.
 }
 \author{Arni Magnusson.}
 \references{
-  Magnusson, A. (2005) \cite{R goes fishing: Analyzing fisheries data
-    using AD Model Builder and R.} Proceedings of the 5th International
+  Magnusson, A. (2005) \emph{R goes fishing: Analyzing fisheries data
+    using AD Model Builder and R.} Proceedings of the 4th International
   Workshop on Distributed Statistical Computing. Available at
-  \url{http://www.hafro.is/~arnima/uw/s/pdf/dsc.pdf}.
+  \url{http://www.hafro.is/~arnima/pdf/2005-scape.pdf}.
+
+  Magnusson, A. and Hilborn, R. (2007) What makes fisheries data
+  informative? \emph{Fish and Fisheries} \bold{8}, 337--358.
+
+  Magnusson, A., Punt, A. E., and Hilborn, R. (2013) Measuring
+  uncertainty in fisheries stock assessment: the delta method,
+  bootstrap, and MCMC. \emph{Fish and Fisheries} \bold{14}, 325--342.
 }
 \seealso{
-  All \pkg{scape} graphics are \code{trellis} plots, rendered with the
+  Most \pkg{scape} graphics are \code{trellis} plots, rendered with the
   \pkg{lattice} package.
 
-  Once the best model(s) have been chosen, the \pkg{scapeMCMC} package
-  can be used to diagnose MCMC runs.
+  The functions \code{Args} and \code{ll} (package \pkg{gdata}) can be
+  useful for browsing unwieldy functions and objects.
+
+  The \pkg{plotMCMC} package can be used to diagnose the results of MCMC
+  analysis.
 }
 % Graphics
 \keyword{hplot}

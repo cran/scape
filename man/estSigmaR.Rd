@@ -19,11 +19,11 @@ estSigmaR(model, digits=2)
   annual recruitment.
 }
 \note{
-  This function uses the empirical standard deviation to estimate
-  sigma R, which may be appropriate as likelihood penalty (or Bayesian
-  prior distribution) for recruitment deviates from the
-  stock-recruitment curve. The smaller the estimated recruitment
-  deviates, the smaller the estimated sigma R.
+  This function uses the empirical standard deviation to estimate sigma
+  R, which may be appropriate as likelihood penalty (or Bayesian prior
+  distribution) for recruitment deviates from the stock-recruitment
+  curve. The smaller the estimated recruitment deviates, the smaller the
+  estimated sigma R.
 
   \code{estSigmaR} can be used iteratively, along with
   \code{\link{estN}} and \code{\link{estSigmaI}} to assign likelihood

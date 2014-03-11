@@ -1,11 +1,10 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+export(importCol, importMCMC, importProj)
+export(plotB, plotCA, plotCL, plotIndex, plotLA, plotN, plotSel)
+export(estN, estN.int, estSigmaI, estSigmaR, getN, getSigmaI, getSigmaR,
+       iterate)
 
-# Export all names
-exportPattern(".")
-
-# Import all packages listed as Imports or Depends
-import(
-  Hmisc,
-  lattice
-)
+importFrom(coda, mcmc)
+importFrom(lattice, panel.abline, panel.barchart, panel.grid, panel.lines,
+           panel.points, panel.superpose, panel.superpose.2, panel.xyplot,
+           strip.custom, xyplot)
+import(Hmisc)

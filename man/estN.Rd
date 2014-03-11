@@ -72,7 +72,9 @@ estN.int(P, Phat)  # internal function
   This function uses the empirical multinomial sample size to estimate
   an effective sample size, which may be appropriate as likelihood
   weights for catch-at-age and catch-at-length data. The better the
-  model fits the data, the larger the effective sample size.
+  model fits the data, the larger the effective sample size. See
+  McAllister and Ianelli (1997), Gavaris and Ianelli (2002), and
+  Magnusson et al. (2013).
 
   \code{estN} can be used iteratively, along with
   \code{\link{estSigmaI}} and \code{\link{estSigmaR}} to assign
@@ -92,25 +94,24 @@ estN.int(P, Phat)  # internal function
   Due to the non-random and non-independent nature of sampling fish, the
   effective sample size, for statistical purposes, is much less than the
   number of fish sampled. Common starting points include using the
-  number of tows as the sample size in each year, or using the
-  empirical multinomial sample sizes. Those \dQuote{initial} sample
-  sizes can then be scaled up or down. Sample sizes between 20 and 200
-  are common in the stock assessment literature.
+  number of tows as the sample size in each year, or using the empirical
+  multinomial sample sizes. Those \dQuote{initial} sample sizes can then
+  be scaled up or down. Sample sizes between 20 and 200 are common in
+  the stock assessment literature.
 }
 \references{
-  Gavaris, S. and J.N. Ianelli. 2002. Statistical issues in fisheries'
-  stock assessments. \cite{Scandinavian Journal of Statistics}
-  29:245--271.
+  Gavaris, S. and Ianelli, J. N. (2002) Statistical issues in fisheries'
+  stock assessments. \emph{Scandinavian Journal of Statistics}
+  \bold{29}, 245--271.
 
-  Maunder, M.N. and A.D. Langley. 2004. Integrating the standardization
-  of catch-per-unit-of-effort into stock assessment models: Testing a
-  population dynamics model and using multiple data types.
-  \cite{Fisheries Research} 70:389--395.
+  Magnusson, A., Punt, A. E., and Hilborn, R. (2013) Measuring
+  uncertainty in fisheries stock assessment: the delta method,
+  bootstrap, and MCMC. \emph{Fish and Fisheries} \bold{14}, 325--342.
 
-  McAllister, M.K. and J.N. Ianelli. 1997. Bayesian stock assessment
+  McAllister, M. K. and Ianelli, J. N. (1997) Bayesian stock assessment
   using catch-age data and the sampling-importance resampling algorithm.
-  \cite{Canadian Journal of Fisheries and Aquaticic Sciences}
-  54:284--300.
+  \emph{Canadian Journal of Fisheries and Aquaticic Sciences}
+  \bold{54}, 284--300.
 }
 \seealso{
   \code{\link{getN}}, \code{\link{getSigmaI}}, \code{\link{getSigmaR}},

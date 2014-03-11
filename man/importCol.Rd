@@ -6,14 +6,11 @@
   standard format suitable for plotting.
 }
 \usage{
-importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
-          CAc=FALSE, CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE,
-          quiet=TRUE, \dots)
+importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
+          CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE, quiet=TRUE, \dots)
 }
 \arguments{
   \item{res.file}{name of Coleraine model results file to import.}
-  \item{info}{optional string containing information to store with model
-    results.}
   \item{Dev}{whether recruitment deviates were estimated in model.}
   \item{CPUE}{whether model was fitted to catch-per-unit-effort data.}
   \item{Survey}{whether model was fitted to survey abundance index
@@ -50,14 +47,14 @@ importCol(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE,
   assessment software.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
-  recommended for browsing model results, e.g. \code{ll(x.cod);
-    ll(x.cod$N); head(x.cod$N)}.
+  recommended for browsing nested objects, e.g. \code{ll(x.cod)},
+  \code{ll(x.cod$N)}, and \code{head(x.cod$N)}.
 }
 \references{
-  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
-  2003. \cite{Coleraine: A generalized age-structured stock assessment
-    model.} User's manual version 2.0. University of Washington Report
-  SAFS-UW-0116. Available at
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  P. (2003) \emph{Coleraine: A generalized age-structured stock
+    assessment model.} User's manual version 2.0. University of
+  Washington Report SAFS-UW-0116. Available at
   \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 }
 \seealso{

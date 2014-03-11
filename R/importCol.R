@@ -1,5 +1,5 @@
-importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=FALSE, CLc=FALSE,
-                      CLs=FALSE, LA=FALSE, quiet=TRUE, ...)
+importCol <- function(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE, CAs=FALSE, CLc=FALSE, CLs=FALSE,
+                      LA=FALSE, quiet=TRUE, ...)
 {
   ## Implementation notes
   ## Generic read* functions: Vector, Matrix
@@ -310,8 +310,7 @@ importCol <- function(res.file, info="", Dev=FALSE, CPUE=FALSE, Survey=FALSE, CA
 
   ## 6  Create attributes
   attr(model,"call") <- match.call()
-  attr(model,"scape.version") <- installed.packages()["scape","Version"]
-  attr(model,"info") <- info
+  attr(model,"scape.version") <- as.character(packageVersion("scape"))
   class(model) <- "scape"
 
   return(model)

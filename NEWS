@@ -1,4 +1,21 @@
 --------------------------------------------------------------------------------
+scape 2.2-0 (2014-03-11)
+--------------------------------------------------------------------------------
+o Package loads quietly, thanks to explicit namespace handling.
+
+o Added functions importMCMC() and importProj() to import MCMC results from
+  Coleraine. These functions were a part of the "scapeMCMC" package, which has
+  now been renamed to "plotMCMC" and no longer contains Coleraine-specific
+  functions.
+
+o Removed argument 'info' from importCol().
+
+o Improved plotCA() and plotCL() handling of NA data values.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 2.1-0 (2011-04-28)
 --------------------------------------------------------------------------------
 o Added argument 'swap' to plotCA(), plotCL(), and plotN().

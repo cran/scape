@@ -27,6 +27,9 @@
   }
 }
 \details{
+  Hilborn et al. (2003) give a general description of the Coleraine
+  generalized model.
+
   The survey abundance index was preprocessed so that it contains only
   age 4 and older.
 
@@ -38,26 +41,32 @@
   \code{importCol}.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
-  recommended for browsing model results, e.g. \code{ll(x.sbw);
-    ll(x.sbw$N); head(x.sbw$N)}.
+  recommended for browsing nested objects, e.g. \code{ll(x.sbw)},
+  \code{ll(x.sbw$N)}, and \code{head(x.sbw$N)}.
 }
 \source{
-  Annala, J.H., K.J. Sullivan, C.J. O'Brien, N.W.M. Smith, and S.M.
-  Grayling (eds.) 2003. \cite{Report from the Fishery Assessment
+  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M., and
+  Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
     Plenary: Stock assessments and yield estimates.} Wellington:
   Ministry of Fisheries. Available from NIWA library, Wellington.
 }
 \references{
-  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
-  2003. \cite{Coleraine: A generalized age-structured stock assessment
-    model.} User's manual version 2.0. University of Washington Report
-  SAFS-UW-0116. Available at
+  Branch, T. A., Magnusson, A., Hilborn, R., and Starr, P. J. (2002)
+  \emph{Stock assessment of the Campbell Island Rise population of
+    southern blue whiting (Micromesistius australis) for the 2000--01
+  fishing season}. University of Washington Report SAFS-UW-0107.
+  Available at \url{http://www.hafro.is/~arnima/pdf/2001-sbw.pdf}.
+
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  P. (2003) \emph{Coleraine: A generalized age-structured stock
+    assessment model.} User's manual version 2.0. University of
+  Washington Report SAFS-UW-0116. Available at
   \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 
-  Magnusson, A. and R. Hilborn. 2004. \cite{What is it in fisheries data
+  Magnusson, A. and Hilborn, R. 2004. \emph{What is it in fisheries data
     that tells us about population abundance?} Poster presented at the
-  4th World Fisheries Congress, Vancouver, BC. Available from the
-  author.
+  4th World Fisheries Congress, Vancouver, BC. Available at
+  \url{http://www.hafro.is/~arnima/pdf/2004-informative.pdf}.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.

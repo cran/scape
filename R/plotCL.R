@@ -89,8 +89,8 @@ plotCL <- function(model, what="c", fit=TRUE, swap=FALSE, series=NULL, sex=NULL,
   if(nsexes==1 && !fit)
   {
     x <- x[x$ObsFit=="Obs",]
-    col.points <- ifelse(x$P==0, "transparent", col.points)
-    mycex <- cex.points*sqrt(x$P/mean(x$P)) + 1/1000  # cex=0 is illegal on PDF device
+    col.points <- ifelse(x$P==0|is.na(x$P), "transparent", col.points)
+    mycex <- cex.points*sqrt(x$P/mean(x$P,na.rm=TRUE)) + 1/1000  # cex=0 is illegal on PDF device
     myformula <- if(!swap) Year~Length|switch(what,c="Commercial C@L","Survey C@L")
     else Length~Year|switch(what,c="Commercial C@L","Survey C@L")
     graph <- xyplot(myformula, data=x, panel=panel.bubble,

@@ -28,6 +28,10 @@
   }
 }
 \details{
+  Hilborn et al. (2003) give a general description of the Coleraine
+  generalized model. Magnusson and Hilborn (2007) describe the model
+  used in this assessment.
+
   A maturity vector of zeros and ones was used to predict the biomass of
   age 4 and older, the quantity of main interest for the management of
   this stock.
@@ -40,30 +44,36 @@
   \code{importCol}.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
-  recommended for browsing model results, e.g. \code{ll(x.cod);
-    ll(x.cod$N); head(x.cod$N)}.
+  recommended for browsing nested objects, e.g. \code{ll(x.cod)},
+  \code{ll(x.cod$N)}, and \code{head(x.cod$N)}.
 }
 \source{
-  Marine Research Institute. 2003. \cite{State of marine stocks in
+  Magnusson, A. (2003) \emph{Coleraine assessment of the Icelandic cod
+    stock.} ICES North Western Working Group (NWWG) WD 31. Available
+  at \url{http://www.hafro.is/~arnima/pdf/2003-cod.pdf}.
+
+  Marine Research Institute (2003) \emph{State of marine stocks in
     Icelandic waters 2002/2003.} Available at
   \url{http://www.hafro.is/Astand/2003/astand-allt-03.pdf}.
 }
 \references{
-  Hilborn, R., M. Maunder, A. Parma, B. Ernst, J. Payne, and P. Starr.
-  2003. \cite{Coleraine: A generalized age-structured stock assessment
-  model.} User's manual version 2.0. University of Washington Report
-  SAFS-UW-0116. Available at
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  P. (2003) \emph{Coleraine: A generalized age-structured stock
+    assessment model.} User's manual version 2.0. University of
+  Washington Report SAFS-UW-0116. Available at
   \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
 
-  Magnusson, A. 2003. \cite{Coleraine assessment of the Icelandic cod
-  stock.} Report for the Icelandic Marine Research Institute. Available
-  from the author.
+  Magnusson, A. and Hilborn, R. (2007) What makes fisheries data
+  informative? \emph{Fish and Fisheries} \bold{8}, 337--358.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.
 
   \code{x.cod}, \code{\link{x.ling}}, \code{\link{x.oreo}}, and
   \code{\link{x.sbw}} are fitted \code{scape} models to explore.
+
+  \code{\link{xmcmc}} and \code{\link{xproj}} are MCMC results and
+  projections for the \code{x.cod} model run.
 
   \code{\link{scape-package}} gives an overview of the package.
 }

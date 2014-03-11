@@ -79,9 +79,9 @@ plotB(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
 }
 \examples{
 plotB(x.ling, series=c("VB.1","VB.2","Y"), div=1000, xlab="Year\n",
-      ylab="Biomass and landings (1000 t)")
+      ylab="Biomass and landings (kt)")
 
-plotB(x.ling, "s", div=1000, xlab="Biomass age 4+ (1000 t)",
+plotB(x.ling, "s", div=1000, xlab="Biomass age 4+ (kt)",
       ylab="Recruitment (million one-year-olds)")
 }
 % Graphics
