@@ -58,4 +58,3 @@
 \examples{
 # See examples in package 'plotMCMC'
 }
-\keyword{datasets}

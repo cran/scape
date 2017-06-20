@@ -4,18 +4,27 @@ iterate <- function(model, ceiling=Inf, p=1, digits.n=0, digits.sigma=2)
   summaryN <- function(what, series=NULL)
   {
     data.frame(SS=getN(model, what=what, series=series, digits=digits.n),
-               nhat=estN(model, what=what, series=series, init=FALSE, ceiling=ceiling, digits=digits.n),
-               candbar=estN(model, what=what, series=series, ceiling=ceiling, digits=digits.n),
-               candmed=estN(model, what=what, series=series, FUN=median, ceiling=ceiling, digits=digits.n),
-               candbar1=estN(model, what=what, series=series, init=1, ceiling=ceiling, digits=digits.n),
-               candmed1=estN(model, what=what, series=series, init=1, FUN=median, ceiling=ceiling, digits=digits.n))
+               nhat=estN(model, what=what, series=series, init=FALSE,
+                         ceiling=ceiling, digits=digits.n),
+               candbar=estN(model, what=what, series=series, ceiling=ceiling,
+                            digits=digits.n),
+               candmed=estN(model, what=what, series=series, FUN=median,
+                            ceiling=ceiling, digits=digits.n),
+               candbar1=estN(model, what=what, series=series, init=1,
+                             ceiling=ceiling, digits=digits.n),
+               candmed1=estN(model, what=what, series=series, init=1,
+                             FUN=median, ceiling=ceiling, digits=digits.n))
   }
   summarySigmaI <- function(what, series=NULL)
   {
-    data.frame(sigma=getSigmaI(model, what=what, series=series, digits=digits.sigma),
-               sigmahat=estSigmaI(model, what=what, series=series, init=1, p=p, digits=digits.sigma),
-               candbar=estSigmaI(model, what=what, series=series, p=p, digits=digits.sigma),
-               candmed=estSigmaI(model, what=what, series=series, FUN=median, p=p, digits=digits.sigma))
+    data.frame(sigma=getSigmaI(model, what=what, series=series,
+                               digits=digits.sigma),
+               sigmahat=estSigmaI(model, what=what, series=series, init=1, p=p,
+                                  digits=digits.sigma),
+               candbar=estSigmaI(model, what=what, series=series, p=p,
+                                 digits=digits.sigma),
+               candmed=estSigmaI(model, what=what, series=series, FUN=median,
+                                 p=p, digits=digits.sigma))
   }
 
   output <- list()
@@ -115,5 +124,5 @@ iterate <- function(model, ceiling=Inf, p=1, digits.n=0, digits.sigma=2)
     }
   }
 
-  return(output)
+  output
 }

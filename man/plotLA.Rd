@@ -93,5 +93,3 @@ mykey <- list(text=list(lab=c("Female","Male")), space="right",
 plotLA(x.oreo, together=TRUE, xlab="Age", ylab="Length (cm)",
        col.points=c("red","blue"), lty.lines=0, key=mykey)
 }
-% Graphics
-\keyword{hplot}

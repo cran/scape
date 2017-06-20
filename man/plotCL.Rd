@@ -98,5 +98,3 @@ plotCL(x.ling, fit=FALSE, series="2", xlab="Length (cm)",
 
 plotCL(x.ling, series="2", swap=TRUE, lengths=70:150, lty.grid=0)
 }
-% Graphics
-\keyword{hplot}

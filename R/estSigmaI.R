@@ -1,12 +1,13 @@
-estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1, digits=2)
+estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1,
+                      digits=2)
 {
   ## 1  Parse args
-  if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", class(model))
   what <- match.arg(what, c("c","s"))
-  x <- if(what=="c") model$CPUE else model$Survey
+  x <- if(class(model)=="scape" && what=="c") model$CPUE
+       else if(class(model)=="scape" && what=="s") model$Survey
+       else model  # allow data frame
   if(is.null(x))
-    stop("Element '", what, "' not found")
+    stop("element '", what, "' not found")
 
   ## 2  Extract series
   if(is.null(series))
@@ -14,12 +15,14 @@ estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1, di
   if(length(series) > 1)
   {
     output <- lapply(series, function(s)
-                     estSigmaI(model=model, what=what, series=s, init=init, FUN=FUN, p=p, digits=digits))
+                     estSigmaI(model=model, what=what, series=s, init=init,
+                               FUN=FUN, p=p, digits=digits))
     names(output) <- series
   }
   else
   {
-    ok.series <- x$Series %in% series; if(!any(ok.series)) stop("Please check if the 'series' argument is correct")
+    ok.series <- x$Series %in% series
+    if(!any(ok.series)) stop("please check if the 'series' argument is correct")
     x <- x[!is.na(x$Obs) & ok.series,]
 
     ## 3  Calculate sigmahat
@@ -51,5 +54,5 @@ estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1, di
       names(output) <- years
   }
 
-  return(output)
+  output
 }

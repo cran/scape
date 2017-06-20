@@ -10,7 +10,8 @@
 \details{
   \emph{Import model results:}
   \tabular{ll}{
-    \code{\link{importCol}} \tab Coleraine model results
+    \code{\link{importADCAM}} \tab ADCAM model results\cr
+    \code{\link{importCol}}   \tab Coleraine model results
   }
   \emph{Plot model fit to data:}
   \tabular{ll}{
@@ -44,7 +45,8 @@
   \emph{Examples:}
   \tabular{ll}{
     \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
-    \code{\link{x.sbw}} \tab cod, ling, oreo, and whiting assessments\cr
+    \code{\link{x.saithe}}, \code{\link{x.sbw}} \tab cod, ling, oreo,
+    and whiting assessments\cr
     \code{\link{xmcmc}}, \code{\link{xproj}} \tab MCMC results
   }
 }
@@ -56,8 +58,7 @@
 \references{
   Magnusson, A. (2005) \emph{R goes fishing: Analyzing fisheries data
     using AD Model Builder and R.} Proceedings of the 4th International
-  Workshop on Distributed Statistical Computing. Available at
-  \url{http://www.hafro.is/~arnima/pdf/2005-scape.pdf}.
+  Workshop on Distributed Statistical Computing.
 
   Magnusson, A. and Hilborn, R. (2007) What makes fisheries data
   informative? \emph{Fish and Fisheries} \bold{8}, 337--358.
@@ -76,5 +77,3 @@
   The \pkg{plotMCMC} package can be used to diagnose the results of MCMC
   analysis.
 }
-% Graphics
-\keyword{hplot}

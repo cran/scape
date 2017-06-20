@@ -1,8 +1,10 @@
-export(importCol, importMCMC, importProj)
+export(importADCAM, importCol, importMCMC, importProj)
 export(plotB, plotCA, plotCL, plotIndex, plotLA, plotN, plotSel)
 export(estN, estN.int, estSigmaI, estSigmaR, getN, getSigmaI, getSigmaR,
        iterate)
 
+importFrom(stats, aggregate, median)
+importFrom(utils, packageVersion, read.table)
 importFrom(coda, mcmc)
 importFrom(lattice, panel.abline, panel.barchart, panel.grid, panel.lines,
            panel.points, panel.superpose, panel.superpose.2, panel.xyplot,

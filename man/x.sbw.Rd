@@ -48,31 +48,29 @@
   Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M., and
   Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
     Plenary: Stock assessments and yield estimates.} Wellington:
-  Ministry of Fisheries. Available from NIWA library, Wellington.
+  Ministry of Fisheries.
 }
 \references{
   Branch, T. A., Magnusson, A., Hilborn, R., and Starr, P. J. (2002)
   \emph{Stock assessment of the Campbell Island Rise population of
     southern blue whiting (Micromesistius australis) for the 2000--01
   fishing season}. University of Washington Report SAFS-UW-0107.
-  Available at \url{http://www.hafro.is/~arnima/pdf/2001-sbw.pdf}.
 
   Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116. Available at
-  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
+  Washington Report SAFS-UW-0116.
 
   Magnusson, A. and Hilborn, R. 2004. \emph{What is it in fisheries data
     that tells us about population abundance?} Poster presented at the
-  4th World Fisheries Congress, Vancouver, BC. Available at
-  \url{http://www.hafro.is/~arnima/pdf/2004-informative.pdf}.
+  4th World Fisheries Congress, Vancouver, BC.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.
 
-  \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}}, and
-  \code{x.sbw} are fitted \code{scape} models to explore.
+  \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}},
+  \code{\link{x.saithe}}, and \code{x.sbw} are fitted \code{scape}
+  models to explore.
 
   \code{\link{scape-package}} gives an overview of the package.
 }
@@ -83,4 +81,3 @@ plotIndex(x.sbw, "s")
 plotN(x.sbw)
 plotSel(x.sbw)
 }
-\keyword{datasets}

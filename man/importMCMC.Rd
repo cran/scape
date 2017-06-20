@@ -43,8 +43,7 @@ importMCMC(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
   Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116. Available at
-  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
+  Washington Report SAFS-UW-0116.
 }
 \seealso{
   \code{\link{read.table}}, \code{\link{readLines}}, and
@@ -58,15 +57,10 @@ importMCMC(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
   \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
-\dontrun{
-dir <- system.file("example/mcmc", package="scape")
-xmcmc <- importMCMC(dir)  # or rename and select particular elements:
-xmcmc <- importMCMC(dir, pretty.labels=TRUE,
-                    l.choose=c("CAc","CAs","Survey","Prior","Total"),
-                    p.choose=c("R0","Rinit","uinit","cSleft","cSfull",
-                               "sSleft","sSfull","logq"))
+path <- system.file("example/mcmc", package="scape")
+mcmc <- importMCMC(path)  # or rename and select particular elements:
+mcmc <- importMCMC(path, pretty.labels=TRUE,
+                   l.choose=c("CAc","CAs","Survey","Prior","Total"),
+                   p.choose=c("R0","Rinit","uinit","cSleft","cSfull",
+                              "sSleft","sSfull","logq"))
 }
-}
-% Programming
-\keyword{file}
-\keyword{interface}

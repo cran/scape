@@ -55,5 +55,3 @@ iterate(x.ling)
 iterate(x.oreo)
 iterate(x.sbw)
 }
-% Statistics
-\keyword{distribution}

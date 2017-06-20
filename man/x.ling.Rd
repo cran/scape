@@ -50,26 +50,24 @@
 \source{
   Annala, J. H., Sullivan, K. J., O'Brien, C. J., and Smith, N. W. M.,
   eds. (2001) \emph{Report from the Fishery Assessment Plenary: Stock
-    assessments and yield estimates.} Wellington: NIWA. Available from
-  NIWA library, Wellington.
+    assessments and yield estimates.} Wellington: NIWA.
 
   Magnusson, A. (2001) \emph{SeaFIC assessment of Chatham Rise ling (LIN
     3 and 4).} Middle Depths Working Group Doc. 11. Report for the New
-  Zealand Ministry of Fisheries. Available at
-  \url{http://www.hafro.is/~arnima/pdf/2001-ling.pdf}.
+  Zealand Ministry of Fisheries.
 }
 \references{
   Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116. Available at
-  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
+  Washington Report SAFS-UW-0116.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.
 
-  \code{\link{x.cod}}, \code{x.ling}, \code{\link{x.oreo}}, and
-  \code{\link{x.sbw}} are fitted \code{scape} models to explore.
+  \code{\link{x.cod}}, \code{x.ling}, \code{\link{x.oreo}},
+  \code{\link{x.saithe}}, and \code{\link{x.sbw}} are fitted
+  \code{scape} models to explore.
 
   \code{\link{scape-package}} gives an overview of the package.
 }
@@ -83,4 +81,3 @@ plotIndex(x.ling, "s")
 plotN(x.ling)
 plotSel(x.ling)
 }
-\keyword{datasets}

@@ -91,5 +91,3 @@ plotN(x.cod, "p", div=1000, ages=3:10, xlim=c(2,11), xlab="Age",
 
 plotN(x.cod, "b", xlab="Age (years)", ylab="Year", cex.points=0.7)
 }
-% Graphics
-\keyword{hplot}

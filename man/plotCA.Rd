@@ -105,5 +105,3 @@ plotCA(x.ling, "s", xlab="Age", ylab="Observed proportion in survey",
        fit=FALSE, cex.strip=0.7, cex.axis=0.7, tck=0.5, layout=c(5,6),
        swap=TRUE)
 }
-% Graphics
-\keyword{hplot}

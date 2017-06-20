@@ -1,4 +1,19 @@
 --------------------------------------------------------------------------------
+scape 2.3-1 (2017-06-20)
+--------------------------------------------------------------------------------
+o Added function importADCAM() to import results from ADCAM-type models.
+
+o Added example object x.saithe.
+
+o Hardwired stringsAsFactors=FALSE in importCol() and removed '...' argument.
+
+o User can pass a data frame as the main argument to functions, instead of a
+  scape object.
+
+
+
+
+--------------------------------------------------------------------------------
 scape 2.2-0 (2014-03-11)
 --------------------------------------------------------------------------------
 o Package loads quietly, thanks to explicit namespace handling.

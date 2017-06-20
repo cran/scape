@@ -1,17 +1,16 @@
 estSigmaR <- function(model, digits=2)
 {
   ## 1  Parse args
-  if(class(model) != "scape")
-    stop("The 'model' argument should be a scape object, not ", class(model))
-  if(is.null(model$Dev))
-    stop("Element 'Dev' not found; if rec devs were estimated, make sure they were correctly imported")
+  x <- if(class(model)=="scape") model$Dev else model  # allow data frame
+  if(is.null(x))
+    stop("element 'Dev' not found")
 
   ## 2  Calculate sigmaR
-  ss <- sapply(model$Dev[c("Initial","Annual")], function(x) sum(x^2))
-  n <- sapply(model$Dev[c("Initial","Annual")], length)
+  ss <- sapply(x[c("Initial","Annual")], function(x) sum(x^2))
+  n <- sapply(x[c("Initial","Annual")], length)
   output <- sqrt(ss/(n-1))
   if(!is.null(digits))
     output <- round(output, digits=digits)
 
-  return(output)
+  output
 }

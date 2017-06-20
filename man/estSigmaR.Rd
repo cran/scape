@@ -67,5 +67,3 @@ plotN(x.sbw)      # enormous plus group and 1991 cohort
 
 # x.oreo assessment had deterministic recruitment, so no deviates
 }
-% Statistics
-\keyword{distribution}

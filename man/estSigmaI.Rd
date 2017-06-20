@@ -122,5 +122,3 @@ estSigmaI(x.oreo, "c", init=1, digits=3)  # series 2 slightly worse fit
 getSigmaI(x.oreo, "c", series="Series 2-1")  # get one series
 estSigmaI(x.oreo, "c", series="Series 2-1")  # estimate one series
 }
-% Statistics
-\keyword{distribution}

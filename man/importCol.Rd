@@ -2,12 +2,12 @@
 \alias{importCol}
 \title{Import Coleraine Model Results}
 \description{
-  Import Coleraine model results from .res file, and rearrange into a
-  standard format suitable for plotting.
+  Import Coleraine model results from \file{.res} file, and rearrange
+  into a standard format suitable for plotting.
 }
 \usage{
 importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
-          CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE, quiet=TRUE, \dots)
+          CAs=FALSE, CLc=FALSE, CLs=FALSE, LA=FALSE, quiet=TRUE)
 }
 \arguments{
   \item{res.file}{name of Coleraine model results file to import.}
@@ -22,8 +22,6 @@ importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
   \item{CLs}{whether model was fitted to survey catch-at-length data.}
   \item{LA}{whether model was fitted to length-at-age data.}
   \item{quiet}{whether to report progress while parsing file.}
-  \item{\dots}{passed to \code{data.frame}, e.g.
-    \samp{stringsAsFactors=FALSE}.}
 }
 \value{
   A list of class \code{scape} containing at least \code{N}, \code{B},
@@ -54,8 +52,7 @@ importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
   Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116. Available at
-  \url{http://fish.washington.edu/research/coleraine/pdf/coleraine.pdf}.
+  Washington Report SAFS-UW-0116.
 }
 \seealso{
   \code{\link{read.table}}, \code{\link{readLines}}, and
@@ -64,14 +61,11 @@ importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
   \code{\link{x.cod}}, \code{\link{x.ling}}, \code{\link{x.oreo}}, and
   \code{\link{x.sbw}} were created using \code{importCol}.
 
+  \code{\link{importADCAM}} imports ADCAM model results.
+
   \code{\link{scape-package}} gives an overview of the package.
 }
 \examples{
-\dontrun{
 path <- system.file("example/cod.res", package="scape")
-x.cod <- importCol(path, Dev=TRUE, Survey=TRUE, CAc=TRUE, CAs=TRUE)
+cod <- importCol(path, Dev=TRUE, Survey=TRUE, CAc=TRUE, CAs=TRUE)
 }
-}
-% Programming
-\keyword{file}
-\keyword{interface}

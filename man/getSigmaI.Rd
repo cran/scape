@@ -50,5 +50,3 @@ estSigmaI(x.oreo, "c")                 # model fit implies smaller sigma
 getSigmaI(x.oreo, "c", series="Series 2-1")  # get one series
 estSigmaI(x.oreo, "c", series="Series 2-1")  # estimate one series
 }
-% Statistics
-\keyword{distribution}

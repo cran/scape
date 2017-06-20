@@ -8,7 +8,7 @@ importProj <- function(dir, coda=FALSE, quiet=TRUE)
     if(!quiet) cat("file...")
     Policies <- unique(as.vector(as.matrix(Policies)))
     if(!quiet) cat("unique...OK\n")
-    return(Policies)
+    Policies
   }
 
   getYears <- function()
@@ -20,7 +20,7 @@ importProj <- function(dir, coda=FALSE, quiet=TRUE)
     if(!quiet) cat("labels...")
     Years <- unique(matrix(Years, nrow=3)[2,])
     if(!quiet) cat("unique...OK\n")
-    return(Years)
+    Years
   }
 
   getB <- function(Policies, Years)
@@ -39,7 +39,7 @@ importProj <- function(dir, coda=FALSE, quiet=TRUE)
     names(Blist) <- Policies
     B <- Blist
     if(!quiet) cat("list...OK\n")
-    return(B)
+    B
   }
 
   getY <- function(Policies, Years)
@@ -58,13 +58,14 @@ importProj <- function(dir, coda=FALSE, quiet=TRUE)
     names(Ylist) <- Policies
     Y <- Ylist
     if(!quiet) cat("list...OK\n")
-    return(Y)
+    Y
   }
 
   ## 2  Verify that files exist
   files <- paste(dir, c("strategy.out","projspbm.out","procatch.out"), sep="/")
   sapply(files, function(f)
-         if(!file.exists(f)) stop("File ",f," does not exist. Please check the 'dir' argument."))
+         if(!file.exists(f))
+           stop("file ",f," does not exist; please check the 'dir' argument"))
 
   ## 3  Parse files
   if(!quiet) cat("\nParsing files in directory ", dir, ":\n\n", sep="")
@@ -82,5 +83,5 @@ importProj <- function(dir, coda=FALSE, quiet=TRUE)
   ## 5  Create attributes
   attr(output, "call") <- match.call()
 
-  return(output)
+  output
 }

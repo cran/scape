@@ -160,5 +160,3 @@ estN(x.ling, "CLc")              # model fit implies larger sample sizes
 getN(x.ling, "CLc", series="1", digits=0)  # get one series
 estN(x.ling, "CLc", series="1")            # estimate one series
 }
-% Statistics
-\keyword{distribution}
