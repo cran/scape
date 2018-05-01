@@ -1,7 +1,7 @@
 \name{plotIndex}
 \alias{plotIndex}
 \title{Plot Abundance Index}
-\description{Plot \code{scape} model fit to abundance index data}
+\description{Plot \code{scape} model fit to abundance index data.}
 \usage{
 plotIndex(model, what="s", series=NULL, axes=TRUE, same.limits=FALSE,
           between=list(x=axes,y=axes), ylim=NULL, q=1, bar=1, log=FALSE,

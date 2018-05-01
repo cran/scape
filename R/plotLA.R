@@ -5,7 +5,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
                    strip=strip.custom(bg=col.strip), las=1, tck=0,
                    tick.number=5, lty.grid=3, col.grid="gray", pch=16,
                    cex.points=0.5, col.points="black", lty.lines=1, lwd.lines=4,
-                   col.lines=c("red","blue"), lty.bands=2*!together,
+                   col.lines=c("red","blue"), lty.bands=2*(!together),
                    lwd.bands=1, col.bands="black", plot=TRUE, ...)
 {
   ## 1  Define functions
