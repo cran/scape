@@ -49,7 +49,7 @@ importCol(res.file, Dev=FALSE, CPUE=FALSE, Survey=FALSE, CAc=FALSE,
   \code{ll(x.cod$N)}, and \code{head(x.cod$N)}.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
   Washington Report SAFS-UW-0116.

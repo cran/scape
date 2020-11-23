@@ -51,7 +51,7 @@ importMCMC <- function(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
       if(!quiet) cat("choose...")
     }
     if(!quiet) cat("OK\n")
-    L
+    type.convert(L, as.is=TRUE)
   }
 
   getP <- function()
@@ -71,7 +71,7 @@ importMCMC <- function(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
       if(!quiet) cat("choose...")
     }
     if(!quiet) cat("OK\n")
-    P
+    type.convert(P, as.is=TRUE)
   }
 
   getB <- function()
@@ -82,7 +82,7 @@ importMCMC <- function(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
     names(B) <- substring(names(B), 8)
     if(!quiet) cat("labels...")
     if(!quiet) cat("OK\n")
-    B
+    type.convert(B, as.is=TRUE)
   }
 
   getR <- function()
@@ -95,7 +95,7 @@ importMCMC <- function(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
     names(R) <- as.integer(names(R)) - 1
     if(!quiet) cat("labels...")
     if(!quiet) cat("OK\n")
-    R
+    type.convert(R, as.is=TRUE)
   }
 
   ## 2  Verify that files exist

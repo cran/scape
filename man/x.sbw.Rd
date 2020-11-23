@@ -45,18 +45,18 @@
   \code{ll(x.sbw$N)}, and \code{head(x.sbw$N)}.
 }
 \source{
-  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M., and
+  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M. and
   Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
-    Plenary: Stock assessments and yield estimates.} Wellington:
-  Ministry of Fisheries.
+    Plenary: Stock assessments and yield estimates.} Ministry of
+  Fisheries, Wellington.
 }
 \references{
-  Branch, T. A., Magnusson, A., Hilborn, R., and Starr, P. J. (2002)
+  Branch, T. A., Magnusson, A., Hilborn, R. and Starr, P. J. (2002)
   \emph{Stock assessment of the Campbell Island Rise population of
     southern blue whiting (Micromesistius australis) for the 2000--01
   fishing season}. University of Washington Report SAFS-UW-0107.
 
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
   Washington Report SAFS-UW-0116.

@@ -3,9 +3,9 @@
 %\VignetteIndexEntry{Importing results}
 \usepackage{parskip}
 \usepackage{hyperref}
-\newcommand{\p}[1]{{\fontseries{b}\selectfont #1}}
-\newcommand{\R}{\textsf{R}}
-\newcommand{\scape}{{\fontseries{b}\selectfont scape}}
+\newcommand\p[1]{{\fontseries{b}\selectfont #1}}
+\newcommand\R{\textsf{R}}
+\newcommand\scape{{\fontseries{b}\selectfont scape}}
 \begin{document}
 
 \title{Importing results from a\\statistical catch-at-age model}
@@ -135,7 +135,7 @@ Gear Year SS Sex    Age Obs        Fit
   The estimation model could output \R\ code, instead of text files. For
   example, `results.R' could look similar to the R source code created by
   \verb|dump("x.cod", file="x.cod.R")|. Prager and Williams
-  (http://cran.r-project.org/contrib/extra/x2r/00ReadMe-X2R.html) have written
+  (https://cran.r-project.org/contrib/extra/x2r/00ReadMe-X2R.html) have written
   C++ and Fortran libraries to enable the model developer to write data as \R\
   objects.
 

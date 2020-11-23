@@ -48,16 +48,16 @@
   \code{ll(x.ling$N)}, and \code{head(x.ling$N)}.
 }
 \source{
-  Annala, J. H., Sullivan, K. J., O'Brien, C. J., and Smith, N. W. M.,
+  Annala, J. H., Sullivan, K. J., O'Brien, C. J. and Smith, N. W. M.,
   eds. (2001) \emph{Report from the Fishery Assessment Plenary: Stock
-    assessments and yield estimates.} Wellington: NIWA.
+    assessments and yield estimates.} NIWA, Wellington.
 
   Magnusson, A. (2001) \emph{SeaFIC assessment of Chatham Rise ling (LIN
     3 and 4).} Middle Depths Working Group Doc. 11. Report for the New
   Zealand Ministry of Fisheries.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
   Washington Report SAFS-UW-0116.

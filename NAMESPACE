@@ -4,7 +4,7 @@ export(estN, estN.int, estSigmaI, estSigmaR, getN, getSigmaI, getSigmaR,
        iterate)
 
 importFrom(stats, aggregate, median)
-importFrom(utils, packageVersion, read.table)
+importFrom(utils, packageVersion, read.table, type.convert)
 importFrom(coda, mcmc)
 importFrom(lattice, panel.abline, panel.barchart, panel.grid, panel.lines,
            panel.points, panel.superpose, panel.superpose.2, panel.xyplot,

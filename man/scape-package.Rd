@@ -61,11 +61,11 @@
   Workshop on Distributed Statistical Computing.
 
   Magnusson, A. and Hilborn, R. (2007) What makes fisheries data
-  informative? \emph{Fish and Fisheries} \bold{8}, 337--358.
+  informative? \emph{Fish and Fisheries}, \bold{8}, 337--358.
 
-  Magnusson, A., Punt, A. E., and Hilborn, R. (2013) Measuring
+  Magnusson, A., Punt, A. E. and Hilborn, R. (2013) Measuring
   uncertainty in fisheries stock assessment: the delta method,
-  bootstrap, and MCMC. \emph{Fish and Fisheries} \bold{14}, 325--342.
+  bootstrap, and MCMC. \emph{Fish and Fisheries}, \bold{14}, 325--342.
 }
 \seealso{
   Most \pkg{scape} graphics are \code{trellis} plots, rendered with the

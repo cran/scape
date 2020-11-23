@@ -38,7 +38,7 @@ importADCAM(dir)
 }
 \references{
   Bjornsson, H. and A. Magnusson. (2009) \emph{ADCAM user manual (draft
-    version).} ICES CM 2009/ACOM:56 Annex 6.
+    version).} ICES CM 2009/ACOM:56, Annex 6.
 }
 \seealso{
   \code{\link{read.table}}, \code{\link{readLines}}, and

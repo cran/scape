@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
-scape 2.3-2 (2018-05-01)
+scape 2.3.3 (2020-11-23)
 --------------------------------------------------------------------------------
-o No user-visible changes.
+o Maintenance release.
 
 
 
@@ -50,14 +50,6 @@ o Added type "l"[ast year] to plotN().
 
 o Improved type "r"[ecruitment] plotN(), so age at recruitment is no longer
   hardwired as 1.
-
-
-
-
---------------------------------------------------------------------------------
-scape 2.0-2 (2011-02-09)
---------------------------------------------------------------------------------
-o No user-visible changes.
 
 
 
@@ -122,14 +114,6 @@ o Added argument 'col.strip' to plotCA(), plotCL(), plotIndex(), plotLA(),
 o Reduced clutter during startup, by importing Hmisc and suggesting gdata.
 
 o Added three vignettes: dsc-vignette.pdf, gallery.pdf, and mymodel.pdf.
-
-
-
-
---------------------------------------------------------------------------------
-scape 1.0-9 (2009-04-20)
---------------------------------------------------------------------------------
-o No user-visible changes.
 
 
 

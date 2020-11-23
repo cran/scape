@@ -101,16 +101,16 @@ estN.int(P, Phat)  # internal function
 }
 \references{
   Gavaris, S. and Ianelli, J. N. (2002) Statistical issues in fisheries'
-  stock assessments. \emph{Scandinavian Journal of Statistics}
+  stock assessments. \emph{Scandinavian Journal of Statistics},
   \bold{29}, 245--271.
 
-  Magnusson, A., Punt, A. E., and Hilborn, R. (2013) Measuring
+  Magnusson, A., Punt, A. E. and Hilborn, R. (2013) Measuring
   uncertainty in fisheries stock assessment: the delta method,
-  bootstrap, and MCMC. \emph{Fish and Fisheries} \bold{14}, 325--342.
+  bootstrap, and MCMC. \emph{Fish and Fisheries}, \bold{14}, 325--342.
 
   McAllister, M. K. and Ianelli, J. N. (1997) Bayesian stock assessment
   using catch-age data and the sampling-importance resampling algorithm.
-  \emph{Canadian Journal of Fisheries and Aquaticic Sciences}
+  \emph{Canadian Journal of Fisheries and Aquaticic Sciences},
   \bold{54}, 284--300.
 }
 \seealso{

@@ -52,13 +52,13 @@
   \code{ll(x.oreo$N)}, and \code{head(x.oreo$N)}.
 }
 \source{
-  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M., and
+  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M. and
   Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
-    Plenary: Stock assessments and yield estimates.} Wellington:
-  Ministry of Fisheries.
+    Plenary: Stock assessments and yield estimates.} Ministry of
+  Fisheries, Wellington.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr,
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
   P. (2003) \emph{Coleraine: A generalized age-structured stock
     assessment model.} User's manual version 2.0. University of
   Washington Report SAFS-UW-0116.
