@@ -48,13 +48,15 @@
   \code{ll(x.ling$N)}, and \code{head(x.ling$N)}.
 }
 \source{
-  Annala, J. H., Sullivan, K. J., O'Brien, C. J. and Smith, N. W. M.,
-  eds. (2001) \emph{Report from the Fishery Assessment Plenary: Stock
-    assessments and yield estimates.} NIWA, Wellington.
+  Annala, J.H., Sullivan, K.J., O'Brien, C.J., and Smith, N. W. M., eds. (2001).
+  \emph{Report from the Fishery Assessment Plenary: Stock assessments and yield
+    estimates.}
+  NIWA, Wellington.
 
-  Magnusson, A. (2001) \emph{SeaFIC assessment of Chatham Rise ling (LIN
-    3 and 4).} Middle Depths Working Group Doc. 11. Report for the New
-  Zealand Ministry of Fisheries.
+  Magnusson, A. (2001).
+  \emph{SeaFIC assessment of Chatham Rise ling (LIN 3 and 4).}
+  Middle Depths Working Group Doc. 11.
+  Report for the New Zealand Ministry of Fisheries.
 }
 \references{
   Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,

@@ -22,7 +22,7 @@ plotB <- function(model, what="d", series=NULL, years=NULL, axes=TRUE, div=1,
 
   ## 2  Parse args
   what <- match.arg(what, c("d","s","l"))
-  x <- if(class(model)=="scape") model$B else model  # allow data frame
+  x <- if(inherits(model,"scape")) model$B else model  # allow data frame
   las <- as.numeric(las)
 
   ## 3  Prepare data (extract, filter, transform)

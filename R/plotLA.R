@@ -36,7 +36,7 @@ plotLA <- function(model, together=FALSE, sex=NULL, axes=TRUE, same.limits=TRUE,
                       col.line=col.lines[2], ...)
   }
   ## 2  Parse args
-  x <- if(class(model)=="scape") model$LA else model  # allow data frame
+  x <- if(inherits(model,"scape")) model$LA else model  # allow data frame
   relation <- if(same.limits) "same" else "free"
 
   ## 3  Prepare data (extract, rearrange, filter)

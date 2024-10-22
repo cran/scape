@@ -10,8 +10,8 @@ getSigmaR(model, digits=NULL)
 }
 \arguments{
   \item{model}{fitted \code{scape} model containing element \code{Dev}.}
-  \item{digits}{digits}{number of decimal places to use when rounding,
-    or \code{NULL} to suppress rounding.}
+  \item{digits}{number of decimal places to use when rounding, or
+    \code{NULL} to suppress rounding.}
 }
 \value{
   Vector of two numbers, representing recruitment variability in (1) the

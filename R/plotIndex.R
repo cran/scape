@@ -27,8 +27,8 @@ plotIndex <- function(model, what="s", series=NULL, axes=TRUE,
 
   ## 2  Parse args
   what <- match.arg(what, c("c","s"))
-  x <- if(class(model)=="scape" && what=="c") model$CPUE
-       else if(class(model)=="scape" && what=="s") model$Survey
+  x <- if(inherits(model,"scape") && what=="c") model$CPUE
+       else if(inherits(model,"scape") && what=="s") model$Survey
        else model  # allow data frame
   if(is.null(x))
     stop("element '", what, "' not found")

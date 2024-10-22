@@ -43,9 +43,11 @@
   diagnostics and posteriors.
 }
 \references{
-  Magnusson, A., Punt, A. E. and Hilborn, R. (2013) Measuring
-  uncertainty in fisheries stock assessment: the delta method,
-  bootstrap, and MCMC. \emph{Fish and Fisheries}, \bold{14}, 325--342.
+  Magnusson, A., Punt, A.E. and Hilborn, R. (2013).
+  Measuring uncertainty in fisheries stock assessment: the delta method,
+  bootstrap, and MCMC.
+  \emph{Fish and Fisheries}, \bold{14}, 325--342.
+  \doi{10.1111/j.1467-2979.2012.00473.x}
 }
 \seealso{
   \code{\link{importMCMC}} was used to import the MCMC results.

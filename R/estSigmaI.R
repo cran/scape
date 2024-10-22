@@ -3,8 +3,8 @@ estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1,
 {
   ## 1  Parse args
   what <- match.arg(what, c("c","s"))
-  x <- if(class(model)=="scape" && what=="c") model$CPUE
-       else if(class(model)=="scape" && what=="s") model$Survey
+  x <- if(inherits(model,"scape") && what=="c") model$CPUE
+       else if(inherits(model,"scape") && what=="s") model$Survey
        else model  # allow data frame
   if(is.null(x))
     stop("element '", what, "' not found")
@@ -35,7 +35,7 @@ estSigmaI <- function(model, what="s", series=NULL, init=NULL, FUN=mean, p=1,
     years <- unique(x$Year)
     if(is.null(init))
       init <- tapply(x$CV, x$Year, identity)  # use array to behave like estN
-    else if(class(init) == "scape")
+    else if(inherits(init, "scape"))
     {
       component <- if(what=="c") init$CPUE else init$Survey
       init <- component[!is.na(component$Obs),]

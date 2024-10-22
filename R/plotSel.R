@@ -21,7 +21,7 @@ plotSel <- function(model, together=FALSE, series=NULL, sex=NULL, axes=TRUE,
   }
 
   ## 2  Parse args
-  x <- if(class(model)=="scape") model$Sel else model
+  x <- if(inherits(model,"scape")) model$Sel else model
 
   ## 3  Prepare data (extract, rearrange, filter)
   if(is.null(series))

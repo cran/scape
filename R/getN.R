@@ -2,7 +2,7 @@ getN <- function(model, what="CAc", series=NULL, digits=NULL)
 {
   ## 1  Parse args
   what <- match.arg(what, c("CAc","CAs","CLc","CLs"))
-  x <- if(class(model)=="scape") model[[what]] else model  # allow data frame
+  x <- if(inherits(model,"scape")) model[[what]] else model  # allow data frame
   if(is.null(x))
     stop("element '", what, "' not found")
 

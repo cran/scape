@@ -55,13 +55,16 @@
     Icelandic waters 2002/2003.} Marine Research in Iceland 97.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
-  P. (2003) \emph{Coleraine: A generalized age-structured stock
-    assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116.
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr, P.
+  (2003).
+  \emph{Coleraine: A generalized age-structured stock assessment model.}
+  User's manual version 2.0.
+  University of Washington Report SAFS-UW-0116.
 
-  Magnusson, A. and Hilborn, R. (2007) What makes fisheries data
-  informative? \emph{Fish and Fisheries}, \bold{8}, 337--358.
+  Magnusson, A. and Hilborn, R. (2007).
+  What makes fisheries data informative?
+  \emph{Fish and Fisheries}, \bold{8}, 337--358.
+  \doi{10.1111/j.1467-2979.2007.00258.x}
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.

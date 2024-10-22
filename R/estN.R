@@ -14,7 +14,7 @@ estN <- function(model, what="CAc", series=NULL, init=NULL, FUN=mean,
 {
   ## 1  Parse args
   what <- match.arg(what, c("CAc","CAs","CLc","CLs"))
-  x <- if(class(model)=="scape") model[[what]] else model  # allow data frame
+  x <- if(inherits(model,"scape")) model[[what]] else model  # allow data frame
   if(is.null(x))
     stop("element '", what, "' not found")
   x$Column <- if(substring(what,1,2)=="CA") x$Age else x$Length
@@ -44,7 +44,7 @@ estN <- function(model, what="CAc", series=NULL, init=NULL, FUN=mean,
     years <- unique(x$Year)
     if(is.null(init))
       init <- tapply(x$SS, x$Year, unique)
-    else if(class(init) == "scape")
+    else if(inherits(init, "scape"))
       init <- tapply(init[[what]]$SS, init[[what]]$Year, unique)
     else if(identical(init,FALSE))
       init <- nhat

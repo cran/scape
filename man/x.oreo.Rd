@@ -45,27 +45,30 @@
 }
 \note{
   The list was imported from the files \file{scape/example/oreo.res},
-  \file{oreo.txt}, and \file{l\_at\_age.dat} using \code{importCol}.
+  \file{oreo.txt}, and \file{l_at_age.dat} using \code{importCol}.
 
   The functions \code{ll} (package \pkg{gdata}) and \code{head} are
   recommended for browsing nested objects, e.g. \code{ll(x.oreo)},
   \code{ll(x.oreo$N)}, and \code{head(x.oreo$N)}.
 }
 \source{
-  Annala, J. H., Sullivan, K. J., O'Brien, C. J., Smith, N. W. M. and
-  Grayling S. M., eds. (2003) \emph{Report from the Fishery Assessment
-    Plenary: Stock assessments and yield estimates.} Ministry of
-  Fisheries, Wellington.
+  Annala, J.H., Sullivan, K.J., O'Brien, C.J., Smith, N.W.M., and Grayling S.M.,
+  eds. (2003).
+  \emph{Report from the Fishery Assessment Plenary: Stock assessments and yield
+  estimates.}
+  Ministry of Fisheries, Wellington.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
-  P. (2003) \emph{Coleraine: A generalized age-structured stock
-    assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116.
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr, P.
+  (2003).
+  \emph{Coleraine: A generalized age-structured stock assessment model.}
+  User's manual version 2.0.
+  University of Washington Report SAFS-UW-0116.
 
-  Magnusson, A. (2003) \emph{Stock assessment of Chatham Rise smooth
-    oreo (SSO4).} Deepwater Working Group Doc. 16. Report for the New
-    Zealand Ministry of Fisheries.
+  Magnusson, A. (2003).
+  \emph{Stock assessment of Chatham Rise smooth oreo (SSO4).}
+  Deepwater Working Group Doc. 16.
+  Report for the New Zealand Ministry of Fisheries.
 }
 \seealso{
   \code{\link{importCol}} was used to import the fitted model.

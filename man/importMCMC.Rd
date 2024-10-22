@@ -40,10 +40,11 @@ importMCMC(dir, coda=FALSE, quiet=TRUE, pretty.labels=FALSE,
   diagnostics and posteriors.
 }
 \references{
-  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J. and Starr,
-  P. (2003) \emph{Coleraine: A generalized age-structured stock
-    assessment model.} User's manual version 2.0. University of
-  Washington Report SAFS-UW-0116.
+  Hilborn, R., Maunder, M., Parma, A., Ernst, B., Payne, J., and Starr, P.
+  (2003).
+  \emph{Coleraine: A generalized age-structured stock assessment model.}
+  User's manual version 2.0.
+  University of Washington Report SAFS-UW-0116.
 }
 \seealso{
   \code{\link{read.table}}, \code{\link{readLines}}, and

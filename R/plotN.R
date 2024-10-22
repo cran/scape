@@ -22,7 +22,7 @@ plotN <- function(model, what="d", swap=FALSE, years=NULL, ages=NULL, axes=TRUE,
 
   ## 2  Parse args
   what <- match.arg(what, c("d","i","l","r","p","b"))
-  x <- if(class(model)=="scape") model$N else model  # allow data frame
+  x <- if(inherits(model,"scape")) model$N else model  # allow data frame
   relation <- if(same.limits) "same" else "free"
   las <- as.numeric(las)
 
@@ -66,7 +66,7 @@ plotN <- function(model, what="d", swap=FALSE, years=NULL, ages=NULL, axes=TRUE,
   fixed.ylim <- FALSE
   if(what == "d")
   {  # recursive flow: plotN("i",plot=F) -> print -> plotN("r",plot=F) -> print
-    if(class(model) != "scape")
+    if(!inherits(model, "scape"))
       stop("default plot(what=\"d\") requires that 'model' is a scape object")
     graph <- plotN(model, what="i", years=years, ages=ages, axes=axes,
                    relation=relation, div=div, log=log, base=base, main=main,
